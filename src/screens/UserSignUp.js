@@ -10,7 +10,7 @@ import {
     Parse,
 } from 'react-native';
 
-export const UserSignUp = () => {
+const UserSignUp = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword, setConfirmPassword] = useState("");
@@ -78,3 +78,5 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff'
     },
 });
+
+export default UserSignUp

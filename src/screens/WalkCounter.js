@@ -7,7 +7,7 @@ import {
     SafeAreaView
 } from "react-native"
 
-export const WalkCounter = () => {
+const WalkCounter = () => {
     const [count, setCount] = useState(0);
 
     return (
@@ -26,3 +26,5 @@ export const WalkCounter = () => {
 const styles = StyleSheet.create({
     
 })
+
+export default WalkCounter
