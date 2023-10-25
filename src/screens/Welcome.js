@@ -17,7 +17,7 @@ const Welcome = () => {
 
   return (
     <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/DogGoicon.png')}  style={{marginTop: 50, marginBottom:50}}/>
+        <Image source={require('../../assets/images/DogGoicon.png')}  style={{marginTop: 50, marginBottom:50, height: 64, width: 64}}/>
         <Text style={title}>Welcome</Text>
         <Text style={title}>to DogGo!</Text>
         <Text style={[info, {marginTop: 50}]}>Get personalized walking reminders based on the weather</Text>
