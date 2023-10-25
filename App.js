@@ -5,13 +5,21 @@ import Welcome from './src/screens/Welcome';
 import LocationServices from './src/screens/LocationServices';
 import UserSignUp from './src/screens/UserSignUp';
 import WalkCounter from './src/screens/WalkCounter';
+import { NavigationContainer } from '@react-navigation/native'
+import { createStackNavigator } from '@react-navigation/stack'
+
+const Stack = createStackNavigator()
 
 export default function App() {
   return (
     <StateProvider>
-      <View style={[styles.container, {backgroundColor: 'lightgrey'}]}>
-        <Welcome />
-      </View>
+        <NavigationContainer>
+          <Stack.Navigator >
+            <Stack.Screen name="Welcome" component={Welcome} options={{title:"", headerStyle: {backgroundColor: 'lightgrey'}}}/>
+            <Stack.Screen name="Login" component={LocationServices} options={{title:"", headerStyle: {backgroundColor: 'lightgrey'}}}/>
+            <Stack.Screen name="Sign Up" component={UserSignUp} options={{title:"", headerStyle: {backgroundColor: 'lightgrey'}}}/>
+          </Stack.Navigator>
+        </NavigationContainer>
     </StateProvider>
   );
 }
