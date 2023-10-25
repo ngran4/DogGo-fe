@@ -7,7 +7,7 @@ import {
     SafeAreaView
 } from "react-native"
 
-const WalkCounter = () => {
+const WalkCounter = ({navigation}) => {
     const [count, setCount] = useState(0);
 
     return (
