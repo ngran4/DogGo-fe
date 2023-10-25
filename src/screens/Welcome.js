@@ -1,9 +1,12 @@
 import React, { useContext } from 'react'
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
+import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
 import { StateContext } from '../context/StateContext'
+import DogGoIcon from '../../assets/images/DogGoIcon'
+import UserSignUp from './UserSignUp'
+import LocationServices from './LocationServices'
 
 
-const Welcome = () => {
+const Welcome = ({navigation}) => {
     const {container, button, title, info, buttonText} = styles
     const [styleContext] = useContext(StateContext)
 
@@ -17,15 +20,17 @@ const Welcome = () => {
 
   return (
     <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/DogGoicon.svg')}  style={{marginTop: 50, marginBottom:50, height: 64, width: 64}}/>
+        <View style={{height: 64, width: 64}}>
+            <DogGoIcon />
+        </View>
         <Text style={styleContext.title}>Welcome</Text>
         <Text style={styleContext.title}>to DogGo!</Text>
         <Text style={[info, {marginTop: 50}]}>Get personalized walking reminders based on the weather</Text>
         <Text style={info}> Stay on top of your dog's walking schedule</Text>
-        <TouchableOpacity style={[button, {marginTop: 100}]} onPress={goToLogin}>
+        <TouchableOpacity style={button} onPress={() => navigation.navigate("Login")}>
             <Text style={buttonText}>Log In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={button} onPress={goToSignUp}>
+        <TouchableOpacity style={button} onPress={() => navigation.navigate("Sign Up")}>
             <Text style={buttonText}>Sign Up</Text>
         </TouchableOpacity>
     </SafeAreaView>
@@ -59,6 +64,8 @@ const styles = StyleSheet.create({
     },
     buttonText: {
         fontSize: 20,
+        maxWidth: 310,
+        maxHeight: 58,
     },
     dog: {
         marginTop: 15,
