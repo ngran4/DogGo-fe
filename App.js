@@ -1,15 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-// import Welcome from './src/screens/Welcome';
-// import LocationServices from './src/screens/LocationServices';
+import { StateProvider } from './src/context/StateContext';
+import Welcome from './src/screens/Welcome';
+import LocationServices from './src/screens/LocationServices';
 import UserSignUp from './src/screens/UserSignUp';
 import WalkCounter from './src/screens/WalkCounter';
 
 export default function App() {
   return (
-    <View style={[styles.container, {backgroundColor: 'lightgrey'}]}>
-      <WalkCounter />
-    </View>
+    <StateProvider>
+      <View style={[styles.container, {backgroundColor: 'lightgrey'}]}>
+        <Welcome />
+      </View>
+    </StateProvider>
   );
 }
 

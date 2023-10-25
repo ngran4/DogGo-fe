@@ -1,11 +1,11 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
+import { StateContext } from '../context/StateContext'
 
 
 const Welcome = () => {
-
-
     const {container, button, title, info, buttonText} = styles
+    const [styleContext] = useContext(StateContext)
 
     const goToLogin = () => {
 
@@ -18,8 +18,8 @@ const Welcome = () => {
   return (
     <SafeAreaView style={container}>
         <Image source={require('../../assets/images/DogGoicon.svg')}  style={{marginTop: 50, marginBottom:50, height: 64, width: 64}}/>
-        <Text style={title}>Welcome</Text>
-        <Text style={title}>to DogGo!</Text>
+        <Text style={styleContext.title}>Welcome</Text>
+        <Text style={styleContext.title}>to DogGo!</Text>
         <Text style={[info, {marginTop: 50}]}>Get personalized walking reminders based on the weather</Text>
         <Text style={info}> Stay on top of your dog's walking schedule</Text>
         <TouchableOpacity style={[button, {marginTop: 100}]} onPress={goToLogin}>
