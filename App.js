@@ -1,14 +1,25 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
-import { UserSignUp } from './src/screens/signUp'; 
-import { WalkCounter } from './src/screens/walkinfo';
+// <<<<<<< ＜nick＞
+// import { UserSignUp } from './src/screens/signUp'; 
+// import { WalkCounter } from './src/screens/walkinfo';
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <UserSignUp/>
-      <WalkCounter/>
-      <StatusBar style="auto" />
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <UserSignUp/>
+//       <WalkCounter/>
+//       <StatusBar style="auto" />
+// =======
+// import Welcome from './src/screens/Welcome';
+// import LocationServices from './src/screens/LocationServices';
+
+// export default function App() {
+//   return (
+//     <View style={[styles.container, {backgroundColor: 'lightgrey'}]}>
+//       {/* <LocationServices /> */}
+//       <Welcome />
+// >>>>>>> main
     </View>
   );
 }
@@ -16,7 +27,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
   },
