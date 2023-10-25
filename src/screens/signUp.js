@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import {
     SafeAreaView,
     Text,
-    Stylesheet,
+    StyleSheet,
     View,
     Button,
     TextInput,
@@ -35,7 +35,8 @@ export const UserSignUp = () => {
 
     return (
         <>
-        <Text></Text>
+        <Text>Sign Up</Text>
+        
         <TextInput
         style={styles.input}
         value={email}
@@ -70,7 +71,7 @@ export const UserSignUp = () => {
 };
 
 
-const styles = Stylesheet.create({
+const styles = StyleSheet.create({
     input: {
         height: 25,
         marginBottom: 10,
