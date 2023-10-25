@@ -10,7 +10,7 @@ import {
     Parse,
 } from 'react-native';
 
-const UserSignUp = () => {
+const UserSignUp = ({navigation}) => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword, setConfirmPassword] = useState("");
@@ -18,19 +18,21 @@ const UserSignUp = () => {
     const doSignUp= async function () {
         const usernameValue = username;
         const passwordValue = password;
-    
-        return await Parse.User.signUp(usernameValue, passwordValue)
-        .then((createdUser) => {
-            Alert.alert(
-                'Success!',
-                `User ${createdUser.getUsername()} was created.`,
-            );
-            return true;
-        })
-        .catch((error) => {
-            Alert.alert('Error!', error.message);
-            return false;
-        });
+        
+        navigation.navigate("Location Services")
+
+        // return await Parse.User.signUp(usernameValue, passwordValue)
+        // .then((createdUser) => {
+        //     Alert.alert(
+        //         'Success!',
+        //         `User ${createdUser.getUsername()} was created.`,
+        //     );
+        //     return true;
+        // })
+        // .catch((error) => {
+        //     Alert.alert('Error!', error.message);
+        //     return false;
+        // });
     }
 
     return (
