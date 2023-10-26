@@ -10,10 +10,11 @@ import {
     View,
 } from 'react-native';
 
+
 const WalkTime= ({navigation}) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const [stateContext] = useContext(StateContext)
-    const {numWalks} = stateContext
+    const { numWalks, setNumWalks } = stateContext;
     const {container, greenButton, buttonText, blueButton} = stateContext
     
     const timeslot = {
