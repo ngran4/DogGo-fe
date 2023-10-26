@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext } from 'react'
+import { StateContext } from '../context/StateContext'
 import { SafeAreaView,  Text, View, StyleSheet, TouchableOpacity} from 'react-native'
 
 const AddPet = ({navigation}) => {
-    const {button, buttonText} = styles
+    const [stateContext] = useContext(StateContext)
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext
 
   return (
     <SafeAreaView>
@@ -10,7 +12,7 @@ const AddPet = ({navigation}) => {
             <Text>Add a Furry Friend</Text>
             <Text>Image Upload Placeholder</Text>
             <Text>Name Input Placeholder</Text>
-            <TouchableOpacity style={button} onPress={() => navigation.navigate("Walk Counter")}>
+            <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Counter")}>
                 <Text style={buttonText}>Next</Text>
             </TouchableOpacity>
         </View>

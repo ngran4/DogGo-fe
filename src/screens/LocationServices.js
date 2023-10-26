@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
+import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
 import * as Location from 'expo-location'
 
 const LocationServices = ({navigation}) => {
+
+  const [stateContext] = useContext(StateContext)
+  const {container, blueButton, greenButton, header, body, buttonText} = stateContext
   const [error, setError] = useState(null)
   const [lat, setLat] = useState([])
   const [lon, setLon] = useState([])
-  
-  const {container, title, button, buttonText} = styles
 
   useEffect(() => {
     (async () => {
@@ -39,8 +41,8 @@ const LocationServices = ({navigation}) => {
   return (
     <SafeAreaView style={container}>
         <Image source={require('../../assets/images/locationPin.png')} />
-        <Text style={title}>Location Services</Text>
-        <TouchableOpacity style={button} onPress={() => navigation.navigate("Add a Furry Friend")}>
+        <Text style={header}>Location Services</Text>
+        <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Add a Furry Friend")}>
           <Text style={buttonText}>Next</Text>
         </TouchableOpacity>
     </SafeAreaView>
