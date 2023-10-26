@@ -1,16 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../context/StateContext";
 import RNPickerSelect from 'react-native-picker-select';
+import { numberOfDropdowns } from './walkinfo'
 import {
     SafeAreaView,
     Text,
     TouchableOpacity, 
     StyleSheet,
 } from 'react-native';
-import { WalkCounter } from "./walkinfo";
 
-export const Dropdown= () => {
+
+const WalkTime= () => {
     const [selectedValue, setSelectedValue] = useState(null);
-
+    const [stateContext] = useContext(StateContext)
+    const {numWalks} = stateContext
+    
     const timeslot = {
         label: 'Choose a Time',
         value: null,
@@ -44,17 +48,25 @@ export const Dropdown= () => {
         {label:'12:00 pm', value:'12pm'},
     ];
 
-    
+
+    const { dropdownCount } = numWalks;
+    const dropdowns = [];
+        for (let i = 0; i < dropdownCount; i++) {
+            dropdowns.push(
+                <RNPickerSelect
+                placeholder={timeslot}
+                items={options}
+                onValueChange={(value) => console.log(value)}
+                value={selectedValue}
+            />
+            )
+        }
+
     return (
         <SafeAreaView>
             <Text>What times of the day would you ideally walk Fido?</Text>
-
-            <RNPickerSelect
-                placeholder={timeslot}
-                items={options}
-                onValueChange={(value) => setSelectedValue(value)}
-                value={selectedValue}
-            />
+            {dropdowns}
+            {/* other content of PageB */}
             {selectedValue && <Text> Selected: {selectedValue}</Text>}
 
             <TouchableOpacity style={styles.Button}>
@@ -64,8 +76,7 @@ export const Dropdown= () => {
                 <Text style={styles.buttonText}>Do Later</Text>
             </TouchableOpacity>
         </SafeAreaView>
-    )
-} 
+    )};
 
 const styles = StyleSheet.create({
     container: {
@@ -99,3 +110,5 @@ const styles = StyleSheet.create({
         fontSize: 18,
     },
 })
+
+export default WalkTime

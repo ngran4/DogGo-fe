@@ -1,10 +1,12 @@
-import React, { createContext,  } from "react"
+import React, { createContext, useState  } from "react"
 
 
 export const StateContext = createContext()
 
 export const StateProvider = (props) => {
+    const [numWalks, setNumWalks] = useState(0)
     const styleContext = {
+        numWalks, setNumWalks,
         container: {
             backgroundColor: "#F8F5E6",
             flex:1,
