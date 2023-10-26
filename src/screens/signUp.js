@@ -8,16 +8,17 @@ import {
     Alert,
     Parse,
 } from 'react-native';
+import * as authService from '../services/authService'
 
 export const UserSignUp = () => {
     const [email, setEmail] = useState("");
-    const [username, setUsername] = useState("");
+    const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [ConfirmPassword, setConfirmPassword] = useState("");
 
     const doSignUp= async function () {
         const emailValue = email;
-        const usernameValue = username;
+        const usernameValue = name;
         const passwordValue = password;
     
         return await Parse.User.signUp(emailValue,usernameValue, passwordValue)
@@ -34,15 +35,54 @@ export const UserSignUp = () => {
         });
     }
 
+    // const [formData, setFormData] = useState({
+    //     name: '',
+    //     email: '',
+    //     password: '',
+    //     passwordConf: '',
+    // })
+    // const [photoData, setPhotoData] = useState({})
+    
+    // const handleChange = e => {
+    // props.updateMessage('')
+    //     setFormData({
+    //     ...formData,
+    //     [e.target.name]: e.target.value,
+    //     })
+    // }
+    
+    // const handleChangePhoto = (evt) => {
+    //     setPhotoData({ photo: evt.target.files[0] })
+    // }
+    
+    // const handleSubmit = async e => {
+    // e.preventDefault()
+    // try {
+    // await authService.signup(formData, photoData.photo)
+    //     props.handleSignupOrLogin()
+    //     navigate('/')
+    //     } catch (err) {
+    //     props.updateMessage(err.message)
+    //     }
+    // }
+    
+    // const { name, email, password, passwordConf } = formData
+    
+    // const isFormInvalid = () => {
+    //     return !(name && email && password && password === passwordConf)
+    // }
+
+    console.log('hello')
+
     return (
         <SafeAreaView >
-        <Text style={styles.title}>Sign Up</Text>
+        {/* <Text style={styles.title}>Sign Up ?</Text> */}
         
         <TextInput
         style={styles.input}
-        value={username}
+        value={name}
         placeholder={"Name"}
-        onChangeText={ (text) => setUsername(text)}
+        onChangeText={ (text) => setName(text)}
         autoCapitalize={"none"}
         />
         <TextInput
@@ -66,6 +106,24 @@ export const UserSignUp = () => {
         secureTextEntry
         onChangeText={(text) => setConfirmPassword(text)}
         />
+        {/* {(name && email && password && password === passwordConf)
+        ?
+(        <TextInput
+        style={styles.input}
+        value={ConfirmPassword}
+        placeholder={"Confirm Password"}
+        secureTextEntry
+        onChangeText={(text) => setConfirmPassword(text)}
+        />)
+        :
+(        <TextInput
+        style={styles.input}
+        value={ConfirmPassword}
+        placeholder={"Confirm Password"}
+        secureTextEntry
+        onChangeText={(text) => setConfirmPassword(text)}
+        />)
+        } */}
         <TouchableOpacity style={styles.Button} onPress={() => doSignUp()} >
             <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
