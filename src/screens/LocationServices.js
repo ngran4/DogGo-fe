@@ -1,7 +1,9 @@
 import React, { useEffect, useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity} from 'react-native'
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View} from 'react-native'
 import * as Location from 'expo-location'
+import LocationIcon from '../../assets/images/LocationIcon'
+import LocationProgress from '../../assets/images/signup_progress/LocationProgress'
 
 const LocationServices = ({navigation}) => {
 
@@ -32,7 +34,9 @@ const LocationServices = ({navigation}) => {
   if (error) {
     return (
       <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/locationPin.png')} />
+        <View style={{height: 64, width: 64}}>
+          <LocationIcon />
+        </View>
         <Text>{error}</Text>
       </SafeAreaView>
     )
@@ -40,11 +44,17 @@ const LocationServices = ({navigation}) => {
 
   return (
     <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/locationPin.png')} />
-        <Text style={header}>Location Services</Text>
-        <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Add a Furry Friend")}>
-          <Text style={buttonText}>Next</Text>
-        </TouchableOpacity>
+      <View style={{height: 64, width: 64}}>
+        <LocationIcon />
+      </View>
+      <Text style={header}>Location Services</Text>
+      <Text style={body}>We use your location to keep you and your furry friend comfortable with weather alerts and suggested walking times to avoid inclement weather.</Text>
+      <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Add a Furry Friend")}>
+        <Text style={buttonText}>Next</Text>
+      </TouchableOpacity>
+      <View style={{height:64, width:358}}>
+        <LocationProgress />
+      </View>
     </SafeAreaView>
   )
 }

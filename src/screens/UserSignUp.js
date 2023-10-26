@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from '../context/StateContext'
+import BringIcon from '../../assets/images/BringIcon'
 import {
     SafeAreaView,
     Text,
@@ -41,40 +42,44 @@ const UserSignUp = ({navigation}) => {
     }
 
     return (
-        <SafeAreaView>
-        <Text>Sign Up</Text>
-        
-        <TextInput
-        style={styles.input}
-        value={email}
-        placeholder={"Email"}
-        onChangeText={ (text) => setEmail(text)}
-        autoCapitalize={"none"}
-        />
-        <TextInput
-        style={styles.input}
-        value={username}
-        placeholder={"Username"}
-        onChangeText={ (text) => setUsername(text)}
-        autoCapitalize={"none"}
-        />
-        <TextInput
-        style={styles.input}
-        value={password}
-        placeholder={"Password"}
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-        />
-        <TextInput
-        style={styles.input}
-        value={password}
-        placeholder={"Confirm Password"}
-        secureTextEntry
-        onChangeText={(text) => setConfirmPassword(text)}
-        />
-        <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
-            <Text style={buttonText}>Create Account</Text>
-        </TouchableOpacity>
+        <SafeAreaView style={container}>
+            <View style={{height: 64, width: 64}}>
+                <BringIcon />
+            </View>
+
+            <Text style={header}>Sign Up</Text>
+            
+            <TextInput
+            style={styles.input}
+            value={email}
+            placeholder={"Email"}
+            onChangeText={ (text) => setEmail(text)}
+            autoCapitalize={"none"}
+            />
+            <TextInput
+            style={styles.input}
+            value={username}
+            placeholder={"Username"}
+            onChangeText={ (text) => setUsername(text)}
+            autoCapitalize={"none"}
+            />
+            <TextInput
+            style={styles.input}
+            value={password}
+            placeholder={"Password"}
+            secureTextEntry
+            onChangeText={(text) => setPassword(text)}
+            />
+            <TextInput
+            style={styles.input}
+            value={password}
+            placeholder={"Confirm Password"}
+            secureTextEntry
+            onChangeText={(text) => setConfirmPassword(text)}
+            />
+            <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
+                <Text style={buttonText}>Create Account</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 };

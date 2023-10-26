@@ -1,5 +1,6 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
+import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import {
     Text,
     View,
@@ -18,15 +19,16 @@ async function submitData() {
     navigation.navigate("Home")
 }
   return (
-    <SafeAreaView>
-        <View>
-            <Text>What times of the day would you ideally walk DOG'S NAME?</Text>
-            <Text>Dropdown placeholder</Text>
-            <Text>dropdown placeholder</Text>
-            <TouchableOpacity style={greenButton} onPress={submitData}>
-                <Text style={buttonText}>Start Walking</Text>
-            </TouchableOpacity>
+    <SafeAreaView style={container}>
+        <View style={{height: 64, width: 64}}>
+          <WalkTimeIcon />
         </View>
+        <Text>What times of the day would you ideally walk DOG'S NAME?</Text>
+        <Text>Dropdown placeholder</Text>
+        <Text>dropdown placeholder</Text>
+        <TouchableOpacity style={greenButton} onPress={submitData}>
+          <Text style={buttonText}>Start Walking</Text>
+        </TouchableOpacity>
     </SafeAreaView>
   )
 }
