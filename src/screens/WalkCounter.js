@@ -1,5 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from '../context/StateContext'
+import WalkIcon from '../../assets/images/WalkIcon'
 import {
     Text,
     Button,
@@ -15,8 +16,11 @@ const WalkCounter = ({navigation}) => {
     const [count, setCount] = useState(0);
 
     return (
-        <SafeAreaView>
-            <View>
+        <SafeAreaView style={container}>
+          <View style={{height: 64, width: 64}}>
+            <WalkIcon />
+         </View>
+
                 <Text> How often do you like to walk your dog? </Text>
                 
                 <Button
@@ -29,7 +33,7 @@ const WalkCounter = ({navigation}) => {
                 <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Times")}>
                     <Text style={buttonText}>Next</Text>
                 </TouchableOpacity>
-            </View>
+
         </SafeAreaView>
     )
 }
