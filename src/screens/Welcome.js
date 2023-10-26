@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView, StyleSheet, View, Text, TouchableOpacity } from 'react-native'
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
 import DogGoIcon from '../../assets/images/DogGoIcon'
 
 const Welcome = ({navigation}) => {

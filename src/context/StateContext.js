@@ -5,10 +5,6 @@ export const StateContext = createContext()
 export const StateProvider = (props) => {
 
     const styleContext = {
-        navOptions: {
-            title: "",
-            backgroundColor: "#F8F5E6"
-        },
         container: {
             backgroundColor: "#F8F5E6",
             flex:1,
