@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { useNavigation } from '@react-navigation/native'
 import {
     Text,
     StyleSheet,
@@ -9,16 +10,20 @@ import {
 
 export const WalkCounter = () => {
     const [count, setCount] = useState(0);
+    const [stateContext] = useContext(StateContext)
+const {numWalks, setNumWalks} = stateContext
 
+    
     return (
         <SafeAreaView style={styles.container}>
             <Text> How often do you like to walk your dog? </Text>
             
             <Button
-            onPress={() => {setCount(count - 1)}} title={"-"}/>
-            <Text>{count}</Text>
+            onPress={() => {setNumWalks(numWalks - 1)}} title={"-"}/>
+            <walkcount/>
+            <Text>{numWalks}</Text>
             <Button
-            onPress={() => {setCount(count + 1)}} title={"+"}/>
+            onPress={() => {setNumWalks(numWalks + 1)}} title={"+"}/>
 
             <TouchableOpacity style={styles.Button}>
                 <Text style={styles.ButtonText}>Next</Text>
@@ -27,8 +32,7 @@ export const WalkCounter = () => {
                 <Text style={styles.buttonText}>Do Later</Text>
             </TouchableOpacity>
         </SafeAreaView>
-    )
-}
+    )};
 
 const styles = StyleSheet.create({
     container: {

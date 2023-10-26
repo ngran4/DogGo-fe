@@ -12,25 +12,10 @@ import { useCallback, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 
-import * as authService from './src/services/authService'
-
-
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
 
 export default function App() { 
-  const [user, setUser] = useState(authService.getUser());
-
-  // function handleLogout() {
-  //   authService.logout();
-  //   setUser(null);
-  //   navigate("/");
-  // }
-
-  // const handleSignupOrLogin = () => {
-  //   setUser(authService.getUser());
-  // };
-
   const [fontsLoaded] = useFonts({
     'ConcertOne-Regular': require('./assets/fonts/ConcertOne-Regular.ttf'),
     'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf')
@@ -74,7 +59,6 @@ if (!fontsLoaded) {
             </Stack.Navigator>
           </NavigationContainer>
       </StateProvider>
-
   );
 }
 
