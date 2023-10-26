@@ -1,69 +1,37 @@
-import React from 'react'
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
+import React, { useContext } from 'react'
+import { StateContext } from '../context/StateContext'
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
+import DogGoIcon from '../../assets/images/DogGoIcon'
 
 
-const Welcome = () => {
+
+const Welcome = ({navigation}) => {
+    // Get the style context from the Context API
+    const [stateContext] = useContext(StateContext)
+    // Destructure the styles into the used styles on this screen to be used below
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext
+    // Needed to check for loaded or error fonts, to display or not display a splash screen
+    // Used to prevent errors on loading the screens/components before the system is ready
 
 
-    const {container, button, title, info, buttonText} = styles
-
-    const goToLogin = () => {
-
-    }
-
-    const goToSignUp = () => {
-
-    }
 
   return (
     <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/DogGoicon.svg')}  style={{marginTop: 50, marginBottom:50, height: 64, width: 64}}/>
-        <Text style={title}>Welcome</Text>
-        <Text style={title}>to DogGo!</Text>
-        <Text style={[info, {marginTop: 50}]}>Get personalized walking reminders based on the weather</Text>
-        <Text style={info}> Stay on top of your dog's walking schedule</Text>
-        <TouchableOpacity style={[button, {marginTop: 100}]} onPress={goToLogin}>
+        <View style={{height: 96, width: 100}}>
+            <DogGoIcon />
+        </View>
+        <Text style={[header, {marginTop: 30}]}>Welcome</Text>
+        <Text style={header}>to DogGo!</Text>
+        <Text style={[body, {marginTop: 40, textAlign: 'center', padding: '3%'}]}>Get personalized walking reminders based on your local weather</Text>
+        <Text style={[body, {textAlign: 'center', padding: '3%'}]}> Stay on top of your dog's walking schedule</Text>
+        <TouchableOpacity style={[greenButton, {marginTop: 78}]} onPress={() => navigation.navigate("Login")}>
             <Text style={buttonText}>Log In</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={button} onPress={goToSignUp}>
+        <TouchableOpacity style={[blueButton, {marginTop: 17}]} onPress={() => navigation.navigate("Sign Up")}>
             <Text style={buttonText}>Sign Up</Text>
         </TouchableOpacity>
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        justifyContent: 'center',
-        alignItems: 'center',   
-    },
-    title: {
-        fontSize: 40,
-    },
-    info: {
-        fontSize: 20,
-        textAlign: 'center',
-        padding: '3%'
-    },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        padding: 10,
-        borderRadius: 20,
-        borderWidth: 1,
-        margin: 10, 
-        width: 310,
-        height: 58,
-    },
-    buttonText: {
-        fontSize: 20,
-    },
-    dog: {
-        marginTop: 15,
-        marginBottom: 15
-    }
-})
 
 export default Welcome

@@ -1,13 +1,17 @@
-import React, { useEffect, useState } from 'react'
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity } from 'react-native'
+import React, { useEffect, useState, useContext } from 'react'
+import { StateContext } from '../context/StateContext'
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View} from 'react-native'
 import * as Location from 'expo-location'
+import LocationIcon from '../../assets/images/LocationIcon'
+import LocationProgress from '../../assets/images/signup_progress/LocationProgress'
 
-const LocationServices = () => {
+const LocationServices = ({navigation}) => {
+
+  const [stateContext] = useContext(StateContext)
+  const {container, blueButton, greenButton, header, body, buttonText} = stateContext
   const [error, setError] = useState(null)
   const [lat, setLat] = useState([])
   const [lon, setLon] = useState([])
-  
-  const {container, title} = styles
 
   useEffect(() => {
     (async () => {
@@ -30,7 +34,9 @@ const LocationServices = () => {
   if (error) {
     return (
       <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/locationPin.png')} />
+        <View style={{height: 64, width: 64}}>
+          <LocationIcon />
+        </View>
         <Text>{error}</Text>
       </SafeAreaView>
     )
@@ -38,8 +44,17 @@ const LocationServices = () => {
 
   return (
     <SafeAreaView style={container}>
-        <Image source={require('../../assets/images/locationPin.png')} />
-        <Text style={title}>Location Services</Text>
+      <View style={{height: 64, width: 64}}>
+        <LocationIcon />
+      </View>
+      <Text style={header}>Location Services</Text>
+      <Text style={body}>We use your location to keep you and your furry friend comfortable with weather alerts and suggested walking times to avoid inclement weather.</Text>
+      <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Add a Furry Friend")}>
+        <Text style={buttonText}>Next</Text>
+      </TouchableOpacity>
+      <View style={{height:64, width:358}}>
+        <LocationProgress />
+      </View>
     </SafeAreaView>
   )
 }
@@ -52,6 +67,22 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 40,
+    },
+    button: {
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#DDDDDD',
+      padding: 10,
+      borderRadius: 20,
+      borderWidth: 1,
+      margin: 10, 
+      width: 310,
+      height: 58,
+    },
+    buttonText: {
+      fontSize: 20,
+      maxWidth: 310,
+      maxHeight: 58,
     },
 })
 
