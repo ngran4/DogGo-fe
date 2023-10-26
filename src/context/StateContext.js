@@ -1,16 +1,38 @@
-import React, { createContext, useState } from "react"
-
-
+import React, { createContext, useState, useEffect  } from "react"
 export const StateContext = createContext()
-
+import { useGetWeather } from "../hooks/useGetWeather"
 export const StateProvider = (props) => {
-    const [lat, setLat] = useState(0)
-    const [lon, setLon] = useState(0)
 
+    const [numWalks, setNumWalks] = useState(0)
+    const [lat, setLat] = useState([])
+    const [lon, setLon] = useState([])
+    const [weather, setWeather] = useState([])
+    const [error, setError] = useState(null)
+    const [loading, setLoading] = useState(true)
+
+    if(lat && lon) {
+        useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
+    }
+    useEffect(() => {
+        console.log(weather)
+
+    }, [weather])
 
     const stateContext = {
         // Used for location services
-        lat: lat, lon: lon, setLon: setLon, setLat: setLat,
+        lat: lat, 
+        setLat: setLat, 
+        setLon: setLon, 
+        lon: lon, 
+        numWalks: numWalks, 
+        setNumWalks: setNumWalks,
+        weather: weather,
+        setWeather: setWeather,
+        error: error,
+        setError: setError,
+        loadinf: loading,
+        setLoading: setLoading,
+
         container: {
             backgroundColor: "#F8F5E6",
             flex:1,

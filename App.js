@@ -12,12 +12,10 @@ import { useCallback, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 
-
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
 
 export default function App() { 
-
   const [fontsLoaded] = useFonts({
     'ConcertOne-Regular': require('./assets/fonts/ConcertOne-Regular.ttf'),
     'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf')
@@ -61,7 +59,6 @@ if (!fontsLoaded) {
             </Stack.Navigator>
           </NavigationContainer>
       </StateProvider>
-
   );
 }
 
