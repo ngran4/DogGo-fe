@@ -2,18 +2,20 @@ import React, { useState, useContext } from "react";
 import { StateContext } from "../context/StateContext";
 import RNPickerSelect from 'react-native-picker-select';
 import { numberOfDropdowns } from './walkinfo'
+import RNPickerSelect from 'react-native-picker-select';
+import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import {
     SafeAreaView,
     Text,
     TouchableOpacity, 
-    StyleSheet,
+    View,
 } from 'react-native';
 
-
-const WalkTime= () => {
+const WalkTime= ({navigation) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const [stateContext] = useContext(StateContext)
     const {numWalks} = stateContext
+    const {container, greenButton, buttonText, blueButton} = stateContext
     
     const timeslot = {
         label: 'Choose a Time',
@@ -49,7 +51,20 @@ const WalkTime= () => {
     ];
 
 
-    const { dropdownCount } = numWalks;
+    async function submitData() {
+        // The data will be collated and submitted here before submitting
+        // Then the user will be sent to the home page
+        navigation.navigate("Home")
+    }
+
+    return (
+        <SafeAreaView style={container}>
+            <View style={{height: 64, width: 64}}>
+                <WalkTimeIcon />
+            </View>
+            <Text>What times of the day would you ideally walk Fido?</Text>
+
+const { dropdownCount } = numWalks;
     const dropdowns = [];
         for (let i = 0; i < dropdownCount; i++) {
             dropdowns.push(
@@ -62,53 +77,21 @@ const WalkTime= () => {
             )
         }
 
-    return (
-        <SafeAreaView>
-            <Text>What times of the day would you ideally walk Fido?</Text>
-            {dropdowns}
-            {/* other content of PageB */}
-            {selectedValue && <Text> Selected: {selectedValue}</Text>}
+//     return (
+//         <SafeAreaView>
+//             <Text>What times of the day would you ideally walk Fido?</Text>
+//             {dropdowns}
+//             {/* other content of PageB */}
+//             {selectedValue && <Text> Selected: {selectedValue}</Text>}
 
-            <TouchableOpacity style={styles.Button}>
-                <Text style={styles.ButtonText}>Start Walking!</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Do Later</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
-    )};
+//             <TouchableOpacity style={greenButton} onPress={submitData}>
+//                 <Text style={buttonText}>Start Walking!</Text>
+//             </TouchableOpacity>
+//             <TouchableOpacity style={blueButton}>
+//                 <Text style={buttonText}>Do Later</Text>
+//             </TouchableOpacity>
+//         </SafeAreaView>
+//     )};
 
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        marginTop: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    Text: {
-        fontSize: 30,
-    },
-    Button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        margin: 10,
-        padding:10,
-        borderRadius:20,
-        borderWidth:1,
-        width:310,
-        height:50,
-    },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    ButtonText: {
-        fontSize: 25,
-    },
-    buttonText: {
-        fontSize: 18,
-    },
-})
 
 export default WalkTime

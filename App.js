@@ -15,7 +15,6 @@ import HomeScreen from './src/screens/HomeScreen';
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
-import { Dropdown } from './src/screens/WalkTime';
 
 export default function App() { 
 
