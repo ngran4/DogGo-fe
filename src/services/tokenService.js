@@ -45,9 +45,19 @@ const getToken = async () => {
   }
 }
 
-function getUserFromToken() {
-  const token = getToken()
-  return token ? jwt_decode(token).user : null
+// function getUserFromToken() {
+//   const token = getToken()
+//   return token ? jwt_decode(token).user : null
+  
+// }
+
+const getUserFromToken = async () => {
+  try {
+    const token = await getToken()
+    return token ? jwt_decode(token).user : null
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 // function removeToken() {
