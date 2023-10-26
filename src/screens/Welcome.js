@@ -4,8 +4,17 @@ import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
 import DogGoIcon from '../../assets/images/DogGoIcon'
 
 const Welcome = ({navigation}) => {
+    // Get the style context from the Context API
     const [styleContext] = useContext(StateContext)
+    // Destructure the styles into the used styles on this screen to be used below
     const {container, blueButton, greenButton, header, body, buttonText} = styleContext
+    // Needed to check for loaded or error fonts, to display or not display a splash screen
+    // Used to prevent errors on loading the screens/components before the system is ready
+    let [fontsLoaded, fontError] = useContext(StateContext)
+
+    if (!fontsLoaded && !fontError) {
+        return null
+    }
 
   return (
     <SafeAreaView style={container}>

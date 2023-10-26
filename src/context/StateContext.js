@@ -1,8 +1,14 @@
 import React, { useState, createContext } from "react"
+import { useFonts } from 'expo-font'
 
 export const StateContext = createContext()
 
 export const StateProvider = (props) => {
+
+    let [fontsLoaded, fontError] = useFonts({
+        'Concert-One': require('../../assets/fonts/ConcertOne-Regular.ttf'),
+        'Open-Sans': require('../../assets/fonts/OpenSans-Regular.ttf')
+})
 
     const styleContext = {
         container: {
@@ -36,30 +42,28 @@ export const StateProvider = (props) => {
             flexShrink: 0,
         },
         buttonText: {
-            // fontFamily: Concert One,
+            fontFamily: 'Concert-One',
             fontSize: 32,
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: 'normal',
         },
         header: {
-            // fontFamily: Concert One,
+            fontFamily: 'Concert-One',
             fontSize: 48,
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 52.8, /* 52.8px */
         },
         body: {
-            // font-family: Open Sans,
+            fontFamily:'Open-Sans',
             fontSize: 20,
             fontStyle: 'normal',
             fontWeight: 400,
-            lineHeight: 'normal',
         },
     }
 
     return (
-        <StateContext.Provider value={[styleContext]}>
+        <StateContext.Provider value={[styleContext, fontsLoaded, fontError]}>
             {props.children}
         </StateContext.Provider>
     )
