@@ -1,13 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from '../context/StateContext'
 import {
     Text,
-    StyleSheet,
     Button,
     View,
-    SafeAreaView
+    SafeAreaView,
+    TouchableOpacity
 } from "react-native"
 
 const WalkCounter = ({navigation}) => {
+
+    const [stateContext] = useContext(StateContext)
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext 
     const [count, setCount] = useState(0);
 
     return (
@@ -22,13 +26,12 @@ const WalkCounter = ({navigation}) => {
                 <Button
                     onPress={() => {setCount(count + 1)}} title="+"
                 />
+                <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Times")}>
+                    <Text style={buttonText}>Next</Text>
+                </TouchableOpacity>
             </View>
         </SafeAreaView>
     )
 }
-
-const styles = StyleSheet.create({
-    
-})
 
 export default WalkCounter

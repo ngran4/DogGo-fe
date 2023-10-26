@@ -5,13 +5,17 @@ import {
     Text,
     StyleSheet,
     View,
-    Button,
     TextInput,
     Alert,
     Parse,
+    TouchableOpacity
 } from 'react-native';
 
 const UserSignUp = ({navigation}) => {
+
+    const [stateContext] = useContext(StateContext)
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext
+
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
     const [password, setPassword, setConfirmPassword] = useState("");
@@ -37,7 +41,7 @@ const UserSignUp = ({navigation}) => {
     }
 
     return (
-        <>
+        <SafeAreaView>
         <Text>Sign Up</Text>
         
         <TextInput
@@ -68,8 +72,10 @@ const UserSignUp = ({navigation}) => {
         secureTextEntry
         onChangeText={(text) => setConfirmPassword(text)}
         />
-        <Button title={"Sign Up"} onPress={() => doSignUp()} />
-        </>
+        <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
+            <Text style={buttonText}>Create Account</Text>
+        </TouchableOpacity>
+        </SafeAreaView>
     );
 };
 

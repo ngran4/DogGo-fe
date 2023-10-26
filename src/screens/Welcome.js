@@ -1,4 +1,4 @@
-import React, { useContext, useCallback, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
 import DogGoIcon from '../../assets/images/DogGoIcon'
