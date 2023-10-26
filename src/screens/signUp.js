@@ -12,7 +12,8 @@ import {
 export const UserSignUp = () => {
     const [email, setEmail] = useState("");
     const [username, setUsername] = useState("");
-    const [password, setPassword, setConfirmPassword] = useState("");
+    const [password, setPassword] = useState("");
+    const [ConfirmPassword, setConfirmPassword] = useState("");
 
     const doSignUp= async function () {
         const emailValue = email;
@@ -39,7 +40,7 @@ export const UserSignUp = () => {
         
         <TextInput
         style={styles.input}
-        value={String}
+        value={username}
         placeholder={"Name"}
         onChangeText={ (text) => setUsername(text)}
         autoCapitalize={"none"}
@@ -60,7 +61,7 @@ export const UserSignUp = () => {
         />
         <TextInput
         style={styles.input}
-        value={password}
+        value={ConfirmPassword}
         placeholder={"Confirm Password"}
         secureTextEntry
         onChangeText={(text) => setConfirmPassword(text)}
