@@ -10,8 +10,6 @@ const LocationServices = ({navigation}) => {
   const [stateContext] = useContext(StateContext)
   const {container, greenButton, header, body, buttonText, setLat, setLon, lat, lon} = stateContext
   const [error, setError] = useState(null)
-  // const [lat, setLat] = useState([])
-  // const [lon, setLon] = useState([])
 
   useEffect(() => {
     (async () => {

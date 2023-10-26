@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { StateContext } from "../context/StateContext";
 import RNPickerSelect from 'react-native-picker-select';
 import { numberOfDropdowns } from './walkinfo'
-import RNPickerSelect from 'react-native-picker-select';
 import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import {
     SafeAreaView,
@@ -11,7 +10,7 @@ import {
     View,
 } from 'react-native';
 
-const WalkTime= ({navigation) => {
+const WalkTime= ({navigation}) => {
     const [selectedValue, setSelectedValue] = useState(null);
     const [stateContext] = useContext(StateContext)
     const {numWalks} = stateContext
@@ -50,6 +49,19 @@ const WalkTime= ({navigation) => {
         {label:'12:00 pm', value:'12pm'},
     ];
 
+    const dropdownCount = numWalks;
+    const dropdowns = [];
+    for (let i = 0; i < dropdownCount; i++) {
+    dropdowns.push(
+        <RNPickerSelect
+        placeholder={timeslot}
+        items={options}
+        onValueChange={(value) => console.log(value)}
+        value={selectedValue}
+    />
+    )
+}
+
 
     async function submitData() {
         // The data will be collated and submitted here before submitting
@@ -57,41 +69,22 @@ const WalkTime= ({navigation) => {
         navigation.navigate("Home")
     }
 
-    return (
-        <SafeAreaView style={container}>
-            <View style={{height: 64, width: 64}}>
-                <WalkTimeIcon />
-            </View>
-            <Text>What times of the day would you ideally walk Fido?</Text>
+   return (
+         <SafeAreaView>
+             <Text>What times of the day would you ideally walk Fido?</Text>
+             {dropdowns}
+             {/* other content of PageB */}
+             {selectedValue && <Text> Selected: {selectedValue}</Text>}
 
-const { dropdownCount } = numWalks;
-    const dropdowns = [];
-        for (let i = 0; i < dropdownCount; i++) {
-            dropdowns.push(
-                <RNPickerSelect
-                placeholder={timeslot}
-                items={options}
-                onValueChange={(value) => console.log(value)}
-                value={selectedValue}
-            />
-            )
-        }
+             <TouchableOpacity style={greenButton} onPress={submitData}>
+                 <Text style={buttonText}>Start Walking!</Text>
+             </TouchableOpacity>
+          <TouchableOpacity style={blueButton}>
+                 <Text style={buttonText}>Do Later</Text>
+             </TouchableOpacity>
+         </SafeAreaView>
+   )}
 
-//     return (
-//         <SafeAreaView>
-//             <Text>What times of the day would you ideally walk Fido?</Text>
-//             {dropdowns}
-//             {/* other content of PageB */}
-//             {selectedValue && <Text> Selected: {selectedValue}</Text>}
-
-//             <TouchableOpacity style={greenButton} onPress={submitData}>
-//                 <Text style={buttonText}>Start Walking!</Text>
-//             </TouchableOpacity>
-//             <TouchableOpacity style={blueButton}>
-//                 <Text style={buttonText}>Do Later</Text>
-//             </TouchableOpacity>
-//         </SafeAreaView>
-//     )};
 
 
 export default WalkTime
