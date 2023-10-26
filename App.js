@@ -12,12 +12,10 @@ import { useCallback, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 
-
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
 
 export default function App() { 
-
   const [fontsLoaded] = useFonts({
     'ConcertOne-Regular': require('./assets/fonts/ConcertOne-Regular.ttf'),
     'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf')
@@ -51,17 +49,16 @@ if (!fontsLoaded) {
       <StateProvider>
           <NavigationContainer>
             <Stack.Navigator>
-              {/* <Stack.Screen name="Welcome" component={Welcome} options={noHeaderNavOptions}/> */}
-              {/* <Stack.Screen name="Location Services" component={LocationServices} options={navOptions}/> */}
-              {/* <Stack.Screen name="Sign Up" component={UserSignUp} options={navOptions}/> */}
-              {/* <Stack.Screen name="Add a Furry Friend" component={AddPet} options={navOptions}/> */}
+              <Stack.Screen name="Welcome" component={Welcome} options={noHeaderNavOptions}/>
+              <Stack.Screen name="Location Services" component={LocationServices} options={navOptions}/>
+              <Stack.Screen name="Sign Up" component={UserSignUp} options={navOptions}/>
+              <Stack.Screen name="Add a Furry Friend" component={AddPet} options={navOptions}/>
               <Stack.Screen name="Walk Counter" component={WalkCounter} options={navOptions}/>
               <Stack.Screen name="Walk Times" component={WalkTime} options={navOptions}/>
               <Stack.Screen name="Home" component={HomeScreen} options={noHeaderNavOptions}/>
             </Stack.Navigator>
           </NavigationContainer>
       </StateProvider>
-
   );
 }
 
