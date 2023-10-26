@@ -8,6 +8,7 @@ import {
     Alert,
     Parse,
 } from 'react-native';
+import SignupForm from "../components/SignupForm";
 
 export const UserSignUp = () => {
     const [email, setEmail] = useState("");
@@ -69,6 +70,7 @@ export const UserSignUp = () => {
         <TouchableOpacity style={styles.Button} onPress={() => doSignUp()} >
             <Text style={styles.buttonText}>Create Account</Text>
         </TouchableOpacity>
+        <SignupForm></SignupForm>
         </SafeAreaView>
     );
 };
