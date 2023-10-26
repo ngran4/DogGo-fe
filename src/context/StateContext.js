@@ -1,15 +1,9 @@
-import React, { useState, createContext } from "react"
-import { useFonts } from 'expo-font'
+import React, { createContext,  } from "react"
+
 
 export const StateContext = createContext()
 
 export const StateProvider = (props) => {
-
-    let [fontsLoaded, fontError] = useFonts({
-        'Concert-One': require('../../assets/fonts/ConcertOne-Regular.ttf'),
-        'Open-Sans': require('../../assets/fonts/OpenSans-Regular.ttf')
-})
-
     const styleContext = {
         container: {
             backgroundColor: "#F8F5E6",
@@ -23,7 +17,6 @@ export const StateProvider = (props) => {
             display: 'flex',
             width: 310,
             height: 63,
-            padding: '10 10 20 10',
             justifyContent: 'center',
             alignItems: 'center',
             gap: 10,
@@ -35,27 +28,26 @@ export const StateProvider = (props) => {
             display: 'flex',
             width: 310,
             height: 63,
-            padding: '10 10 20 10',
             justifyContent: 'center',
             alignItems: 'center',
             gap: 10,
             flexShrink: 0,
         },
         buttonText: {
-            fontFamily: 'Concert-One',
+            fontFamily: 'ConcertOne-Regular',
             fontSize: 32,
             fontStyle: 'normal',
             fontWeight: 400,
         },
         header: {
-            fontFamily: 'Concert-One',
+            fontFamily: 'ConcertOne-Regular',
             fontSize: 48,
             fontStyle: 'normal',
             fontWeight: 400,
             lineHeight: 52.8, /* 52.8px */
         },
         body: {
-            fontFamily:'Open-Sans',
+            fontFamily:'OpenSans-Regular',
             fontSize: 20,
             fontStyle: 'normal',
             fontWeight: 400,
@@ -63,7 +55,7 @@ export const StateProvider = (props) => {
     }
 
     return (
-        <StateContext.Provider value={[styleContext, fontsLoaded, fontError]}>
+        <StateContext.Provider value={[styleContext]}> 
             {props.children}
         </StateContext.Provider>
     )

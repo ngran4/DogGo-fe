@@ -1,5 +1,3 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet} from 'react-native';
 import { StateProvider } from './src/context/StateContext';
 import Welcome from './src/screens/Welcome';
 import LocationServices from './src/screens/LocationServices';
@@ -8,10 +6,34 @@ import WalkCounter from './src/screens/WalkCounter';
 import AddPet from './src/screens/AddPet';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
+import {useFonts} from 'expo-font'
+import { useCallback, useEffect } from 'react';
+import * as SplashScreen from 'expo-splash-screen'
 
 const Stack = createStackNavigator()
+SplashScreen.preventAutoHideAsync()
 
-export default function App() {
+export default function App() { 
+
+  const [fontsLoaded] = useFonts({
+    'ConcertOne-Regular': require('./assets/fonts/ConcertOne-Regular.ttf'),
+    'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf')
+})
+
+const handleOnLayout = useCallback(async () => {
+  if (fontsLoaded) {
+    await SplashScreen.hideAsync(); //hide the splashscreen
+  }
+}, [fontsLoaded]);
+
+useEffect(() => {
+  handleOnLayout();
+}, [fontsLoaded]);
+
+if (!fontsLoaded) {
+  return null;
+}
+
   const navOptions = {
     title: "",
     headerStyle: {backgroundColor: "#F8F5E6"}
@@ -22,9 +44,10 @@ export default function App() {
   }
   
   return (
-      <StateProvider >
-          <NavigationContainer >
-            <Stack.Navigator >
+
+      <StateProvider>
+          <NavigationContainer>
+            <Stack.Navigator>
               <Stack.Screen name="Welcome" component={Welcome} options={noHeaderNavOptions}/>
               <Stack.Screen name="Location Services" component={LocationServices} options={navOptions}/>
               <Stack.Screen name="Sign Up" component={UserSignUp} options={navOptions}/>
@@ -33,5 +56,6 @@ export default function App() {
             </Stack.Navigator>
           </NavigationContainer>
       </StateProvider>
+
   );
 }
