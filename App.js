@@ -12,8 +12,10 @@ import { useCallback, useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 
+
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
+import { Dropdown } from './src/screens/WalkTime';
 
 export default function App() { 
 
