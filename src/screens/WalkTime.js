@@ -1,14 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from '../context/StateContext'
 import RNPickerSelect from 'react-native-picker-select';
+import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import {
     SafeAreaView,
     Text,
     TouchableOpacity, 
-    StyleSheet,
+    View,
 } from 'react-native';
 import { WalkCounter } from "./walkinfo";
 
-export const Dropdown= () => {
+const WalkTime = ({navigation}) => {
+
+    const [stateContext] = useContext(StateContext)
+    const {container, greenButton, buttonText, blueButton} = stateContext
+
     const [selectedValue, setSelectedValue] = useState(null);
 
     const timeslot = {
@@ -44,9 +50,17 @@ export const Dropdown= () => {
         {label:'12:00 pm', value:'12pm'},
     ];
 
-    
+    async function submitData() {
+        // The data will be collated and submitted here before submitting
+        // Then the user will be sent to the home page
+        navigation.navigate("Home")
+    }
+
     return (
-        <SafeAreaView>
+        <SafeAreaView style={container}>
+            <View style={{height: 64, width: 64}}>
+                <WalkTimeIcon />
+            </View>
             <Text>What times of the day would you ideally walk Fido?</Text>
 
             <RNPickerSelect
@@ -57,45 +71,14 @@ export const Dropdown= () => {
             />
             {selectedValue && <Text> Selected: {selectedValue}</Text>}
 
-            <TouchableOpacity style={styles.Button}>
-                <Text style={styles.ButtonText}>Start Walking!</Text>
+            <TouchableOpacity style={greenButton} onPress={submitData}>
+                <Text style={buttonText}>Start Walking!</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.button}>
-                <Text style={styles.buttonText}>Do Later</Text>
+            <TouchableOpacity style={blueButton}>
+                <Text style={buttonText}>Do Later</Text>
             </TouchableOpacity>
         </SafeAreaView>
     )
 } 
 
-const styles = StyleSheet.create({
-    container: {
-        flex:1,
-        marginTop: 100,
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    Text: {
-        fontSize: 30,
-    },
-    Button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        margin: 10,
-        padding:10,
-        borderRadius:20,
-        borderWidth:1,
-        width:310,
-        height:50,
-    },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    ButtonText: {
-        fontSize: 25,
-    },
-    buttonText: {
-        fontSize: 18,
-    },
-})
+export default WalkTime

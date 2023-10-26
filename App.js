@@ -3,7 +3,7 @@ import Welcome from './src/screens/Welcome';
 import LocationServices from './src/screens/LocationServices';
 import UserSignUp from './src/screens/UserSignUp';
 import WalkCounter from './src/screens/WalkCounter';
-import WalkTimes from './src/screens/WalkTimes';
+import WalkTime from './src/screens/WalkTime';
 import AddPet from './src/screens/AddPet';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
@@ -15,7 +15,6 @@ import HomeScreen from './src/screens/HomeScreen';
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
-import { Dropdown } from './src/screens/WalkTime';
 
 export default function App() { 
 
@@ -57,7 +56,7 @@ if (!fontsLoaded) {
               <Stack.Screen name="Sign Up" component={UserSignUp} options={navOptions}/>
               <Stack.Screen name="Add a Furry Friend" component={AddPet} options={navOptions}/>
               <Stack.Screen name="Walk Counter" component={WalkCounter} options={navOptions}/>
-              <Stack.Screen name="Walk Times" component={WalkTimes} options={navOptions}/>
+              <Stack.Screen name="Walk Times" component={WalkTime} options={navOptions}/>
               <Stack.Screen name="Home" component={HomeScreen} options={noHeaderNavOptions}/>
             </Stack.Navigator>
           </NavigationContainer>

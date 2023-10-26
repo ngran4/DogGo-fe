@@ -1,10 +1,16 @@
-import React, { createContext,  } from "react"
+import React, { createContext, useState } from "react"
 
 
 export const StateContext = createContext()
 
 export const StateProvider = (props) => {
-    const styleContext = {
+    const [lat, setLat] = useState(0)
+    const [lon, setLon] = useState(0)
+
+
+    const stateContext = {
+        // Used for location services
+        lat: lat, lon: lon, setLon: setLon, setLat: setLat,
         container: {
             backgroundColor: "#F8F5E6",
             flex:1,
@@ -52,10 +58,11 @@ export const StateProvider = (props) => {
             fontStyle: 'normal',
             fontWeight: 400,
         },
+        
     }
 
     return (
-        <StateContext.Provider value={[styleContext]}> 
+        <StateContext.Provider value={[stateContext]}> 
             {props.children}
         </StateContext.Provider>
     )
