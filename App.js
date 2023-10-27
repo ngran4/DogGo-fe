@@ -8,7 +8,7 @@ import AddPet from './src/screens/AddPet';
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import {useFonts} from 'expo-font'
-import { useCallback, useEffect } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 import CurrentWeather from './src/screens/CurrentWeather';

@@ -12,23 +12,28 @@ import {
 const WalkCounter = ({navigation}) => {
 
     const [stateContext] = useContext(StateContext)
+    const { numWalks, setNumWalks } = stateContext;
+    
+    const handleCounterChange = (newCount) => {
+      setNumWalks(newCount);
+    };
+
     const {container, blueButton, greenButton, header, body, buttonText} = stateContext 
-    const [count, setCount] = useState(0);
+    // const [count, setCount] = useState(0);
 
     return (
         <SafeAreaView style={container}>
           <View style={{height: 64, width: 64}}>
             <WalkIcon />
-         </View>
+          </View>
 
                 <Text> How often do you like to walk your dog? </Text>
-                
                 <Button
-                    onPress={() => {setCount(count - 1)}} title="-"
+                    onPress={() => handleCounterChange(numWalks - 1)} title="-"
                 />
-                <Text>{count}</Text>
+                <Text>{numWalks}</Text>
                 <Button
-                    onPress={() => {setCount(count + 1)}} title="+"
+                    onPress={() => handleCounterChange(numWalks + 1)} title="+"
                 />
                 <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Times")}>
                     <Text style={buttonText}>Next</Text>
