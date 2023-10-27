@@ -5,18 +5,18 @@ import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View } from "r
 
 const DogProfileWidget = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText } = stateContext
+  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, name } = stateContext
 
   return (
     <SafeAreaView>
       {
-        "if there is a dog profile picture" ? 
+        name ? 
         (
           <TouchableOpacity
             style={styles.widget}
             onPress={() => navigation.navigate('Pet Profile')}>
               {/* <View style={{ height: 8, width: 8 }}></View> */}
-              <Text style={buttonText}>Dog Name</Text>
+              <Text style={buttonText}>{name}</Text>
               <Text>Age</Text>
           </TouchableOpacity>
         ) : (
