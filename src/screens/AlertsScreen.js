@@ -1,13 +1,15 @@
 import * as React from 'react';
-import { View, Text } from 'react-native'; 
+import { View, Text, SafeAreaView } from 'react-native'; 
 
 
 
 const AlertsScreen = () => {
   return (
-    <View>
-      <Text>Alerts</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+        <Text>Alerts</Text>
+      </View>
+    </SafeAreaView>
   )
 }
 
