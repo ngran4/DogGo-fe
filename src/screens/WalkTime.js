@@ -4,6 +4,7 @@ import RNPickerSelect from "react-native-picker-select";
 import WalkTimeIcon from "../../assets/images/WalkTimeIcon";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import TimeSelector from '../components/TimeSelector'
+import WalkTimeProgress from '../../assets/images/signup_progress/WalkTimeProgress';
 
 const WalkTime = ({ navigation }) => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -33,6 +34,10 @@ const WalkTime = ({ navigation }) => {
       <TouchableOpacity>
         <Text style={doLater}>Do Later</Text>
       </TouchableOpacity>
+
+      <View style={[{height: 64, width: 358}]}>
+        <WalkTimeProgress/>
+      </View>
     </SafeAreaView>
   );
 };

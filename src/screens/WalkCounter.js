@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import Counter from '../components/Counter';
 import WalkIcon from '../../assets/images/WalkIcon'
+import WalkCounterProgress from '../../assets/images/signup_progress/WalkCounterPorgress'
 import {
     Text,
     Button,
@@ -27,6 +28,10 @@ const WalkCounter = ({navigation}) => {
                 <TouchableOpacity style={[greenButton, ]} onPress={() => navigation.navigate("Walk Times")}>
                     <Text style={buttonText}>Next</Text>
                 </TouchableOpacity>
+
+                <View style={[{height: 64, width: 358}, {marginTop: 15}]}>
+                  <WalkCounterProgress />
+                </View>
 
     </SafeAreaView>
   )
