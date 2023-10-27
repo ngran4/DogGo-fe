@@ -17,7 +17,9 @@ const CurrentWeatherData = ({weather}) => {
             <Text style={{fontSize: 17.41, fontFamily: 'OpenSans-Regular'}}>{weather.city.name}</Text>
             <Text style={{fontSize: 45.53, fontFamily: 'OpenSans-Regular', fontWeight: 'light'}}>{Math.round(weather.list[0].main.temp)}°</Text>
         </View>
+        <View style={{marginTop: 15, marginLeft: 11.64}}>
             <WeatherIcon iconName={weather.list[0].weather[0].main} />
+        </View>
         <View>
             <Text style={{color: colors.darkBlue, fontSize: 15.23, fontFamily: 'OpenSans-Regular', fontWeight: 'light'}}>Feels Like <Text style={{color: 'black'}}>{Math.round(weather.list[0].main.feels_like)}°</Text></Text>
             <Text style={{fontSize: 15.23, fontFamily: 'OpenSans-Regular', fontWeight: 'light'}}>{weather.list[0].weather[0].description}</Text>
@@ -28,10 +30,10 @@ const CurrentWeatherData = ({weather}) => {
 
 const styles = StyleSheet.create({
     wrapper: {
-        flex: 2,
+        flex: 1,
         flexDirection: 'row',
-        paddingTop: 19.59,
-        gap: 15,
+        paddingTop: 10,
+        gap: 25,
     }
 })
 
