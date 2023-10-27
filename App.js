@@ -13,8 +13,8 @@ import { useCallback, useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 import CurrentWeather from './src/components/CurrentWeather';
-import HomePage from "./src/screens/HomePage"
-import NavBar from './src/components/NavBar'
+import HomePage from './src/screens/HomePage';
+import PetProfile from './src/screens/PetProfile'
 
 
 const Stack = createStackNavigator()
@@ -55,11 +55,12 @@ export default function App() {
         <Stack.Navigator>
           {/* <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} /> */}
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
-          <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} />
+          {/* <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} /> */}
           <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} />
           <Stack.Screen name='Walk Counter' component={WalkCounter} options={navOptions} />
           <Stack.Screen name='Walk Times' component={WalkTime} options={navOptions} />
-          <Stack.Screen name='Home' component={NavBar} options={noHeaderNavOptions} />
+          <Stack.Screen name='Home' component={HomePage} options={noHeaderNavOptions} />
+          <Stack.Screen name="Pet Profile" component={PetProfile} options={noHeaderNavOptions}/>
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

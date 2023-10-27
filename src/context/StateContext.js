@@ -11,6 +11,7 @@ export const StateProvider = (props) => {
   const [loading, setLoading] = useState(true);
 
   const [name, setName] = useState("");
+  const [dogName, setDogName] = useState("");
 
   const colors = {
     darkBlue: "#77C8E0",
@@ -50,7 +51,8 @@ export const StateProvider = (props) => {
     loadinf: loading,
     setLoading: setLoading,
 
-    name: name,
+    dogName: dogName,
+    setDogName: setDogName,
     colors: colors,
 
     container: {
@@ -122,7 +124,7 @@ export const StateProvider = (props) => {
       fontSize: 24,
       fontStyle: "normal",
       fontWeight: 400,
-      lineHeight: "normal",
+      // lineHeight: "normal",
       textDecorationLine: "underline",
     },
     navBarSelected: {
