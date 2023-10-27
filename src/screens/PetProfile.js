@@ -4,20 +4,19 @@ import { StateContext } from '../context/StateContext'
 
 
 
-const PetProfile = () => {
+const PetProfile = ({navigation}) => {
   const [stateContext] = useContext(StateContext)
   const {dogName } = stateContext
 
   return (
     <SafeAreaView>
       <TouchableOpacity><Text style={styles.editText}>Edit Pet Profile</Text></TouchableOpacity>
-      <TouchableOpacity
-      style={styles.widget}
-      onPress={() => navigation.navigate('Pet Profile')}>
+      <View
+      style={styles.widget}>
       {/* <View style={{ height: 8, width: 8 }}></View> */}
       <Text style={buttonText}>{dogName}</Text>
       <Text>Age</Text>
-      </TouchableOpacity>
+      </View>
       <Text>Birthday</Text>
       <Text>Gender</Text>
       <Text>Breed</Text>
