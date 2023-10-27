@@ -1,7 +1,9 @@
 import React, { useContext, useState } from "react";
 import { StateContext } from '../context/StateContext'
 import RNPickerSelect from "react-native-picker-select";
-import { Button, Text, StyleSheet, View } from "react-native"
+import { Button, Text, StyleSheet, View, Dimensions } from "react-native"
+
+const screenWidth = Dimensions.get('window').width;
 
 const TimeSelector = () => {
   const [selectedValue, setSelectedValue] = useState(null);
@@ -50,6 +52,7 @@ const TimeSelector = () => {
         items={options}
         onValueChange={(value) => console.log(value)}
         value={selectedValue}
+        style={pickerSelectStyles}
       />
     );
   }
@@ -60,5 +63,26 @@ const TimeSelector = () => {
   </>
   )
 };
+
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    paddingRight: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    width: screenWidth * 0.5,
+    fontFamily: 'OpenSans',
+    fontSize: 20,
+    fontWeight: 600,
+    lineHeight: 'normal',
+    color: 'black',
+  },
+  inputAndroid: {
+    paddingRight: 15,
+    borderBottomWidth: 1,
+    borderBottomColor: 'black',
+    width: screenWidth * 0.5,
+  },
+
+});
 
 export default TimeSelector;
