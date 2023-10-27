@@ -23,25 +23,39 @@ const chatName = "Chat";
 
 const Tab = createBottomTabNavigator();
 
+const notSelected = '#F8F5E6'
+const selected = '#C4E8F2'
+
 const NavBar = () => {
   return (
     <Tab.Navigator
     screenOptions={{
-      tabBarStyle: { 
-        display: "flex",
-        justifyContent: "center",
-        backgroundColor: "white", 
-        height: 80, 
-        paddingTop: 8,
-        paddingBottom: 8,
+      tabBarActiveTintColor: 'teal',
+      tabBarInactiveTintColor: 'grey',
+      tabBarLabelStyle: {
+        color: 'black',
+        fontWeight: '900',
       },
+      headerShown: false,
+      tabBarStyle: {
+        backgroundColor: '#F8F5E6',
+        height: 98,
+      },
+      headerStyle: {
+        backgroundColor: 'white',
+      },
+      headerTitleStyle: {
+        fontWeight: 'bold',
+        fontSize: 25,
+        color: 'teal'
+      }
     }}
-    >
+      >
       
       <Tab.Screen name={homeScreenName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <HomeIcon />
+            <HomeIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}}/>
           )
         }} >
         {() => <HomeScreen />}
@@ -50,7 +64,7 @@ const NavBar = () => {
       <Tab.Screen name={alertsName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <AlertsIcon />
+            <AlertsIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}} />
           )
         }} >
           {() => <AlertsScreen />}
@@ -59,7 +73,7 @@ const NavBar = () => {
       <Tab.Screen name={chatName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <ChatIcon />
+            <ChatIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}} />
           )
         }}>
         {() => <Chat />}
@@ -68,12 +82,11 @@ const NavBar = () => {
       <Tab.Screen name={settingsName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <SettingsIcon />
+            <SettingsIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}}/>
           )
         }}>
           {() => <Settings />}
           </Tab.Screen>
-
     </Tab.Navigator>
   );
 }
