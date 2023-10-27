@@ -82,13 +82,12 @@ const pickerSelectStyles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
     fontWeight: 600,
-
   },
   inputAndroid: {
     paddingRight: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    width: screenWidth * 0.5,
+    width: screenWidth * 0.45,
   },
 });
 

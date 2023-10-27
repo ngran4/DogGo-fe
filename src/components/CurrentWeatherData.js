@@ -8,9 +8,7 @@ const CurrentWeatherData = ({weather}) => {
 
     const [stateContext] = useContext(StateContext)
     const {colors} = stateContext
-    // console.log(colors)
 
-    // console.log(weather.list[0].weather[0].main)
     return (
     <View style={styles.wrapper}>
         <View>
