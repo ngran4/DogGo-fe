@@ -12,8 +12,9 @@ import { useFonts } from 'expo-font'
 import { useCallback, useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
-import CurrentWeather from './src/screens/CurrentWeather';
+import CurrentWeather from './src/components/CurrentWeather';
 import HomePage from "./src/screens/HomePg"
+
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
