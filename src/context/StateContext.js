@@ -81,7 +81,14 @@ export const StateProvider = (props) => {
           fontStyle: 'normal',
           fontWeight: 400,
       },
-      
+      subHeader: {
+        fontFamily: 'ConcertOne-Regular',
+        fontSize: 32,
+        fontStyle: 'normal',
+        fontWeight: 400,
+        lineHeight: 30,
+        textAlign: 'center',
+      },
   }
 
   return (
