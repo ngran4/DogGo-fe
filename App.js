@@ -55,7 +55,6 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
-          <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
           <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} />
           <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} />

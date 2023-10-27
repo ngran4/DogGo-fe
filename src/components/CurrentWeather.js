@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 // StyleSheet is used so we can write CSS as an object to make our code more clean and not use inline styles (see below)
-import { View, Text, SafeAreaView, StyleSheet } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, ActivityIndicator } from 'react-native'
 // The below icon comes from icons.expo.fyi - the icons are installed automatically when we start the native project with expo
 import { Feather } from '@expo/vector-icons'  
 import { weatherType } from '../utilities/weatherType'
@@ -10,7 +10,7 @@ import FutureWeatherData from './FutureWeatherData'
 
 const CurrentWeather = ({  }) => {
   const [stateContext] = useContext(StateContext)
-  const {weather, loading, error} = stateContext
+  const {weather, loading, error, body} = stateContext
 
 
   if(weather?.list) {
@@ -26,9 +26,10 @@ const CurrentWeather = ({  }) => {
 
   return (
     // SafeAreaView will move the Views into the space on the phone that is most viewable and not used by default phone UI elements, such as the status bar at the top of the phone, etc
-    <SafeAreaView style={{backgroundColor: 'blue'}}>
+    <SafeAreaView >
       <View>
-        <Text style={{color: 'black', fontSize: 50}}>Loading Weather</Text>
+        <Text style={body}>Loading Weather</Text>
+        <ActivityIndicator size="large"/>
       </View>
     </SafeAreaView>
   )
