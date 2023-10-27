@@ -9,14 +9,13 @@ const DogProfileWidget = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-
       {
         "if there is a dog profile picture" ? 
         (
           <TouchableOpacity
             style={styles.widget}
             onPress={() => navigation.navigate('Pet Profile')}>
-              <View style={{ height: 8, width: 8 }}></View>
+              {/* <View style={{ height: 8, width: 8 }}></View> */}
               <Text style={buttonText}>Dog Name</Text>
               <Text>Age</Text>
           </TouchableOpacity>
@@ -24,7 +23,6 @@ const DogProfileWidget = ({ navigation }) => {
           <Text style={styles.widgetText}>Set Up Dog Profile</Text>
         )
       }
-
     </SafeAreaView>
   )
 }

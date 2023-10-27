@@ -10,7 +10,7 @@ const HomePage = ({navigation}) => {
 
   return (
     <SafeAreaView style={container}>
-      <HomeScreen/>
+      {/* <HomeScreen/> */}
       <NavBar/>
     </SafeAreaView>
   )

@@ -20,11 +20,8 @@ const UserSignUp = ({ navigation }) => {
   const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
   const [password, setPassword, setConfirmPassword] = useState('')
-
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [passwordConf, setPasswordConf] = useState("");
+  const [name, setName] = useState("");
+  const [passwordConf, setPasswordConf] = useState("");
 
     const doSignUp= async function () {
 
