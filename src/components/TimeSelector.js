@@ -11,8 +11,9 @@ const TimeSelector = () => {
   const { numWalks, setNumWalks } = stateContext;
 
   const timeslot = {
-    label: "Choose a Time",
+    label: 'Select time',
     value: null,
+    color: 'black'
   };
 
   function generateOptionsWith15MinIncrements() {
@@ -47,7 +48,7 @@ const TimeSelector = () => {
       <RNPickerSelect
         placeholder={timeslot}
         items={options}
-        onValueChange={(value) => console.log(value)}
+        onValueChange={(value) => setSelectedValue(value)}
         value={selectedValue}
         style={pickerSelectStyles}
       />
@@ -71,10 +72,10 @@ const pickerSelectStyles = StyleSheet.create({
     borderBottomWidth: 2,
     borderBottomColor: 'black',
     width: screenWidth * 0.5,
-    fontFamily: 'OpenSans',
+    fontFamily: 'OpenSans-Regular',
     fontSize: 20,
     fontWeight: 600,
-    lineHeight: 'normal',
+
   },
   inputAndroid: {
     paddingRight: 15,
