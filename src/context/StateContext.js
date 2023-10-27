@@ -42,6 +42,7 @@ export const StateProvider = (props) => {
         setError: setError,
         loadinf: loading,
         setLoading: setLoading,
+        colors: colors,
 
         container: {
             backgroundColor: "#F8F5E6",
