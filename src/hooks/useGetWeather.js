@@ -8,7 +8,7 @@ export const useGetWeather = (lat, setLat, lon, setLon, weather, setWeather, err
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
-        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${WEATHER_API_KEY}&units=metric`
+        `http://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${WEATHER_API_KEY}&units=imperial`
       )
       const data = await response.json()
       setWeather(data)

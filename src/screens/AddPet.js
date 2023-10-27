@@ -18,28 +18,8 @@ const AddPet = ({navigation}) => {
         <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Counter")}>
             <Text style={buttonText}>Next</Text>
         </TouchableOpacity>
-
     </SafeAreaView>
   )
 }
-
-const styles = StyleSheet.create({
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#DDDDDD',
-        padding: 10,
-        borderRadius: 20,
-        borderWidth: 1,
-        margin: 10, 
-        width: 310,
-        height: 58,
-    },
-    buttonText: {
-        fontSize: 20,
-        maxWidth: 310,
-        maxHeight: 58,
-    },
-})
 
 export default AddPet
