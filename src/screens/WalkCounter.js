@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import Counter from '../components/Counter';
 import WalkIcon from '../../assets/images/WalkIcon'
@@ -13,13 +13,13 @@ import {
 const WalkCounter = ({navigation}) => {
 
     const [stateContext] = useContext(StateContext)
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext 
+    const [count, setCount] = useState(0);
     // const { numWalks, setNumWalks } = stateContext;
     
     // const handleCounterChange = (newCount) => {
     //   setNumWalks(newCount);
     // };
-
-    const {container, blueButton, greenButton, header, body, buttonText, subHeader} = stateContext 
 
     return (
         <SafeAreaView style={[container, ]}>
@@ -33,8 +33,8 @@ const WalkCounter = ({navigation}) => {
                     <Text style={buttonText}>Next</Text>
                 </TouchableOpacity>
 
-        </SafeAreaView>
-    )
+    </SafeAreaView>
+  )
 }
 
 export default WalkCounter

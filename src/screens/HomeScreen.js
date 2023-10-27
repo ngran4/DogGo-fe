@@ -1,12 +1,26 @@
-import React from 'react'
-import { SafeAreaView, View, Text } from 'react-native'
+import React, { useContext } from 'react'
+import { StateContext } from '../context/StateContext'
+import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
+import DogProfileWidget from '../components/DogProfileWidget'
+import WalkScheduleWidget from '../components/WalkScheduleWidget'
+import RemindersWidget from '../components/RemindersWidget'
+import WeatherWidget from '../components/WeatherWidget'
 
-const HomeScreen = () => {
+
+const HomeScreen = ({navigation}) => {
+  const [stateContext] = useContext(StateContext)
+  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText } = stateContext
+
   return (
-    <SafeAreaView>
-        <Text>Home Screen!</Text>
+    <SafeAreaView style={container}>
+      <WeatherWidget/>
+      <DogProfileWidget />
+      <WalkScheduleWidget/>
+      <RemindersWidget/>
     </SafeAreaView>
   )
 }
+
+
 
 export default HomeScreen

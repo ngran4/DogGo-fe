@@ -1,11 +1,11 @@
 import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView,  Text, View, StyleSheet, TouchableOpacity} from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity } from 'react-native'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 
-const AddPet = ({navigation}) => {
-    const [stateContext] = useContext(StateContext)
-    const {container, blueButton, greenButton, header, body, buttonText} = stateContext
+const AddPet = ({ navigation }) => {
+  const [stateContext] = useContext(StateContext)
+  const { container, blueButton, greenButton, header, body, buttonText } = stateContext
 
   return (
     <SafeAreaView style={container}>

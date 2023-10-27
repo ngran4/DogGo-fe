@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import BringIcon from '../../assets/images/BringIcon'
 import {
@@ -13,11 +13,11 @@ import {
 } from 'react-native';
 import * as authService from '../services/authService'
 
-const UserSignUp = ({navigation}) => {
+const UserSignUp = ({ navigation }) => {
+  const [stateContext] = useContext(StateContext)
+  const { container, blueButton, greenButton, header, body, buttonText } = stateContext
 
-    const [stateContext] = useContext(StateContext)
-    const {container, blueButton, greenButton, header, body, buttonText} = stateContext
-
+  const [username, setUsername] = useState('')
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
@@ -41,11 +41,11 @@ const UserSignUp = ({navigation}) => {
         }
     }
 
-    return (
-        <SafeAreaView style={container}>
-            <View style={{height: 64, width: 64}}>
-                <BringIcon />
-            </View>
+  return (
+    <SafeAreaView style={container}>
+      <View style={{ height: 64, width: 64 }}>
+        <BringIcon />
+      </View>
 
             <Text style={header}>Sign Up</Text>
             
@@ -93,11 +93,11 @@ const UserSignUp = ({navigation}) => {
 
 
 const styles = StyleSheet.create({
-    input: {
-        height: 25,
-        marginBottom: 10,
-        backgroundColor: '#fff'
-    },
-});
+  input: {
+    height: 25,
+    marginBottom: 10,
+    backgroundColor: '#fff'
+  }
+})
 
 export default UserSignUp
