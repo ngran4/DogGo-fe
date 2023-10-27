@@ -2,15 +2,16 @@ import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import BringIcon from '../../assets/images/BringIcon'
 import {
-  SafeAreaView,
-  Text,
-  StyleSheet,
-  View,
-  TextInput,
-  Alert,
-  Parse,
-  TouchableOpacity
-} from 'react-native'
+    SafeAreaView,
+    Text,
+    StyleSheet,
+    View,
+    TextInput,
+    Alert,
+    Parse,
+    TouchableOpacity
+} from 'react-native';
+import * as authService from '../services/authService'
 
 const UserSignUp = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
@@ -20,25 +21,28 @@ const UserSignUp = ({ navigation }) => {
   const [username, setUsername] = useState('')
   const [password, setPassword, setConfirmPassword] = useState('')
 
-  const doSignUp = async function () {
-    const usernameValue = username
-    const passwordValue = password
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [password, setPassword] = useState("");
+    const [passwordConf, setPasswordConf] = useState("");
 
-    navigation.navigate('Location Services')
+    const doSignUp= async function () {
 
-    // return await Parse.User.signUp(usernameValue, passwordValue)
-    // .then((createdUser) => {
-    //     Alert.alert(
-    //         'Success!',
-    //         `User ${createdUser.getUsername()} was created.`,
-    //     );
-    //     return true;
-    // })
-    // .catch((error) => {
-    //     Alert.alert('Error!', error.message);
-    //     return false;
-    // });
-  }
+        const formData = {
+            name: name,
+            email: email,
+            password: password,
+            passwordConf: passwordConf
+        }
+        
+        navigation.navigate("Location Services")
+        
+        try {
+            await authService.signup(formData)
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
   return (
     <SafeAreaView style={container}>
@@ -46,42 +50,50 @@ const UserSignUp = ({ navigation }) => {
         <BringIcon />
       </View>
 
-      <Text style={header}>Sign Up</Text>
+            <Text style={header}>Sign Up</Text>
+            
+            <TextInput
+            style={styles.input}
+            value={email}
+            placeholder={"Email"}
+            onChangeText={ (text) => setEmail(text)}
+            autoCapitalize={"none"}
+            />
+            <TextInput
+            style={styles.input}
+            value={name}
+            placeholder={"Username"}
+            onChangeText={ (text) => setName(text)}
+            autoCapitalize={"none"}
+            />
+            <TextInput
+            style={styles.input}
+            value={password}
+            placeholder={"Password"}
+            secureTextEntry
+            onChangeText={(text) => setPassword(text)}
+            />
+            <TextInput
+            style={styles.input}
+            value={passwordConf}
+            placeholder={"Confirm Password"}
+            secureTextEntry
+            onChangeText={(text) => setPasswordConf(text)}
+            />
+            {(name && email && password && password === passwordConf) ? 
+            (<>
+                <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
+                    <Text style={buttonText}>Create Account</Text>
+                </TouchableOpacity>
+            </>) 
+            : 
+            (<>
+            {/* <Text style={header}>Not Valid</Text> */}
+            </>)}
+        </SafeAreaView>
+    );
+};
 
-      <TextInput
-        style={styles.input}
-        value={email}
-        placeholder='Email'
-        onChangeText={(text) => setEmail(text)}
-        autoCapitalize='none'
-      />
-      <TextInput
-        style={styles.input}
-        value={username}
-        placeholder='Username'
-        onChangeText={(text) => setUsername(text)}
-        autoCapitalize='none'
-      />
-      <TextInput
-        style={styles.input}
-        value={password}
-        placeholder='Password'
-        secureTextEntry
-        onChangeText={(text) => setPassword(text)}
-      />
-      <TextInput
-        style={styles.input}
-        value={password}
-        placeholder='Confirm Password'
-        secureTextEntry
-        onChangeText={(text) => setConfirmPassword(text)}
-      />
-      <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
-        <Text style={buttonText}>Create Account</Text>
-      </TouchableOpacity>
-    </SafeAreaView>
-  )
-}
 
 const styles = StyleSheet.create({
   input: {

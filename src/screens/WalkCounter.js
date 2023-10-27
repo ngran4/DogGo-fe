@@ -9,29 +9,29 @@ import {
   TouchableOpacity
 } from 'react-native'
 
-const WalkCounter = ({ navigation }) => {
-  const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, body, buttonText } = stateContext
-  const [count, setCount] = useState(0)
+const WalkCounter = ({navigation}) => {
 
-  return (
-    <SafeAreaView style={container}>
-      <View style={{ height: 64, width: 64 }}>
-        <WalkIcon />
-      </View>
+    const [stateContext] = useContext(StateContext)
+    const {container, blueButton, greenButton, header, body, buttonText} = stateContext 
+    const [count, setCount] = useState(0);
 
-      <Text> How often do you like to walk your dog? </Text>
+    return (
+        <SafeAreaView style={container}>
+          <View style={{height: 64, width: 64}}>
+            <WalkIcon />
+          </View>
 
-      <Button
-        onPress={() => { setCount(count - 1) }} title='-'
-      />
-      <Text>{count}</Text>
-      <Button
-        onPress={() => { setCount(count + 1) }} title='+'
-      />
-      <TouchableOpacity style={greenButton} onPress={() => navigation.navigate('Walk Times')}>
-        <Text style={buttonText}>Next</Text>
-      </TouchableOpacity>
+                <Text> How often do you like to walk your dog? </Text>
+                <Button
+                    onPress={() => handleCounterChange(numWalks - 1)} title="-"
+                />
+                <Text>{numWalks}</Text>
+                <Button
+                    onPress={() => handleCounterChange(numWalks + 1)} title="+"
+                />
+                <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Times")}>
+                    <Text style={buttonText}>Next</Text>
+                </TouchableOpacity>
 
     </SafeAreaView>
   )
