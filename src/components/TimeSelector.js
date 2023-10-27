@@ -6,9 +6,16 @@ import { Button, Text, StyleSheet, View, Dimensions } from "react-native"
 const screenWidth = Dimensions.get('window').width;
 
 const TimeSelector = () => {
-  const [selectedValue, setSelectedValue] = useState(null);
+  // const [selectedValue, setSelectedValue] = useState(null);
+  const [selectedValues, setSelectedValues] = useState(Array(numWalks).fill(null));
   const [stateContext] = useContext(StateContext);
   const { numWalks, setNumWalks } = stateContext;
+
+  const handleValueChange = (index, value) => {
+    const newValues = [...selectedValues];
+    newValues[index] = value;
+    setSelectedValues(newValues)
+  }
 
   const timeslot = {
     label: 'Select time',
@@ -48,8 +55,8 @@ const TimeSelector = () => {
       <RNPickerSelect
         placeholder={timeslot}
         items={options}
-        onValueChange={(value) => setSelectedValue(value)}
-        value={selectedValue}
+        onValueChange={(value) => handleValueChange(i, value)}
+        value={selectedValues[i]}
         style={pickerSelectStyles}
       />
     );
