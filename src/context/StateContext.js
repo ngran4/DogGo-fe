@@ -11,13 +11,23 @@ export const StateProvider = (props) => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const colors = {
+    // Colors
+    darkBlue: "#77C8E0",
+    lightBlue: "#C4E8F2",
+    green: "#D3DE36",
+    red: "#FF6477",
+    background: "#F8FSE6"
+  }
+
+
   if(lat && lon) {
       useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
   }
-  useEffect(() => {
-      console.log(weather)
+//   useEffect(() => {
+//       console.log(weather)
 
-  }, [weather])
+//   }, [weather])
 
   const stateContext = {
       // Used for location services
@@ -33,6 +43,7 @@ export const StateProvider = (props) => {
       setError: setError,
       loadinf: loading,
       setLoading: setLoading,
+      colors: colors,
 
       container: {
           backgroundColor: "#F8F5E6",
@@ -81,6 +92,7 @@ export const StateProvider = (props) => {
           fontStyle: 'normal',
           fontWeight: 400,
       },
+
       
   }
 
