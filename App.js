@@ -53,7 +53,7 @@ export default function App() {
     <StateProvider>
       <NavigationContainer>
         <Stack.Navigator>
-          {/* <Stack.Screen name='Weather' component={CurrentWeather} options={noHeaderNavOptions} /> */}
+          <Stack.Screen name='Weather' component={CurrentWeather} options={noHeaderNavOptions} />
           <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
           <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} />
