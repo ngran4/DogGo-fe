@@ -13,7 +13,7 @@ import {
 const WalkCounter = ({navigation}) => {
 
     const [stateContext] = useContext(StateContext)
-    const {container, blueButton, greenButton, header, body, buttonText} = stateContext 
+    const {container, blueButton, greenButton, subHeader, body, buttonText} = stateContext 
     const [count, setCount] = useState(0);
     // const { numWalks, setNumWalks } = stateContext;
     
