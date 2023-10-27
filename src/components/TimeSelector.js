@@ -87,7 +87,7 @@ const pickerSelectStyles = StyleSheet.create({
     paddingRight: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    width: screenWidth * 0.5,
+    width: screenWidth * 0.45,
   },
 });
 
