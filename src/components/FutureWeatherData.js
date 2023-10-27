@@ -10,10 +10,7 @@ const FutureWeatherData = ({weather}) => {
     for(let i =0; i < 40; i+=8) {
         sevenDayForecast.push(weather.list[i])
     }
-    console.log(sevenDayForecast[0].dt_txt)
-    timestamp = new Date(2023-10-27)
-    const formatDate = timestamp.getDay()
-    console.log(formatDate)
+
     return (
     <View style={{flex:1, flexDirection: 'row', gap: 25}}>
         {sevenDayForecast.map((weather, index) => (
