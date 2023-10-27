@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from "../context/StateContext";
 import RNPickerSelect from "react-native-picker-select";
-// import { numberOfDropdowns } from "./walkinfo";
 import WalkTimeIcon from "../../assets/images/WalkTimeIcon";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import TimeSelector from '../components/TimeSelector'
@@ -20,6 +19,9 @@ const WalkTime = ({ navigation }) => {
 
   return (
     <SafeAreaView style={container}>
+          <View style={[{height: 64, width: 64}, {marginBottom: 35}]}>
+            <WalkTimeIcon />
+          </View>
       <Text style={subHeader}>What times of the day would you ideally walk Fido?</Text>
 
       {/* other content of PageB */}

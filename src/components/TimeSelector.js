@@ -15,33 +15,30 @@ const TimeSelector = () => {
     value: null,
   };
 
-  const options = [
-    { label: "12:00 am", value: "12am" },
-    { label: "1:00 am", value: "1am" },
-    { label: "2:00 am", value: "2am" },
-    { label: "3:00 am", value: "3am" },
-    { label: "4:00 am", value: "4am" },
-    { label: "5:00 am", value: "5am" },
-    { label: "6:00 am", value: "6am" },
-    { label: "7:00 am", value: "7am" },
-    { label: "8:00 am", value: "8am" },
-    { label: "9:00 am", value: "9am" },
-    { label: "10:00 am", value: "10am" },
-    { label: "11:00 am", value: "11am" },
-    { label: "12:00 pm", value: "12pm" },
-    { label: "1:00 pm", value: "1pm" },
-    { label: "2:00 pm", value: "2pm" },
-    { label: "3:00 pm", value: "3pm" },
-    { label: "4:00 pm", value: "4pm" },
-    { label: "5:00 pm", value: "5pm" },
-    { label: "6:00 pm", value: "6pm" },
-    { label: "7:00 pm", value: "7pm" },
-    { label: "8:00 pm", value: "8pm" },
-    { label: "9:00 pm", value: "9pm" },
-    { label: "10:00 pm", value: "10pm" },
-    { label: "11:00 pm", value: "11pm" },
-    { label: "12:00 pm", value: "12pm" },
-  ];
+  function generateOptionsWith15MinIncrements() {
+    const options = [];
+    const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
+    const amPm = ["am", "pm"];
+  
+    for (let i = 0; i < hours.length; i++) {
+      const hour = hours[i];
+  
+      for (let j = 0; j < amPm.length; j++) {
+        const period = amPm[j];
+  
+        for (let k = 0; k < 4; k++) {
+          const minute = k * 15;
+          const label = `${hour}:${minute.toString().padStart(2, '0')} ${period}`;
+          const value = `${hour}${minute.toString().padStart(2, '0')}${period}`;
+          options.push({ label, value });
+        }
+      }
+    }
+  
+    return options;
+  }
+  
+  const options = generateOptionsWith15MinIncrements();
 
   const dropdownCount = numWalks;
   const dropdowns = [];
@@ -59,7 +56,10 @@ const TimeSelector = () => {
 
   return (
   <>
-  {dropdowns}
+  <View style={styles.container}>
+    {dropdowns}
+  </View>
+
   </>
   )
 };
@@ -67,6 +67,7 @@ const TimeSelector = () => {
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
     paddingRight: 15,
+    paddingTop: 12,
     borderBottomWidth: 2,
     borderBottomColor: 'black',
     width: screenWidth * 0.5,
@@ -74,7 +75,6 @@ const pickerSelectStyles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 600,
     lineHeight: 'normal',
-    color: 'black',
   },
   inputAndroid: {
     paddingRight: 15,
@@ -82,7 +82,14 @@ const pickerSelectStyles = StyleSheet.create({
     borderBottomColor: 'black',
     width: screenWidth * 0.5,
   },
+});
 
+const styles = StyleSheet.create({
+  container: {
+    flex: .8,
+    // justifyContent: 'center',
+    alignItems: 'center',
+  },
 });
 
 export default TimeSelector;
