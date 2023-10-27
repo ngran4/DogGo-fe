@@ -13,10 +13,6 @@ export const StateProvider = (props) => {
     if(lat && lon) {
         useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
     }
-    useEffect(() => {
-        console.log(weather)
-
-    }, [weather])
 
     const stateContext = {
         // Used for location services
