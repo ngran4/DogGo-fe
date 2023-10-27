@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native'
 import AddPetIcon from '../../assets/images/AddPetIcon'
+import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -24,6 +25,9 @@ const AddPet = ({ navigation }) => {
         <AddPetIcon />
       </View>
       <Text style={[subHeader, {marginBottom:15}]}>Add a Furry Friend</Text>
+      <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}>
+      <PetPhotoIcon />
+      </View>
       <View style={{flex: 0.8, alignItems: 'center'}}>      
         <TextInput
         style={styles.input}
@@ -54,7 +58,7 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     borderBottomWidth: 2,
     borderBottomColor: 'black',
-    width: screenWidth * 0.5,
+    width: screenWidth * 0.7,
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
     fontWeight: 600,
