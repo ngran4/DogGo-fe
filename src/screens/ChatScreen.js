@@ -1,13 +1,15 @@
-import * as React from 'react';
+import React, { useContext } from 'react';
+import { StateContext } from '../context/StateContext'
 import { View, Text, SafeAreaView } from 'react-native'; 
 
-
-
 const Chat = () => {
+  const [stateContext] = useContext(StateContext)
+  const { container, header } = stateContext
+
   return (
-    <SafeAreaView>
+    <SafeAreaView style={container}>
       <View>
-        <Text>Chat</Text>
+        <Text style={header}>Chat</Text>
       </View>
     </SafeAreaView>
   )
