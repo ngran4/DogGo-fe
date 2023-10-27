@@ -14,7 +14,7 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={container}>
       <CurrentWeather/>
-      <DogProfileWidget />
+      <DogProfileWidget navigation={navigation}/>
       <WalkScheduleWidget/>
       <RemindersWidget/>
     </SafeAreaView>
