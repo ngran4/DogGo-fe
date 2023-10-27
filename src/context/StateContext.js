@@ -1,6 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 export const StateContext = createContext();
 import { useGetWeather } from "../hooks/useGetWeather";
+import { Dimensions } from "react-native"
+
+const screenHeight = Dimensions.get('window').height;
 
 export const StateProvider = (props) => {
   const [numWalks, setNumWalks] = useState(0);
@@ -60,6 +63,7 @@ export const StateProvider = (props) => {
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
+      screenHeight: 0.9,
     },
     blueButton: {
       borderRadius: 20,
@@ -107,9 +111,10 @@ export const StateProvider = (props) => {
     },
     body: {
       fontFamily: "OpenSans-Regular",
-      fontSize: 20,
+      fontSize: 16,
       fontStyle: "normal",
       fontWeight: 400,
+      textAlign: 'center',
     },
     subHeader: {
       fontFamily: "ConcertOne-Regular",

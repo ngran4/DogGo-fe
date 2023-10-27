@@ -47,16 +47,16 @@ const LocationServices = ({ navigation }) => {
       <View style={{ height: 64, width: 64}}>
         <LocationIcon />
       </View>
-      <Text style={[header, {marginTop: 48  }]}>Location Services</Text>
+      <Text style={[header, {marginTop: 15 }]}>Location Services</Text>
       <WalkAlert 
-        styles={{marginTop: 38}} 
+        styles={{marginTop: 28}} 
         text={'Almost time to walk Fido, consider checking the weather before you head out! 🌧️'}
         time={formatTime} 
       />
-      <Text style={[body, {marginTop: 48}]}>
+      <Text style={[body, {marginTop: 20}]}>
         We use your location to keep you and your furry friend comfortable with weather alerts and suggested walking times to avoid inclement weather.
       </Text>
-      <TouchableOpacity style={[greenButton, {marginTop: 80}]} onPress={() => navigation.navigate('Add a Furry Friend')}>
+      <TouchableOpacity style={[greenButton, {marginTop: 40, marginBottom: 8}]} onPress={() => navigation.navigate('Add a Furry Friend')}>
         <Text style={buttonText}>Next</Text>
       </TouchableOpacity>
       <View style={{ height: 64, width: 358}}>
