@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { StateContext } from '../context/StateContext'
 import { Button, Text, StyleSheet, View } from "react-native"
+import PlusIcon from '../../assets/images/PlusIcon'
+import MinusIcon from '../../assets/images/MinusIcon'
 
-const Counter = () => {
+const Counter = ({ style }) => {
     const [stateContext] = useContext(StateContext)
     const { numWalks, setNumWalks, subHeader } = stateContext;
     
@@ -12,14 +14,16 @@ const Counter = () => {
 
     return (
         <>
-            <View style={styles.container}>
-            <Button
-                onPress={() => handleCounterChange(numWalks - 1)} title="-"
-            />
-            <Text style={subHeader}>{numWalks}</Text>
-            <Button
-                onPress={() => handleCounterChange(numWalks + 1)} title="+"
-            />
+            <View style={[styles.container, style]}>
+            <View style={{height: 44, width: 44}}>
+            < MinusIcon onPress={() => handleCounterChange(numWalks - 1)}/>
+          </View>
+
+            <Text style={[subHeader, {margin: 10}]}>{numWalks}</Text>
+
+            <View style={{height: 44, width: 44}}>
+            <PlusIcon onPress={() => handleCounterChange(numWalks + 1)} />
+            </View>
         </View>
 
         </>
@@ -27,14 +31,6 @@ const Counter = () => {
 }
 
 const styles = StyleSheet.create({
-  button: {
-    display: 'flex',
-    width: 44,
-    height: 44,
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexShrink: 0,
-  },
   container: {
     flexDirection: 'row',
   },

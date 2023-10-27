@@ -7,7 +7,7 @@ import {
     Button,
     View,
     SafeAreaView,
-    TouchableOpacity
+    TouchableOpacity,
 } from "react-native"
 
 const WalkCounter = ({navigation}) => {
@@ -22,14 +22,14 @@ const WalkCounter = ({navigation}) => {
     const {container, blueButton, greenButton, header, body, buttonText, subHeader} = stateContext 
 
     return (
-        <SafeAreaView style={container}>
-          <View style={{height: 64, width: 64}}>
+        <SafeAreaView style={[container, ]}>
+          <View style={[{height: 64, width: 64}, {marginBottom: 35}]}>
             <WalkIcon />
           </View>
 
-                <Text style={subHeader}> How often do you like to walk your dog? </Text>
-              <Counter />
-                <TouchableOpacity style={greenButton} onPress={() => navigation.navigate("Walk Times")}>
+                <Text style={[subHeader, ]}> How many times a day would you ideally walk Fido? </Text>
+              <Counter style={[{marginBottom: 90}, {marginTop: 90}]} />
+                <TouchableOpacity style={[greenButton, ]} onPress={() => navigation.navigate("Walk Times")}>
                     <Text style={buttonText}>Next</Text>
                 </TouchableOpacity>
 
