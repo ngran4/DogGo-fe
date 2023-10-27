@@ -1,64 +1,64 @@
-import * as React from "react"
-import Svg, { Path, Defs, Pattern, Use, Image, Circle } from "react-native-svg"
-import { View } from "react-native"
+import * as React from 'react'
+import Svg, { Path, Defs, Pattern, Use, Image, Circle } from 'react-native-svg'
+import { View } from 'react-native'
 
 const originalWidth = 358
 const originalHeight = 64
 
 const SvgComponent = (props) => (
-  <View style={{width:"100%"}}>
+  <View style={{ width: '100%' }}>
     <Svg
       width='100%'
       height='100%'
       viewBox={`0 0 ${originalWidth} ${originalHeight}`}
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      xmlnsXlink="http://www.w3.org/1999/xlink"
+      fill='none'
+      xmlns='http://www.w3.org/2000/svg'
+      xmlnsXlink='http://www.w3.org/1999/xlink'
       {...props}
     >
       <Path
         d="M31 47h297"
         stroke="#77C8E0"
         strokeWidth={4}
-        strokeLinecap="round"
+        strokeLinecap='round'
       />
       <Circle
         cx={30}
         cy={47}
         r={5}
-        fill="#fff"
-        stroke="#77C8E0"
+        fill='#fff'
+        stroke='#77C8E0'
         strokeWidth={2}
       />
       <Circle
         cx={129}
         cy={47}
         r={5}
-        fill="#fff"
-        stroke="#77C8E0"
+        fill='#fff'
+        stroke='#77C8E0'
         strokeWidth={2}
       />
       <Circle
         cx={228}
         cy={47}
         r={5}
-        fill="#fff"
-        stroke="#77C8E0"
+        fill='#fff'
+        stroke='#77C8E0'
         strokeWidth={2}
       />
       <Circle
         cx={327}
         cy={47}
         r={5}
-        fill="#fff"
-        stroke="#77C8E0"
+        fill='#fff'
+        stroke='#77C8E0'
         strokeWidth={2}
       />
       <Path fill="url(#pattern0)" d="M0 0H64V64H0z" />
       <Defs>
         <Pattern
-          id="pattern0"
-          patternContentUnits="objectBoundingBox"
+          id='pattern0'
+          patternContentUnits='objectBoundingBox'
           width={1}
           height={1}
         >
