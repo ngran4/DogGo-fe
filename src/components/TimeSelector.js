@@ -28,11 +28,11 @@ const TimeSelector = () => {
     const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
     const amPm = ["am", "pm"];
   
-    for (let i = 0; i < hours.length; i++) {
-      const hour = hours[i];
+    for (let j = 0; j < amPm.length; j++) {
+      const period = amPm[j];
   
-      for (let j = 0; j < amPm.length; j++) {
-        const period = amPm[j];
+      for (let i = 0; i < hours.length; i++) {
+        const hour = hours[i];
   
         for (let k = 0; k < 4; k++) {
           const minute = k * 15;
@@ -47,6 +47,7 @@ const TimeSelector = () => {
   }
   
   const options = generateOptionsWith15MinIncrements();
+  
 
   const dropdownCount = numWalks;
   const dropdowns = [];
