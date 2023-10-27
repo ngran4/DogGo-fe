@@ -35,9 +35,6 @@ export const StateProvider = (props) => {
       setLoading
     );
   }
-  useEffect(() => {
-    console.log(weather);
-  }, [weather]);
 
   const stateContext = {
     // Used for location services
@@ -130,6 +127,11 @@ export const StateProvider = (props) => {
       // lineHeight: "normal",
       textDecorationLine: "underline",
     },
+    navBarSelected: {
+      fontFamily: "OpenSans-Regular",
+      fontSize: 14,
+      fontWeight: "800",
+    }
   };
 
   return (
