@@ -1,4 +1,4 @@
-import "expo-router/entry"
+
 import { StateProvider } from './src/context/StateContext'
 import Welcome from './src/screens/Welcome'
 import LocationServices from './src/screens/LocationServices'
@@ -49,12 +49,9 @@ export default function App() {
   }
 
   return (
-
-
     <StateProvider>
       <NavigationContainer>
         <Stack.Navigator>
-
           <Stack.Screen name='Weather' component={CurrentWeather} options={noHeaderNavOptions} />
           <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
