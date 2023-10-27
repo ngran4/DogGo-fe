@@ -11,6 +11,18 @@ export const StateProvider = (props) => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
 
+  const [name, setName] = useState("");
+  const [age, setAge] = useState(0);
+  const [breed, setBreed] = useState("");
+  const [birthday, setBirthday] = useState(new Date);
+  const [gender, setGender] = useState("female");
+  const [walking, setWalking] = useState([{
+    fequency: 1,
+    walkTimes: {
+      time: "1:00 PM"
+    }
+  }]);
+
   if(lat && lon) {
       useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
   }
@@ -33,6 +45,13 @@ export const StateProvider = (props) => {
       setError: setError,
       loadinf: loading,
       setLoading: setLoading,
+
+      name: name,
+      age: age,
+      breed: breed,
+      birthday: birthday,
+      gender: gender,
+      walking: walking,
 
       container: {
           backgroundColor: "#F8F5E6",
