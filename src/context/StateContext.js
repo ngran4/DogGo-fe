@@ -23,10 +23,10 @@ export const StateProvider = (props) => {
   if(lat && lon) {
       useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
   }
-//   useEffect(() => {
-//       console.log(weather)
+  useEffect(() => {
+      console.log(weather)
 
-//   }, [weather])
+  }, [weather])
 
     const stateContext = {
         // Used for location services
@@ -42,6 +42,7 @@ export const StateProvider = (props) => {
         setError: setError,
         loadinf: loading,
         setLoading: setLoading,
+        colors: colors,
 
         container: {
             backgroundColor: "#F8F5E6",

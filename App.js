@@ -54,14 +54,14 @@ export default function App() {
       <NavigationContainer>
         <Stack.Navigator>
 
-          {/* <Stack.Screen name='Weather' component={CurrentWeather} options={noHeaderNavOptions} />
+          <Stack.Screen name='Weather' component={CurrentWeather} options={noHeaderNavOptions} />
           <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
           <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} />
-          <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} /> */}
+          <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} />
           <Stack.Screen name='Walk Counter' component={WalkCounter} options={navOptions} />
           <Stack.Screen name='Walk Times' component={WalkTime} options={navOptions} />
-          {/* <Stack.Screen name='Home' component={HomePage} options={noHeaderNavOptions} /> */}
+          <Stack.Screen name='Home' component={HomePage} options={noHeaderNavOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>
