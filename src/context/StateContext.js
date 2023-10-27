@@ -12,7 +12,6 @@ export const StateProvider = (props) => {
   const [weather, setWeather] = useState([]);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
-
   const [name, setName] = useState("");
   const [dogName, setDogName] = useState("");
 
