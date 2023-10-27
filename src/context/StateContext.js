@@ -59,7 +59,7 @@ export const StateProvider = (props) => {
     colors: colors,
 
     container: {
-      backgroundColor: "#F8F5E6",
+      backgroundColor: "#F8F5E6", 
       flex: 1,
       justifyContent: "center",
       alignItems: "center",
@@ -91,13 +91,13 @@ export const StateProvider = (props) => {
       fontFamily: "ConcertOne-Regular",
       fontSize: 32,
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: "400",
     },
     header: {
       fontFamily: "ConcertOne-Regular",
       fontSize: 48,
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: "400",
       lineHeight: 52.8 /* 52.8px */,
     },
     homePgHeader: {
@@ -106,7 +106,7 @@ export const StateProvider = (props) => {
       fontFamily: "ConcertOne-Regular",
       fontSize: 28,
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: "400",
       lineHeight: 52.8 /* 52.8px */,
     },
     body: {
@@ -116,11 +116,17 @@ export const StateProvider = (props) => {
       fontWeight: 400,
       textAlign: 'center',
     },
+    bodySemiBold: {
+      fontFamily: "OpenSans-Regular",
+      fontSize: 20,
+      fontStyle: "bold",
+      fontWeight: "400",
+    },
     subHeader: {
       fontFamily: "ConcertOne-Regular",
       fontSize: 32,
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: "400",
       lineHeight: 30,
       textAlign: "center",
     },
@@ -128,7 +134,7 @@ export const StateProvider = (props) => {
       fontFamily: "ConcertOne-Regular",
       fontSize: 24,
       fontStyle: "normal",
-      fontWeight: 400,
+      fontWeight: "400",
       // lineHeight: "normal",
       textDecorationLine: "underline",
     },
