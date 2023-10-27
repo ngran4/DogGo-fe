@@ -5,6 +5,7 @@ import DogProfileWidget from '../components/DogProfileWidget'
 import WalkScheduleWidget from '../components/WalkScheduleWidget'
 import RemindersWidget from '../components/RemindersWidget'
 import CurrentWeather from '../components/CurrentWeather'
+import WalkingSchedule from '../components/WalkingSchedule'
 
 
 const HomeScreen = ({navigation}) => {
@@ -14,8 +15,8 @@ const HomeScreen = ({navigation}) => {
   return (
     <SafeAreaView style={container}>
       <CurrentWeather/>
+      <WalkingSchedule />
       <DogProfileWidget navigation={navigation}/>
-      <WalkScheduleWidget/>
       <RemindersWidget/>
     </SafeAreaView>
   )
