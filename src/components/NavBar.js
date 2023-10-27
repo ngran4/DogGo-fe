@@ -1,6 +1,13 @@
 import React from "react";
+import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Ionicons from "react-native-vector-icons/Ionicons"
+
+// Icons 
+import SettingsIcon from "../../assets/images/SettingsIcon";
+import ChatIcon from "../../assets/images/ChatIcon";
+import AlertsIcon from "../../assets/images/AlertsIcon";
+import HomeIcon from "../../assets/images/HomeIcon";
 
 // screens 
 import HomeScreen from "../screens/HomeScreen";
@@ -9,41 +16,40 @@ import Alerts from "../screens/AlertsScreen";
 import Chat from "../screens/ChatScreen";
 
 // screen names
-const homeName = "Home";
+const homeScreenName = "Home";
 const settingsName = "Settings";
 const alertsName = "Alerts";
 const chatName = "Chat";
 
-const Tab = createBottomTabNavigator(); 
+const Tab = createBottomTabNavigator();
 
 const NavBar = () => {
   return (
     <Tab.Navigator
-    initialRouteName={homeName}
-    screenOptions={({ route }) => ({
-      tabBarIcon: ({ focused, color, size }) => {
-        let iconName;
-
-        if (route.name === homeName) {
-          iconName = focused ? "home" : "home-outline";
-          
-        } else if (route.name === alertsName) {
-          iconName = focused ? "list" : "list-outline";
-
-        } else if (route.name === chatName) {
-          iconName = focused ? "chatbubbles" : "chatbubbles-outline";
-
-        } else if (route.name === settingsName) {
-        iconName = focused ? "settings" : "settings-outline";
-      }
-        return <Ionicons name={iconName} size={size}  />;
-      },
-    })}
+    screenOptions={{
+      tabBarStyle: { backgroundColor: "white" , height: 80},
+    }}
     >
-      <Tab.Screen name={homeName} component={HomeScreen} />
-      <Tab.Screen name={alertsName} component={Alerts} />
-      <Tab.Screen name={chatName} component={Chat} />
-      <Tab.Screen name={settingsName} component={Settings} />
+      <Tab.Screen name={homeScreenName} component={HomeScreen}
+        options={({ navigation }) => ({
+          tabBarButton: () =>
+            <HomeIcon onPress={() => navigation.navigate("Home Screen")} />
+        })} />
+      <Tab.Screen name={alertsName} component={Alerts}
+        options={({ navigation }) => ({
+          tabBarButton: () =>
+            <AlertsIcon onPress={() => navigation.navigate("Alerts")} />
+        })} />
+      <Tab.Screen name={chatName} component={Chat}
+        options={({ navigation }) => ({
+          tabBarButton: () =>
+            <ChatIcon onPress={() => navigation.navigate("Chat")} />
+        })} />
+      <Tab.Screen name={settingsName} component={Settings}
+        options={({ navigation }) => ({
+          tabBarButton: () =>
+            <SettingsIcon onPress={() => navigation.navigate("Settings")} />
+        })} />
     </Tab.Navigator>
   );
 }
