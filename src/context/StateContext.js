@@ -13,6 +13,14 @@ export const StateProvider = (props) => {
 
   const [name, setName] = useState('')
 
+  const colors = {
+    darkBlue: "#77C8E0",
+    lightBlue: "#C4E8F2",
+    green: "#D3DE36",
+    red: "FF6477",
+    background: "#F8F5E6"
+  }
+
   if(lat && lon) {
       useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
   }
