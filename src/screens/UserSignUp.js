@@ -9,9 +9,12 @@ import {
     TextInput,
     Alert,
     Parse,
-    TouchableOpacity
+    TouchableOpacity,
+    Dimensions
 } from 'react-native';
 import * as authService from '../services/authService'
+
+const screenWidth = Dimensions.get('window').width;
 
 const UserSignUp = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
@@ -46,8 +49,9 @@ const UserSignUp = ({ navigation }) => {
       <View style={{ height: 64, width: 64 }}>
         <BringIcon />
       </View>
-
-            <Text style={header}>Sign Up</Text>
+      <Text style={[header, {marginBottom:15}]}>Sign Up</Text>
+      <View style={{flex: 0.8, alignItems: 'center'}}>      
+            
             
             <TextInput
             style={styles.input}
@@ -77,6 +81,7 @@ const UserSignUp = ({ navigation }) => {
             secureTextEntry
             onChangeText={(text) => setPasswordConf(text)}
             />
+            </View>
             {(name && email && password && password === passwordConf) ? 
             (<>
                 <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
@@ -94,9 +99,14 @@ const UserSignUp = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   input: {
-    height: 25,
-    marginBottom: 10,
-    backgroundColor: '#fff'
+    paddingRight: 15,
+    paddingTop: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    width: screenWidth * 0.7,
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 20,
+    fontWeight: 600,
   }
 })
 
