@@ -4,21 +4,14 @@ import { useGetWeather } from "../hooks/useGetWeather"
 
 export const StateProvider = (props) => {
 
-    const [numWalks, setNumWalks] = useState(0)
-    const [lat, setLat] = useState([])
-    const [lon, setLon] = useState([])
-    const [weather, setWeather] = useState([])
-    const [error, setError] = useState(null)
-    const [loading, setLoading] = useState(true)
+  const [numWalks, setNumWalks] = useState(0)
+  const [lat, setLat] = useState([])
+  const [lon, setLon] = useState([])
+  const [weather, setWeather] = useState([])
+  const [error, setError] = useState(null)
+  const [loading, setLoading] = useState(true)
 
-  const colors = {
-    // Colors
-    darkBlue: "#77C8E0",
-    lightBlue: "#C4E8F2",
-    green: "#D3DE36",
-    red: "#FF6477",
-    background: "#F8FSE6"
-  }
+  const [name, setName] = useState('')
 
   if(lat && lon) {
       useGetWeather(lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading)
@@ -28,20 +21,22 @@ export const StateProvider = (props) => {
 
   }, [weather])
 
-    const stateContext = {
-        // Used for location services
-        lat: lat,
-        setLat: setLat,
-        setLon: setLon,
-        lon: lon,
-        numWalks: numWalks,
-        setNumWalks: setNumWalks,
-        weather: weather,
-        setWeather: setWeather,
-        error: error,
-        setError: setError,
-        loadinf: loading,
-        setLoading: setLoading,
+  const stateContext = {
+      // Used for location services
+      lat: lat, 
+      setLat: setLat, 
+      setLon: setLon, 
+      lon: lon, 
+      numWalks: numWalks, 
+      setNumWalks: setNumWalks,
+      weather: weather,
+      setWeather: setWeather,
+      error: error,
+      setError: setError,
+      loadinf: loading,
+      setLoading: setLoading,
+
+      name: name,
         colors: colors,
 
         container: {

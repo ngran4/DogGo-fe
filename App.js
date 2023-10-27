@@ -50,6 +50,7 @@ export default function App() {
 
   return (
 
+
     <StateProvider>
       <NavigationContainer>
         <Stack.Navigator>
