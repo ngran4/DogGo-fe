@@ -125,7 +125,7 @@ export const StateProvider = (props) => {
       fontSize: 24,
       fontStyle: "normal",
       fontWeight: 400,
-      lineHeight: "normal",
+      // lineHeight: "normal",
       textDecorationLine: "underline",
     },
   };
