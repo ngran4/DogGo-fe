@@ -17,10 +17,7 @@ const UserSignUp = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, body, buttonText } = stateContext
 
-  const [email, setEmail] = useState('')
   const [username, setUsername] = useState('')
-  const [password, setPassword, setConfirmPassword] = useState('')
-
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
