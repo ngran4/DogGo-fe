@@ -37,6 +37,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-svg": "13.9.0",
     "react-native-vector-icons": "^10.0.1",
+    "react-navigation": "^5.0.0",
     "undefined": "@expo-google-fonts/",
     "expo-image-picker": "~14.3.2"
   },

@@ -27,13 +27,20 @@ const NavBar = () => {
   return (
     <Tab.Navigator
     screenOptions={{
-      tabBarStyle: { backgroundColor: "white" , height: 80},
+      tabBarStyle: { 
+        display: "flex",
+        justifyContent: "space-evenly",
+        backgroundColor: "white", 
+        height: 80, 
+        paddingTop: 8,
+        paddingBottom: 8,
+      },
     }}
     >
       <Tab.Screen name={homeScreenName} component={HomeScreen}
         options={({ navigation }) => ({
           tabBarButton: () =>
-            <HomeIcon onPress={() => navigation.navigate("Home Screen")} />
+            <HomeIcon onPress={() => navigation.navigate("Home")} />
         })} />
       <Tab.Screen name={alertsName} component={Alerts}
         options={({ navigation }) => ({
