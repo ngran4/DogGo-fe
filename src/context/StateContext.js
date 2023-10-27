@@ -47,10 +47,12 @@ export const StateProvider = (props) => {
     },
     homePgHeader: {
       display: 'flex',
+      justifyContent: 'flex-start',
+      alignItems: 'center',
       fontFamily: 'ConcertOne-Regular',
       fontSize: 32,
       fontStyle: 'normal',
-      fontWeight: 350,
+      fontWeight: 300,
       lineHeight: 52.8 /* 52.8px */
     },
     body: {

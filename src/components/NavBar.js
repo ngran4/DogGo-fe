@@ -1,21 +1,50 @@
-import * as React from "react";
-import { Text } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from "../screens/HomeScreen";
+import React from "react";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import Ionicons from "react-native-vector-icons/Ionicons"
 
-const Tab = createBottomTabNavigator();
+// screens 
+import HomeScreen from "../screens/HomeScreen";
+import Settings from "../screens/Settings";
+import Alerts from "../screens/AlertsScreen";
+import Chat from "../screens/ChatScreen";
+
+// screen names
+const homeName = "Home";
+const settingsName = "Settings";
+const alertsName = "Alerts";
+const chatName = "Chat";
+
+const Tab = createBottomTabNavigator(); 
 
 const NavBar = () => {
   return (
-    <NavigationContainer>
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      {/* <Text>Alerts</Text>
-      <Text>Chat</Text>
-      <Text>Settings</Text> */}
+    <Tab.Navigator
+    initialRouteName={homeName}
+    screenOptions={({ route }) => ({
+      tabBarIcon: ({ focused, color, size }) => {
+        let iconName;
+
+        if (route.name === homeName) {
+          iconName = focused ? "home" : "home-outline";
+          
+        } else if (route.name === alertsName) {
+          iconName = focused ? "list" : "list-outline";
+
+        } else if (route.name === chatName) {
+          iconName = focused ? "chatbubbles" : "chatbubbles-outline";
+
+        } else if (route.name === settingsName) {
+        iconName = focused ? "settings" : "settings-outline";
+      }
+        return <Ionicons name={iconName} size={size}  />;
+      },
+    })}
+    >
+      <Tab.Screen name={homeName} component={HomeScreen} />
+      <Tab.Screen name={alertsName} component={Alerts} />
+      <Tab.Screen name={chatName} component={Chat} />
+      <Tab.Screen name={settingsName} component={Settings} />
     </Tab.Navigator>
-    </NavigationContainer>
   );
 }
 

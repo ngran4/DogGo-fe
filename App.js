@@ -1,3 +1,4 @@
+import "expo-router/entry"
 import { StateProvider } from './src/context/StateContext'
 import Welcome from './src/screens/Welcome'
 import LocationServices from './src/screens/LocationServices'
@@ -10,7 +11,7 @@ import { createStackNavigator } from '@react-navigation/stack'
 import { useFonts } from 'expo-font'
 import { useCallback, useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
-import HomeScreen from './src/screens/HomeScreen'
+import HomePage from "./src/screens/HomePg"
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
@@ -55,7 +56,7 @@ export default function App () {
           <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} />
           <Stack.Screen name='Walk Counter' component={WalkCounter} options={navOptions} />
           <Stack.Screen name='Walk Times' component={WalkTimes} options={navOptions} />
-          <Stack.Screen name='Home' component={HomeScreen} options={noHeaderNavOptions} />
+          <Stack.Screen name='Home' component={HomePage} options={noHeaderNavOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>
