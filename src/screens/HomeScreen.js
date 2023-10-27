@@ -4,7 +4,7 @@ import { SafeAreaView, View, Text, TouchableOpacity } from 'react-native'
 import DogProfileWidget from '../components/DogProfileWidget'
 import WalkScheduleWidget from '../components/WalkScheduleWidget'
 import RemindersWidget from '../components/RemindersWidget'
-import WeatherWidget from '../components/WeatherWidget'
+import CurrentWeather from '../components/CurrentWeather'
 
 
 const HomeScreen = ({navigation}) => {
@@ -13,7 +13,7 @@ const HomeScreen = ({navigation}) => {
 
   return (
     <SafeAreaView style={container}>
-      <WeatherWidget/>
+      <CurrentWeather/>
       <DogProfileWidget />
       <WalkScheduleWidget/>
       <RemindersWidget/>
