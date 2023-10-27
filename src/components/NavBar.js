@@ -12,7 +12,7 @@ import HomeIcon from "../../assets/images/HomeIcon";
 // screens 
 import HomeScreen from "../screens/HomeScreen";
 import Settings from "../screens/Settings";
-import Alerts from "../screens/AlertsScreen";
+import AlertsScreen from "../screens/AlertsScreen";
 import Chat from "../screens/ChatScreen";
 
 // screen names
@@ -29,7 +29,7 @@ const NavBar = () => {
     screenOptions={{
       tabBarStyle: { 
         display: "flex",
-        justifyContent: "space-evenly",
+        justifyContent: "center",
         backgroundColor: "white", 
         height: 80, 
         paddingTop: 8,
@@ -37,26 +37,43 @@ const NavBar = () => {
       },
     }}
     >
-      <Tab.Screen name={homeScreenName} component={HomeScreen}
-        options={({ navigation }) => ({
-          tabBarButton: () =>
-            <HomeIcon onPress={() => navigation.navigate("Home")} />
-        })} />
-      <Tab.Screen name={alertsName} component={Alerts}
-        options={({ navigation }) => ({
-          tabBarButton: () =>
-            <AlertsIcon onPress={() => navigation.navigate("Alerts")} />
-        })} />
-      <Tab.Screen name={chatName} component={Chat}
-        options={({ navigation }) => ({
-          tabBarButton: () =>
-            <ChatIcon onPress={() => navigation.navigate("Chat")} />
-        })} />
-      <Tab.Screen name={settingsName} component={Settings}
-        options={({ navigation }) => ({
-          tabBarButton: () =>
-            <SettingsIcon onPress={() => navigation.navigate("Settings")} />
-        })} />
+      
+      <Tab.Screen name={homeScreenName}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <HomeIcon />
+          )
+        }} >
+        {() => <HomeScreen />}
+      </Tab.Screen>
+
+      <Tab.Screen name={alertsName}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <AlertsIcon />
+          )
+        }} >
+          {() => <AlertsScreen />}
+        </Tab.Screen>
+
+      <Tab.Screen name={chatName}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <ChatIcon />
+          )
+        }}>
+        {() => <Chat />}
+        </Tab.Screen>
+
+      <Tab.Screen name={settingsName}
+        options={{
+          tabBarIcon: ({ focused }) => (
+            <SettingsIcon />
+          )
+        }}>
+          {() => <Settings />}
+          </Tab.Screen>
+
     </Tab.Navigator>
   );
 }

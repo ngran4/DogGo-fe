@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 
 
 
-const Alerts = () => {
+const AlertsScreen = () => {
   return (
     <View>
       <Text>Alerts</Text>
@@ -11,4 +11,4 @@ const Alerts = () => {
   )
 }
 
-export default Alerts
+export default AlertsScreen
