@@ -3,20 +3,20 @@ import { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View } from "react-native";
 
-const DogProfileWidget = ({ navigation }) => {
+const DogProfileWidget = ({navigation}) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, name } = stateContext
+  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName } = stateContext
 
   return (
     <SafeAreaView>
       {
-        name ? 
+        {dogName} ? 
         (
           <TouchableOpacity
             style={styles.widget}
             onPress={() => navigation.navigate('Pet Profile')}>
               {/* <View style={{ height: 8, width: 8 }}></View> */}
-              <Text style={buttonText}>{name}</Text>
+              <Text style={buttonText}>{dogName}</Text>
               <Text>Age</Text>
           </TouchableOpacity>
         ) : (
