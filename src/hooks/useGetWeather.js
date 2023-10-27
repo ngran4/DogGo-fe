@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import * as Location from 'expo-location'
-// import { WEATHER_API_KEY } from '@env'
+import { WEATHER_API_KEY } from '@env'
 
 export const useGetWeather = (lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading) => {
 
