@@ -6,7 +6,7 @@ import NavBar from '../components/NavBar';
 
 
 
-const PetProfile = ({ navigation }) => {
+const PetProfile = () => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName } = stateContext
 
