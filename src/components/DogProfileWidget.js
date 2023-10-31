@@ -17,7 +17,7 @@ const DogProfileWidget = ({navigation}) => {
             onPress={() => navigation.navigate("Pet Profile")}>
               {/* <View style={{ height: 8, width: 8 }}></View> */}
               <Text style={buttonText}>{dogName}</Text>
-              <Text>Age</Text>
+              {/* <Text>Age</Text> */}
           </TouchableOpacity>
         ) : (
           <Text style={styles.widgetText}>Set Up Dog Profile</Text>

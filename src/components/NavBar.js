@@ -26,6 +26,9 @@ const Tab = createBottomTabNavigator();
 const notSelected = '#F8F5E6'
 const selected = '#C4E8F2'
 
+// TO DO: change nav icon sizes + font size, change height (started, needs touch ups)
+// Idea: connect with people who are watching your pets so they can see the schedule
+
 const NavBar = () => {
   return (
     <Tab.Navigator
@@ -34,12 +37,13 @@ const NavBar = () => {
       tabBarInactiveTintColor: 'grey',
       tabBarLabelStyle: {
         color: 'black',
-        fontWeight: '900',
+        fontWeight: '600',
+        fontSize: 13,
       },
       headerShown: false,
       tabBarStyle: {
         backgroundColor: '#F8F5E6',
-        height: 98,
+        height: 82,
       },
       headerStyle: {
         backgroundColor: 'white',
