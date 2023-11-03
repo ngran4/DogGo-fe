@@ -1,7 +1,5 @@
 import React from "react";
-import { View } from "react-native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons"
 
 // Icons 
 import SettingsIcon from "../../assets/images/SettingsIcon";
@@ -29,7 +27,7 @@ const selected = '#C4E8F2'
 // TO DO: change nav icon sizes + font size, change height (started, needs touch ups)
 // Idea: connect with people who are watching your pets so they can see the schedule
 
-const NavBar = () => {
+const NavBar = ({navigation}) => {
   return (
     <Tab.Navigator
     screenOptions={{
@@ -62,7 +60,7 @@ const NavBar = () => {
             <HomeIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}}/>
           )
         }} >
-        {() => <HomeScreen />}
+        {() => <HomeScreen navigation={navigation}/>}
       </Tab.Screen>
 
       <Tab.Screen name={alertsName}
