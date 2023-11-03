@@ -1,20 +1,55 @@
 import React, { useContext, useState } from 'react'
-import { StateContext } from '../context/StateContext'
+import * as ImagePicker from 'expo-image-picker'
 import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native'
+import { StateContext } from '../context/StateContext'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
+import * as photoService from '../services/photoService'
 
 const screenWidth = Dimensions.get('window').width;
 
 const AddPet = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, subHeader, body, buttonText, dogName, setDogName } = stateContext
+  const [image, setImage] = useState(null);
 
+  const pickImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    })
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+
+  const uploadImage = async () => {
+    let photoData = new FormData();
+    photoData.append('photo', {
+      uri: image,
+      type: 'image/jpeg',
+      name: 'textPhoto.jpg'
+    });
+
+    const response = await photoService.create(photoData)
+    console.log(response, '<----- response')
+
+    let responseJSON = await response.json();
+    console.log(responseJSON, '<------ responseJSON')
+  }
 
   const doAddPet = async function () {
     const formData = {
       dogName: dogName
     }
+
+    // Upload the image
+    await uploadImage();
 
     navigation.navigate("Walk Counter")
   }
@@ -25,9 +60,13 @@ const AddPet = ({ navigation }) => {
         <AddPetIcon />
       </View>
       <Text style={[subHeader, {marginBottom:15}]}>Add a Furry Friend</Text>
-      <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}>
-      <PetPhotoIcon />
-      </View>
+      {/* <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}> */}
+
+      <TouchableOpacity style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }} onPress={() => pickImage()}>
+        <PetPhotoIcon />
+      </TouchableOpacity>
+
+      {/* </View> */}
       <View style={{flex: 0.8, alignItems: 'center'}}>      
         <TextInput
         style={styles.input}
