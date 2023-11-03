@@ -4,6 +4,7 @@ import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dime
 import { StateContext } from '../context/StateContext'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
+import * as photoService from '../services/photoService'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -28,24 +29,18 @@ const AddPet = ({ navigation }) => {
   };
 
   const uploadImage = async () => {
-    let formData = new FormData();
-    formData.append('photo', {
+    let photoData = new FormData();
+    photoData.append('photo', {
       uri: image,
       type: 'image/jpeg',
       name: 'textPhoto.jpg'
     });
 
-    let response = await fetch('http://example.com/upload', {
-      method: 'POST',
-      body: formData,
-      headers: {
-        'content-type': 'multipart/form-data',
-      },
-    });
+    const response = await photoService.create(photoData)
+    console.log(response, '<----- response')
 
     let responseJSON = await response.json();
-
-    console.log(responseJSON)
+    console.log(responseJSON, '<------ responseJSON')
   }
 
   const doAddPet = async function () {
