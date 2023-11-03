@@ -14,6 +14,9 @@ export const StateProvider = (props) => {
   const [loading, setLoading] = useState(true);
   const [name, setName] = useState("");
   const [dogName, setDogName] = useState("");
+  const [breed, setBreed] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthday, setBirthday] = useState("");
 
   const colors = {
     darkBlue: "#77C8E0",
@@ -55,6 +58,12 @@ export const StateProvider = (props) => {
 
     dogName: dogName,
     setDogName: setDogName,
+    breed: breed,
+    setBreed: setBreed,
+    gender: gender,
+    setGender: setGender,
+    birthday: birthday,
+    setBirthday: setBirthday,
     colors: colors,
 
     container: {

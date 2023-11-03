@@ -6,9 +6,9 @@ import NavBar from '../components/NavBar';
 
 
 
-const PetProfile = ({ navigation }) => {
+const PetProfile = () => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName } = stateContext
+  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName, breed, gender, birthday } = stateContext
 
   return (
     <SafeAreaView style={styles.container}>
@@ -30,7 +30,11 @@ const PetProfile = ({ navigation }) => {
         </View>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Breed</Text>
-          <Text style={styles.inputInfo}>Breed</Text>
+          {
+            {breed} ? <Text style={styles.inputInfo}>Breed</Text> : 
+            <Text style={styles.inputInfo}>Include `${dogName}`' Breed</Text>
+          }
+          
         </View>
       </View>
       <NavBar />
