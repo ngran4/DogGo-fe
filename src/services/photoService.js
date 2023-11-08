@@ -1,7 +1,7 @@
 import * as tokenService from "./tokenService"
 
 // no dogId in state....
-const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs/${dogId}/add-photo`
+// const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs/${dogId}/add-photo`
 
 const create = async (photoData) => {
   try {
