@@ -4,7 +4,7 @@ import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dime
 import { StateContext } from '../context/StateContext'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
-import * as photoService from '../services/photoService'
+// import * as photoService from '../services/photoService'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -49,7 +49,7 @@ const AddPet = ({ navigation }) => {
     }
 
     // Upload the image
-    await uploadImage();
+    // await uploadImage();
 
     navigation.navigate("Walk Counter")
   }

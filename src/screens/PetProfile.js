@@ -6,33 +6,45 @@ import NavBar from '../components/NavBar';
 
 
 
-const PetProfile = () => {
+const PetProfile = ({navigation}) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName, breed, gender, birthday } = stateContext
 
   return (
     <SafeAreaView style={styles.container}>
-      <TouchableOpacity><Text style={styles.editText}>Edit Pet Profile</Text></TouchableOpacity>
+      <TouchableOpacity
+      onPress={() => navigation.navigate("Edit Pet")}
+      ><Text style={styles.editText}>Edit Pet Profile</Text></TouchableOpacity>
       <View
         style={styles.widget}>
-        {/* <View style={{ height: 8, width: 8 }}></View> */}
         <Text style={buttonText}>{dogName}</Text>
         <Text >Age</Text>
       </View>
       <View style={styles.infoSection}>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Birthday</Text>
-          <Text style={styles.inputInfo}>Birthday date</Text>
+          {
+            {birthday} != null ? 
+            <Text style={styles.inputInfo}>{birthday}</Text> 
+            :
+            <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
+          }
         </View>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Gender</Text>
-          <Text style={styles.inputInfo}t>Gender</Text>
+          {
+            {gender} != null ? 
+            <Text style={styles.inputInfo}>{gender}</Text> 
+            :
+            <Text style={styles.inputInfo}>Include {dogName}'s Gender</Text>
+          }
         </View>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Breed</Text>
           {
-            {breed} ? <Text style={styles.inputInfo}>Breed</Text> : 
-            <Text style={styles.inputInfo}>Include `${dogName}`' Breed</Text>
+            {breed} != null
+            ? <Text style={styles.inputInfo}>{breed}</Text> : 
+            <Text style={styles.inputInfo}>Include {dogName}'s Breed</Text>
           }
           
         </View>

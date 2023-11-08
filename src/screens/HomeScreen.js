@@ -17,7 +17,7 @@ const HomeScreen = ({navigation}) => {
       <CurrentWeather/>
       <WalkingSchedule />
       <DogProfileWidget navigation={navigation}/>
-      <RemindersWidget/>
+      <RemindersWidget />
     </SafeAreaView>
   )
 }

@@ -19,6 +19,7 @@
     "expo": "~49.0.15",
     "expo-constants": "~14.4.2",
     "expo-font": "~11.4.0",
+    "expo-image-picker": "~14.3.2",
     "expo-linking": "~5.0.2",
     "expo-location": "^16.3.0",
     "expo-splash-screen": "^0.22.0",
@@ -27,7 +28,6 @@
     "moment": "^2.29.4",
     "react": "18.2.0",
     "react-native": "0.72.6",
-    "react-native-date-picker": "^4.3.3",
     "react-native-dotenv": "^3.4.9",
     "react-native-gesture-handler": "~2.12.0",
     "react-native-paper": "^5.11.1",
@@ -37,8 +37,7 @@
     "react-native-svg": "13.9.0",
     "react-native-vector-icons": "^10.0.1",
     "react-navigation": "^5.0.0",
-    "undefined": "@expo-google-fonts/",
-    "expo-image-picker": "~14.3.2"
+    "undefined": "@expo-google-fonts/"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
