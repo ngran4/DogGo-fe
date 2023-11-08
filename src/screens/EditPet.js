@@ -2,11 +2,22 @@ import * as React from "react";
 import { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput } from "react-native";
+import RNPickerSelect from "react-native-picker-select";
 import NavBar from "../components/NavBar";
 
 const EditPet = ({navigation}) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, birthday, setBirthday, setGender, gender, breed, setBreed, dogName } = stateContext
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   
   const doChangePet = async function () {
     const formData = {
@@ -32,11 +43,13 @@ const EditPet = ({navigation}) => {
       <View style={styles.infoSection}>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Gender</Text>
-          <TextInput
-          style={styles.input}
-          value={gender}
-          placeholder={"Enter Gender"}
-          onChangeText={(text)=> setGender(text)}
+          <RNPickerSelect 
+          placeholder={{label: `What's ${dogName}'s Gender?`, value: null}}
+          onValueChange={(value) => setGender(value)}
+          items={[
+            {label: "Boy", value: "Boy"},
+            {label: "Girl", value: "Girl"},
+          ]}
           />
         </View>
       </View>
