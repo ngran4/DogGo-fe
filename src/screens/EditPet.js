@@ -2,17 +2,22 @@ import React, { useState } from 'react'
 import { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from "react-native";
-// import RNPickerSelect from "react-native-picker-select";
 import DropDownPicker from 'react-native-dropdown-picker';
-import DateTimePicker from '@react-native-community/datetimepicker';
+import {Calendar} from 'react-native-calendars';
+
+// not supported on web
+// import RNPickerSelect from "react-native-picker-select";
+// import DateTimePicker from '@react-native-community/datetimepicker';
+
 import NavBar from "../components/NavBar";
 
 const screenWidth = Dimensions.get('window').width;
 
 const EditPet = ({navigation}) => {
-  // const [mode, setMode] = useState('date')
-  // const [show, setShow] = useState(false)
+  // Date Picker
+  const [selected, setSelected] = useState("");
 
+  // Gender Picker
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
   const [items, setItems] = useState(
@@ -22,34 +27,16 @@ const EditPet = ({navigation}) => {
     ]
   );
 
+  // State Context
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, birthday, setBirthday, setGender, gender, breed, setBreed, dogName } = stateContext
 
-
-
-  // const onChange = (event, selectedDate) => {
-  //   setShow(false)
-  //   if (event?.type === 'dismissed') {
-  //     setBirthday(new Date())
-  //     return
-  //   }
-  //   const currentDate = selectedDate;
-  //   setBirthday(currentDate)
-  // }
   
-  // const showMode = (currentMode) => {
-  //   setShow(true)
-  //   setMode(currentMode)
-  // } 
   
-  // const showDatepicker = () => {
-  //   showMode('date')
-  // }
-  
-    
+  // POST info 
   const doUpdatePet = async function () {
     const formData = {
-      birthday: birthday,
+      birthday: setBirthday(selected),
       gender: setGender(value),
       breed: breed
     }
@@ -57,7 +44,7 @@ const EditPet = ({navigation}) => {
   }
   
   return (
-    <SafeAreaView style={container}>
+    <SafeAreaView style={styles.container}>
       <View
         style={styles.widget}>
         <Text style={buttonText}>{dogName}</Text>
@@ -66,18 +53,18 @@ const EditPet = ({navigation}) => {
       <View style={styles.infoSection}>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Birthday</Text>
-          {/* <TouchableOpacity onPress={showDatepicker}>
+          <TouchableOpacity >
             <Text>What's {dogName}'s Birthday</Text>
           </TouchableOpacity>
-          {show && (
-            <DateTimePicker
-              testID="dateTimePicker"
-              value={birthday}
-              mode={'date'}
-              display="default"
-              onChange={onChange}
-            />
-          )} */}
+          <Calendar
+          onDayPress={(day) => 
+            // console.log(selected.dateString)
+            setSelected(day.dateString)
+          }
+          markedDates={{
+            [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}}
+          }
+          />
         </View>
       </View>
       <View style={styles.infoSection}>
@@ -92,8 +79,9 @@ const EditPet = ({navigation}) => {
           ]}
           /> */}
           <DropDownPicker
+          style={styles.picker}
           placeholder={`Whats ${dogName}'s gender?`}
-          onValueChange={(value) => setGender(value)}
+          onßChange={(value) => setGender(value)}
           open={open}
           value={value}
           items={items}
@@ -143,6 +131,14 @@ const pickerSelectStyles = StyleSheet.create({
 });
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "#F8F5E6", 
+    flex: 1,
+    // justifyContent: "center",
+    alignItems: "left",
+    marginLeft: 30,
+    screenHeight: 0.9
+  },
   widget: {
     backgroundColor: '#c4e8f2',
     padding: 10,
@@ -157,10 +153,15 @@ const styles = StyleSheet.create({
     maxHeight: 58
   },
   input: {
-    height: 25,
-    marginBottom: 10,
-    backgroundColor: '#fff'
-},
+    paddingRight: 15,
+    paddingTop: 15,
+    borderBottomWidth: 2,
+    borderBottomColor: 'black',
+    width: screenWidth * 0.7,
+    fontFamily: 'OpenSans-Regular',
+    fontSize: 20,
+    fontWeight: 600,
+  },
   editText: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -178,15 +179,11 @@ const styles = StyleSheet.create({
     fontFamily: "ConcertOne-Regular",
     fontSize: 16,
   },
-  container: {
-    backgroundColor: "#F8F5E6",
-    flex: 1,
-    justifyContent: "flex-start",
-    alignItems: "left",
-    marginLeft: 30,
-  },
   subSection: {
-    marginVertical: 20
+    marginVertical: 20,
+  },
+  picker: {
+    zIndex: null
   }
 })
 
