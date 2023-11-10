@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { useContext } from 'react';
-import { SafeAreaView, StyleSheet, TouchableOpacity, View, Text, buttonText } from 'react-native';
+import { SafeAreaView, StyleSheet, TouchableOpacity, View, Text, buttonText, Pressable } from 'react-native';
 import { StateContext } from '../context/StateContext'
 import NavBar from '../components/NavBar';
 
@@ -12,9 +12,16 @@ const PetProfile = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      {/* <Pressable */}
       <TouchableOpacity
-      onPress={() => navigation.navigate("Edit Pet")}
-      ><Text style={styles.editText}>Edit Pet Profile</Text></TouchableOpacity>
+      onPress={() => 
+        // console.log("Edit Pet Profile")
+      navigation.navigate("Edit Pet")
+    }
+      >
+        <Text style={styles.editText}>Edit Pet Profile</Text>
+      </TouchableOpacity>
+      {/* </Pressable> */}
       <View
         style={styles.widget}>
         <Text style={buttonText}>{dogName}</Text>
