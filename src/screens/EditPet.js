@@ -16,6 +16,7 @@ const screenWidth = Dimensions.get('window').width;
 const EditPet = ({navigation}) => {
   // Date Picker
   const [selected, setSelected] = useState("");
+  const [currDate, setCurrDate] = useState(new Date());
 
   // Gender Picker
   const [open, setOpen] = useState(false);
@@ -56,13 +57,16 @@ const EditPet = ({navigation}) => {
           <TouchableOpacity >
             <Text>What's {dogName}'s Birthday</Text>
           </TouchableOpacity>
+          {/* <Text>{currDate}</Text> */}
           <Calendar
+          // onPressArrowLeft={subtractMonth => subtractMonth()}
+          disableArrowRight={true}
           onDayPress={(day) => 
             // console.log(selected.dateString)
             setSelected(day.dateString)
           }
           markedDates={{
-            [selected]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}}
+            [selected]: {selected: true, disableTouchEvent: true, marked: true, selectedColor: 'blue'}}
           }
           />
         </View>
@@ -105,36 +109,16 @@ const EditPet = ({navigation}) => {
       <TouchableOpacity style={greenButton} onPress={() => doUpdatePet()}>
         <Text style={buttonText}>Save Furry Friend</Text>
       </TouchableOpacity>
-      {/* <NavBar /> */}
+      <NavBar />
     </SafeAreaView>
 
   )
 }
 
-const pickerSelectStyles = StyleSheet.create({
-  inputIOS: {
-    paddingRight: 15,
-    paddingTop: 12,
-    borderBottomWidth: 2,
-    borderBottomColor: 'black',
-    width: screenWidth * 0.5,
-    fontFamily: 'OpenSans-Regular',
-    fontSize: 20,
-    fontWeight: 600,
-  },
-  inputAndroid: {
-    paddingRight: 15,
-    borderBottomWidth: 1,
-    borderBottomColor: 'black',
-    width: screenWidth * 0.45,
-  },
-});
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#F8F5E6", 
     flex: 1,
-    // justifyContent: "center",
     alignItems: "left",
     marginLeft: 30,
     screenHeight: 0.9
