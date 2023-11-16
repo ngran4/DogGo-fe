@@ -27,15 +27,15 @@ const WalkAlert = ({text, time, styles}) => {
   )
 }
 
-const alert = StyleSheet.create({
-    flexDirection: 'row',
-    width: 358,
-    paddingTop: 14,
-    paddingBottom: 14,
-    alignItems: 'flex-start',
-    gap: 10,
-    borderRadius: 24,
-    backgroundColor: '#a6a6a670',
-})
+// const alert = StyleSheet.create({
+//     flexDirection: 'row',
+//     width: 358,
+//     paddingTop: 14,
+//     paddingBottom: 14,
+//     alignItems: 'flex-start',
+//     gap: 10,
+//     borderRadius: 24,
+//     backgroundColor: '#a6a6a670',
+// })
 
 export default WalkAlert

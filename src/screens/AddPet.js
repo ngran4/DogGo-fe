@@ -11,7 +11,7 @@ const screenWidth = Dimensions.get('window').width;
 
 const AddPet = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, subHeader, body, buttonText, dogName, setDogName } = stateContext
+  const { container, blueButton, greenButton, subHeader, body, buttonText, dogName, setDogName, birthday, setBirthday, breed, setBreed, gender, setGender } = stateContext
   const [image, setImage] = useState(null);
 
   const pickImage = async () => {
@@ -46,7 +46,10 @@ const AddPet = ({ navigation }) => {
 
   const doAddPet = async function () {
     const formData = {
-      dogName: dogName
+      dogName: dogName,
+      birthday: null,
+      gender: null,
+      breed: null
     }
 
     // Upload the image
