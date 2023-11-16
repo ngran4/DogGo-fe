@@ -4,7 +4,8 @@ import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dime
 import { StateContext } from '../context/StateContext'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
-// import * as photoService from '../services/photoService'
+import * as photoService from '../services/photoService'
+import * as dogService from '../services/dogService'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -56,6 +57,34 @@ const AddPet = ({ navigation }) => {
 
     navigation.navigate("Walk Counter")
   }
+
+  // const doAddPet = async function () {
+  //   // Create FormData for the image
+  //   let photoData = new FormData();
+  //   photoData.append('photo', {
+  //     uri: image,
+  //     type: 'image/jpeg',
+  //     name: 'textPhoto.jpg'
+  //   });
+  
+  //   // Create FormData for the dog name
+  //   const formData = new FormData();
+  //   formData.append('dogName', dogName);
+  
+  //   // Combine photoData and formData
+  //   for (let [key, value] of formData.entries()) {
+  //     photoData.append(key, value);
+  //   }
+  
+  //   // Use dogService.create() to upload the combined data
+  //   const response = await dogService.create(photoData);
+  //   console.log(response, '<----- response')
+  
+  //   let responseJSON = await response.json();
+  //   console.log(responseJSON, '<------ responseJSON')
+  
+  //   navigation.navigate("Walk Counter")
+  // }
 
   return (
     <SafeAreaView style={container}>
