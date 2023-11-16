@@ -2,6 +2,7 @@
 import { StateProvider } from './src/context/StateContext'
 import Welcome from './src/screens/Welcome'
 import LocationServices from './src/screens/LocationServices'
+import LogIn from './src/screens/Login'
 import UserSignUp from './src/screens/UserSignUp'
 import WalkCounter from './src/screens/WalkCounter'
 import WalkTime from "./src/screens/WalkTime"
@@ -57,6 +58,7 @@ export default function App() {
         <Stack.Navigator>
           <Stack.Screen name='Welcome' component={Welcome} options={noHeaderNavOptions} />
           <Stack.Screen name='Location Services' component={LocationServices} options={navOptions} />
+          <Stack.Screen name='Login' component={LogIn} options={navOptions} />
           <Stack.Screen name='Sign Up' component={UserSignUp} options={navOptions} />
           <Stack.Screen name='Add a Furry Friend' component={AddPet} options={navOptions} />
           <Stack.Screen name='Walk Counter' component={WalkCounter} options={navOptions} />
