@@ -23,7 +23,7 @@ const LogIn = ({ navigation })  => {
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName } = stateContext
 
   const doLogin = async function () {
-    navigation.navigate("Location Services")
+    navigation.navigate("Home")
   }
 
   return (
