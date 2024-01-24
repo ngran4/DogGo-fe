@@ -2,10 +2,20 @@ import React, { useContext } from 'react';
 import { StateContext } from '../context/StateContext'
 import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
 import DogProfileWidget from '../components/DogProfileWidget';
+import * as authService from '../services/authService'
+
 
 const Settings = () => {
   const [stateContext] = useContext(StateContext)
   const { container, header, homePgHeader} = stateContext
+
+  const doLogout = async function () {
+    try {
+      await authService.logout()
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <SafeAreaView style={container}>
@@ -52,7 +62,9 @@ const Settings = () => {
           <Text style={homePgHeader}>Account</Text>
           <Text style={styles.inputInfo}>Change Home Location</Text>
           <Text style={styles.inputInfo}>Change Password</Text>
-          <Text style={styles.inputInfo}>Logout</Text>
+          <Text style={styles.inputInfo}
+          onPress={() => doLogout()}
+          >Logout</Text>
         </View>
       </View>
     </SafeAreaView>

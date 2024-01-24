@@ -23,6 +23,7 @@ async function signup(user, photo) {
         )
       }
     }
+    console.log('Sign Up Successful')
   } catch (err) {
     throw err
   }
@@ -34,6 +35,7 @@ function getUser() {
 
 function logout() {
   tokenService.removeToken()
+  navigation.navigate("Welcome")
 }
 
 async function login(credentials) {
@@ -44,11 +46,10 @@ async function login(credentials) {
       body: JSON.stringify(credentials),
     })
     const json = await res.json()
-    if (json.token) {
-      tokenService.setToken(json.token)
-    }
     if (json.err) {
       throw new Error(json.err)
+    } else if (json.token) {
+      tokenService.setToken(json.token)
     }
   } catch (err) {
     throw err

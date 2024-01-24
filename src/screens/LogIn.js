@@ -12,6 +12,7 @@ import {
   Button,
   Dimensions
 } from "react-native";
+import * as authService from '../services/authService'
 
 const screenWidth = Dimensions.get('window').width;
 
@@ -23,7 +24,18 @@ const LogIn = ({ navigation })  => {
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName } = stateContext
 
   const doLogin = async function () {
-    navigation.navigate("Home")
+    const formData = {
+      email: email,
+      password: password,
+    }
+
+    try {
+      await authService.login(formData)
+      navigation.navigate("Home")
+    } catch (error) {
+      console.log(error)
+    }
+    
   }
 
   return (
