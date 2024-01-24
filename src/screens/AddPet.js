@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import * as ImagePicker from 'expo-image-picker'
-import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dimensions } from 'react-native'
+import { SafeAreaView, Text, View, StyleSheet, TouchableOpacity, TextInput, Dimensions, Image } from 'react-native'
 import { StateContext } from '../context/StateContext'
 import AddPetIcon from '../../assets/images/AddPetIcon'
 import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
@@ -95,7 +95,13 @@ const AddPet = ({ navigation }) => {
       {/* <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}> */}
 
       <TouchableOpacity style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }} onPress={() => pickImage()}>
-        <PetPhotoIcon />
+        
+        {image ? (
+          <Image source={{ uri: image }} style={styles.roundedImage} />
+        ) : (
+          <PetPhotoIcon />
+        )}
+
       </TouchableOpacity>
 
       {/* </View> */}
@@ -133,7 +139,13 @@ const styles = StyleSheet.create({
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
     fontWeight: 600,
-  }
+  },
+  roundedImage: {
+    height: 180,
+    width: 180,
+    borderRadius: 90,
+    overflow: 'hidden'
+  },
 })
 
 

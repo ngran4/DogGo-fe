@@ -1,17 +1,17 @@
 
 import { StateProvider } from './src/context/StateContext'
-import Welcome from './src/screens/Welcome'
-import LocationServices from './src/screens/LocationServices'
-import LogIn from './src/screens/Login'
-import UserSignUp from './src/screens/UserSignUp'
-import WalkCounter from './src/screens/WalkCounter'
-import WalkTime from "./src/screens/WalkTime"
-import AddPet from './src/screens/AddPet'
 import { NavigationContainer } from '@react-navigation/native'
 import { createStackNavigator } from '@react-navigation/stack'
 import { useFonts } from 'expo-font'
 import { useCallback, useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
+import Welcome from './src/screens/Welcome'
+import LocationServices from './src/screens/LocationServices'
+import LogIn from './src/screens/LogIn'
+import UserSignUp from './src/screens/UserSignUp'
+import WalkCounter from './src/screens/WalkCounter'
+import WalkTime from "./src/screens/WalkTime"
+import AddPet from './src/screens/AddPet'
 import HomeScreen from './src/screens/HomeScreen';
 import CurrentWeather from './src/components/CurrentWeather';
 import HomePage from './src/screens/HomePage';
