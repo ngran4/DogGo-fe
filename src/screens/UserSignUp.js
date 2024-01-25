@@ -39,6 +39,7 @@ const UserSignUp = ({ navigation }) => {
       await authService.signup(formData)
       navigation.navigate("Location Services")
     } catch (error) {
+
       // iOS and Android error handling
       // if (error.message === 'Account already exists') {
       //   Alert.alert(
@@ -50,6 +51,7 @@ const UserSignUp = ({ navigation }) => {
       //   ) 
       // }
       // iOS and Android error handling
+      
       if (error.message === 'Account already exists') {
         alert('Account already exists')
         navigation.navigate('Login')

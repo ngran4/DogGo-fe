@@ -33,7 +33,13 @@ const LogIn = ({ navigation })  => {
       await authService.login(formData)
       navigation.navigate("Home")
     } catch (error) {
-      console.log(error)
+      if (error.message === 'Incorrect Password') {
+        alert('Incorrect Password')
+      } else if (error.message === 'Account does not exist') {
+        alert('Account does not exist')
+      } else {
+        alert('Please fill out all fields')
+    }
     }
     
   }

@@ -30,13 +30,14 @@ const EditPet = ({navigation}) => {
 
   // State Context
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, birthday, setBirthday, setGender, gender, breed, setBreed, dogName } = stateContext
+  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, birthday, setBirthday, setGender, gender, breed, setBreed, dogName, setDogName } = stateContext
 
   
   
   // POST info 
   const doUpdatePet = async function () {
     const formData = {
+      dogName: dogName,
       birthday: setBirthday(selected),
       gender: setGender(value),
       breed: breed
@@ -48,7 +49,13 @@ const EditPet = ({navigation}) => {
     <SafeAreaView style={styles.container}>
       <View
         style={styles.widget}>
-        <Text style={buttonText}>{dogName}</Text>
+        <Text style={buttonText}>Edit Name</Text>
+        <TextInput
+          style={styles.input}
+          value={dogName}
+          placeholder={dogName}
+          onChangeText={(text)=> setDogName(text)}
+          />
         <Text >Age</Text>
       </View>
       <View style={styles.infoSection}>

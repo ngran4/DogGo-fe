@@ -57,8 +57,8 @@ const PetProfile = ({ navigation }) => {
           <View style={styles.subSection}>
             <Text style={homePgHeader}>Birthday</Text>
             {
-              { birthday } != null ?
-                <Text style={styles.inputInfo}>{birthday}</Text>
+              { birthday } == null ?
+                <Text style={styles.inputInfo}>{birthday} years old</Text>
                 :
                 <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
             }

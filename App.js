@@ -14,7 +14,6 @@ import { useCallback, useEffect } from 'react'
 import * as SplashScreen from 'expo-splash-screen'
 import HomeScreen from './src/screens/HomeScreen';
 import CurrentWeather from './src/components/CurrentWeather';
-import HomePage from './src/screens/HomePage';
 import PetProfile from './src/screens/PetProfile'
 import NavBar from './src/components/NavBar'
 import EditPet from './src/screens/EditPet'
