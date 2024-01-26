@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import { StateContext } from '../context/StateContext'
-import RNPickerSelect from "react-native-picker-select";
+import {Picker} from '@react-native-picker/picker';
 import { Button, Text, StyleSheet, View, Dimensions } from "react-native"
 
 const screenWidth = Dimensions.get('window').width;
