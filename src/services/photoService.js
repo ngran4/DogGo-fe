@@ -1,25 +1,25 @@
 // import * as tokenService from "./tokenService"
 
 // no dogId in state....
-// const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs/${dogId}/add-photo`
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}`
 
-// const create = async (photoData) => {
-//   try {
-//     const res = await fetch(BASE_URL, {
-//       method: "POST",
-//       body: photoData,
-//       headers: {
-//         Authorization: `Bearer ${tokenService.getToken()}`,
-//         "Content-Type": 'multipart/form-data',
-//       },
-//     });
-//     return res.json();
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+const create = async (photoData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/api/dogs/${dogId}/add-photo`, {
+      method: "POST",
+      body: photoData,
+      headers: {
+        Authorization: `Bearer ${tokenService.getToken()}`,
+        "Content-Type": 'multipart/form-data',
+      },
+    });
+    return res.json();
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-// export{
+// export{brew 
 //   create
 // }
 

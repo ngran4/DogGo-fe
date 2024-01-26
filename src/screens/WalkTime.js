@@ -1,6 +1,5 @@
 import React, { useState, useContext } from "react";
 import { StateContext } from "../context/StateContext";
-import RNPickerSelect from "react-native-picker-select";
 import WalkTimeIcon from "../../assets/images/WalkTimeIcon";
 import { SafeAreaView, Text, TouchableOpacity, View } from "react-native";
 import TimeSelector from '../components/TimeSelector'
