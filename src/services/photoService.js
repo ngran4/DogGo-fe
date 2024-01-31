@@ -13,7 +13,8 @@ const create = async (photoData) => {
         "Content-Type": 'multipart/form-data',
       },
     });
-    return res.json();
+    console.log(res, "<----- res");
+    // return res.json();
   } catch (error) {
     console.log(error);
   }
@@ -37,3 +38,5 @@ const create = async (photoData) => {
 //     throw new Error(res.error);
 //   })
 // }
+
+export { create };

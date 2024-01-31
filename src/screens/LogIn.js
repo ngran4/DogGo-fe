@@ -38,7 +38,7 @@ const LogIn = ({ navigation })  => {
       } else if (error.message === 'Account does not exist') {
         alert('Account does not exist')
       } else {
-        alert('Please fill out all fields')
+        alert(error.message)
     }
     }
     

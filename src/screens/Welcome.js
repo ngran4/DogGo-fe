@@ -11,7 +11,6 @@ const Welcome = ({ navigation }) => {
   // Needed to check for loaded or error fonts, to display or not display a splash screen
   // Used to prevent errors on loading the screens/components before the system is ready
 
-    console.log('Hi')
 
   return (
     <SafeAreaView style={container}>

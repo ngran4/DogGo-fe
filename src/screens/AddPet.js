@@ -43,10 +43,12 @@ const AddPet = ({ navigation }) => {
   const [open, setOpen] = useState(false);
 
   const [items, setItems] = useState([
-    {label: 'Select Gender', value: ''},
-    {label: 'Male', value: 'M'},
-    {label: 'Female', value: 'F'},
-   ]);
+    { label: 'Select Gender', value: '' },
+    { label: 'Male', value: 'M' },
+    { label: 'Female', value: 'F' },
+  ]);
+
+  // ------------ image ------------ //
 
   const pickImage = async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -58,8 +60,8 @@ const AddPet = ({ navigation }) => {
 
     console.log(result);
 
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
     }
   };
 
@@ -74,25 +76,35 @@ const AddPet = ({ navigation }) => {
     const response = await photoService.create(photoData);
     console.log(response, "<----- response");
 
-    let responseJSON = await response.json();
-    console.log(responseJSON, "<------ responseJSON");
+    // let responseJSON = await response.json();
+    // console.log(responseJSON, "<------ responseJSON");
 
     // return responseJSON.url
   };
 
+  // ------------ image ------------ //
+
   const doAddPet = async function () {
     const formData = {
-      dogName: dogName,
-      birthday: null,
-      gender: null,
-      breed: null,
+      name: dogName,
+      // photo: null,
+      // age: 0,
+      // breed: null,
+      // birthday: null,
+      // gender: setGender(items.value)
     };
 
     // Upload the image
     // await uploadImage();
+    try {
+      console.log(formData, "<----- formData")
+      await dogService.createDog(formData)
+      navigation.navigate("Walk Counter");
+    } catch (error) {
+      alert(error.message);
+    };
 
-    navigation.navigate("Walk Counter");
-  };
+  }
 
   return (
     <SafeAreaView style={container}>
@@ -114,52 +126,52 @@ const AddPet = ({ navigation }) => {
 
       </View> */}
       <View style={{ flex: 0.8 }}>
-        <View style={{alignItems: "center"}}>
-        <TextInput
-          style={styles.input}
-          value={dogName}
-          placeholder={"Name"}
-          placeholderTextColor={"grey"}
-          onChangeText={(text) => setDogName(text)}
-          autoCapitalize={"none"}
-        />
+        <View style={{ alignItems: "center" }}>
+          <TextInput
+            style={styles.input}
+            value={dogName}
+            placeholder={"Name"}
+            placeholderTextColor={"grey"}
+            onChangeText={(text) => setDogName(text)}
+            autoCapitalize={"none"}
+          />
         </View>
-          <View style={{borderBottomWidth: 2, borderBottomColor: 'black', alignItems: 'flex-start', width: screenWidth * 0.28, marginTop: 5}}>
-        <DropDownPicker
-          open={open}
-          value={gender}
-          placeholder="Sex"
-          items={[
-            { label: "Male", value: "M" },
-            { label: "Female", value: "F" },
-          ]}
-          setOpen={setOpen}
-          setValue={setGender}
-          setItems={setItems}
-          style={{backgroundColor: colors.background, borderColor: colors.background, width: screenWidth * 0.3, paddingLeft: 0, color: "grey"}}
-          placeholderStyle={{
-            color: "grey",
-            fontSize: 20,
-            fontWeight: 600,
-            fontFamily: "OpenSans-Regular",
-            paddingLeft: 0,
-          }}
-          dropDownContainerStyle={{
-            backgroundColor: colors.background,
-            borderColor: colors.background,
-          }}
-          listItemLabelStyle={{
-            color: "grey",
-            fontSize: 15,
-            fontWeight: 600,
-            fontFamily: "OpenSans-Regular",
-          }}
-          selectedItemLabelStyle={{
-            color: "grey",
-            fontSize: 15,
-}}
-        />
-      </View>
+        <View style={{ borderBottomWidth: 2, borderBottomColor: 'black', alignItems: 'flex-start', width: screenWidth * 0.28, marginTop: 5 }}>
+          <DropDownPicker
+            open={open}
+            value={gender}
+            placeholder="Sex"
+            items={[
+              { label: "Male", value: "M" },
+              { label: "Female", value: "F" },
+            ]}
+            setOpen={setOpen}
+            setValue={setGender}
+            setItems={setItems}
+            style={{ backgroundColor: colors.background, borderColor: colors.background, width: screenWidth * 0.3, paddingLeft: 0, color: "grey" }}
+            placeholderStyle={{
+              color: "grey",
+              fontSize: 20,
+              fontWeight: 600,
+              fontFamily: "OpenSans-Regular",
+              paddingLeft: 0,
+            }}
+            dropDownContainerStyle={{
+              backgroundColor: colors.background,
+              borderColor: colors.background,
+            }}
+            listItemLabelStyle={{
+              color: "grey",
+              fontSize: 15,
+              fontWeight: 600,
+              fontFamily: "OpenSans-Regular",
+            }}
+            selectedItemLabelStyle={{
+              color: "grey",
+              fontSize: 15,
+            }}
+          />
+        </View>
       </View>
       <TouchableOpacity style={greenButton} onPress={() => doAddPet()}>
         <Text style={buttonText}>Next</Text>
