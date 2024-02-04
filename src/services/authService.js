@@ -35,7 +35,6 @@ function getUser() {
 
 function logout() {
   tokenService.removeToken()
-  navigation.navigate("Welcome")
 }
 
 async function login(credentials) {

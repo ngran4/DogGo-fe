@@ -11,7 +11,7 @@ const DogProfileWidget = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      {
+      { dogName ? 
         (
           <TouchableOpacity
             style={styles.widget}
@@ -27,6 +27,15 @@ const DogProfileWidget = ({ navigation }) => {
             <Text style={buttonText}>{dogName}</Text>
 
             {/* <Text>Age</Text> */}
+          </TouchableOpacity>
+        ) 
+        : 
+        (
+          <TouchableOpacity
+            style={styles.widget}
+            onPress={() => navigation.navigate('Add a Furry Friend')}>
+            <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
+            <Text style={buttonText}>Add Pet</Text>
           </TouchableOpacity>
         )
       }

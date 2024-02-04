@@ -12,6 +12,7 @@ const Settings = () => {
   const doLogout = async function () {
     try {
       await authService.logout()
+      navigation.navigate("Welcome")
     } catch (error) {
       console.log(error)
     }
