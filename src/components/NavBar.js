@@ -9,9 +9,9 @@ import HomeIcon from "../../assets/images/HomeIcon";
 
 // screens 
 import HomeScreen from "../screens/HomeScreen";
-import Settings from "../screens/Settings";
 import AlertsScreen from "../screens/AlertsScreen";
 import Chat from "../screens/ChatScreen";
+import Settings from "../screens/Settings";
 
 // screen names
 const homeScreenName = "Home";
@@ -27,68 +27,69 @@ const selected = '#C4E8F2'
 // TO DO: change nav icon sizes + font size, change height (started, needs touch ups)
 // Idea: connect with people who are watching your pets so they can see the schedule
 
-const NavBar = ({navigation}) => {
+const NavBar = ({ navigation }) => {
   return (
     <Tab.Navigator
-    screenOptions={{
-      tabBarActiveTintColor: 'teal',
-      tabBarInactiveTintColor: 'grey',
-      tabBarLabelStyle: {
-        color: 'black',
-        fontWeight: '600',
-        fontSize: 13,
-      },
-      headerShown: false,
-      tabBarStyle: {
-        backgroundColor: '#F8F5E6',
-        height: 82,
-      },
-      headerStyle: {
-        backgroundColor: 'white',
-      },
-      headerTitleStyle: {
-        fontWeight: 'bold',
-        fontSize: 25,
-        color: 'teal'
-      }
-    }}
-      >
-      
+      screenOptions={{
+        tabBarActiveTintColor: 'teal',
+        tabBarInactiveTintColor: 'grey',
+        tabBarLabelStyle: {
+          color: 'black',
+          fontWeight: '600',
+          fontSize: 13,
+        },
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#F8F5E6',
+          height: 82,
+        },
+        headerStyle: {
+          backgroundColor: 'white',
+        },
+        headerTitleStyle: {
+          fontWeight: 'bold',
+          fontSize: 25,
+          color: 'teal'
+        }
+      }}
+    >
+
       <Tab.Screen name={homeScreenName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <HomeIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}}/>
+            <HomeIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
         }} >
-        {() => <HomeScreen navigation={navigation}/>}
+        {() => <HomeScreen navigation={navigation} />}
       </Tab.Screen>
 
       <Tab.Screen name={alertsName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <AlertsIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}} />
+            <AlertsIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
         }} >
-          {() => <AlertsScreen />}
-        </Tab.Screen>
+        {() => <AlertsScreen />}
+      </Tab.Screen>
 
       <Tab.Screen name={chatName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <ChatIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}} />
+            <ChatIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
         }}>
         {() => <Chat />}
-        </Tab.Screen>
+      </Tab.Screen>
 
       <Tab.Screen name={settingsName}
         options={{
           tabBarIcon: ({ focused }) => (
-            <SettingsIcon style={{minHeight: 60, minWidth: 60, backgroundColor: focused ? selected : notSelected}}/>
+            <SettingsIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
         }}>
-          {() => <Settings />}
-          </Tab.Screen>
+        {() => <Settings navigation={navigation}/>}
+      </Tab.Screen>
+
     </Tab.Navigator>
   );
 }

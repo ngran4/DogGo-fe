@@ -48,10 +48,9 @@ const styles = StyleSheet.create({
     flexShrink: 0,
     borderRadius: 23.58,
     backgroundColor: '#FFF',
-    marginLeft: 16,
-    marginTop: 10,
+    // marginLeft: 16,
+    // marginTop: 10,
     marginBottom: 20,
-    
   }
 })
 

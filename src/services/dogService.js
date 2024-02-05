@@ -1,20 +1,30 @@
 import * as tokenService from "./tokenService";
 
 const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`
-const token = tokenService.getToken()
+
 
 const createDog = async (dogData) => {
   // console.log(dogData, "<----- dogData")
+  // const token = tokenService.getToken().then((value) => {return value});
+
   try {
     const res = await fetch(`${BASE_URL}`, {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${token}`,
+        'Authorization': `Bearer ${tokenService.getToken()}`,
         'Content-Type': 'application/json',
-        body: JSON.stringify(dogData),
       },
+      body: JSON.stringify(dogData),
     });
-    console.log(token, "<----- token")
+    // console.log(tokenService.getToken(), "<----- token")
+    
+    //  ------------- test ------------- //
+    // ${tokenService.getToken()}
+    // console.log(token, "<----- token")
+    // console.log(tokenService.getToken(), "<----- token")
+    // console.log(typeof tokenService.getToken(), "<----- type")
+    //  ------------- test ------------- //
+
     const json = await res.json();
     console.log(res, "<----- res")
     console.log(json, "<----- json")

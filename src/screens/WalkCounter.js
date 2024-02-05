@@ -29,9 +29,9 @@ const WalkCounter = ({ navigation }) => {
         <Text style={buttonText}>Next</Text>
       </TouchableOpacity>
 
-                <View style={[{height: 64, width: 358}, {marginTop: 15}]}>
-                  <WalkCounterProgress />
-                </View>
+      <View style={[{ height: 64, width: 358 }, { marginTop: 15 }]}>
+        <WalkCounterProgress />
+      </View>
 
     </SafeAreaView>
   )

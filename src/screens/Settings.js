@@ -1,13 +1,17 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { StateContext } from '../context/StateContext'
-import { StyleSheet, View, Text, SafeAreaView, TouchableOpacity } from 'react-native';
+import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet, Switch, Dimensions } from 'react-native';
 import DogProfileWidget from '../components/DogProfileWidget';
 import * as authService from '../services/authService'
 
+const screenWidth = Dimensions.get('window').width;
 
-const Settings = () => {
+
+const Settings = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, header, homePgHeader} = stateContext
+  const { container, header, homePgHeader } = stateContext
+  const [isEnabled, setIsEnabled] = useState(false);
+  const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
   const doLogout = async function () {
     try {
@@ -20,6 +24,7 @@ const Settings = () => {
 
   return (
     <SafeAreaView style={container}>
+      <ScrollView> 
       {/* Pet info */}
       <View style={styles.subSection}>
         <Text style={homePgHeader}>Furry Friends</Text>
@@ -36,21 +41,57 @@ const Settings = () => {
           {/* Notifications */}
           <Text style={homePgHeader}>Notifications</Text>
           <Text style={styles.inputInfo}>Walk Reminders</Text>
-          <input type='radio' name='walkReminders' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='walkReminders' />
         </View>
         <View>
           {/* Weather conditions */}
           <Text style={homePgHeader}>Weather Conditions</Text>
           <Text style={styles.inputInfo}>Air Quality</Text>
-          <input type='radio' name='airQuality' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='airQuality' />
           <Text style={styles.inputInfo}>Rain</Text>
-          <input type='radio' name='rain' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='rain' />
           <Text style={styles.inputInfo}>Snow</Text>
-          <input type='radio' name='snow' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='snow' />
           <Text style={styles.inputInfo}>Thunderstorms</Text>
-          <input type='radio' name='thunderstorms' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='thunderstorms' />
           <Text style={styles.inputInfo}>Extreme Heat</Text>
-          <input type='radio' name='extremeHeat' value={null} />
+          <Switch
+            trackColor={{ false: '#767577', true: '#81b0ff' }}
+            thumbColor={isEnabled ? '#f5dd4b' : '#f4f3f4'}
+            ios_backgroundColor="#3e3e3e"
+            onValueChange={toggleSwitch}
+            value={isEnabled}
+            name='extremeHeat' />
         </View>
         <View>
           {/* Add upcoming reminders */}
@@ -64,10 +105,11 @@ const Settings = () => {
           <Text style={styles.inputInfo}>Change Home Location</Text>
           <Text style={styles.inputInfo}>Change Password</Text>
           <Text style={styles.inputInfo}
-          onPress={() => doLogout()}
+            onPress={() => doLogout()}
           >Logout</Text>
         </View>
       </View>
+      </ScrollView>
     </SafeAreaView>
   )
 }
@@ -76,10 +118,11 @@ const styles = StyleSheet.create({
   inputInfo: {
     fontFamily: "ConcertOne-Regular",
     fontSize: 16,
+    width: screenWidth
   },
   subSection: {
     marginVertical: 20
-  },    
+  },
   editText: {
     display: 'flex',
     justifyContent: 'flex-end',
@@ -89,4 +132,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default Settings
+export default Settings;

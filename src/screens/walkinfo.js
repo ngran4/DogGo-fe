@@ -13,16 +13,16 @@ export const WalkCounter = () => {
     return (
         <View>
             <Text> How often do you like to walk your dog? </Text>
-            
+
             <Button
-            onPress={() => {setCount(count - 1)}} title="-"/>
+                onPress={() => { setCount(count - 1) }} title="-" />
             <Text>{count}</Text>
             <Button
-            onPress={() => {setCount(count + 1)}} title="+"/>
+                onPress={() => { setCount(count + 1) }} title="+" />
         </View>
     )
 }
 
 const styles = StyleSheet.create({
-    
+
 })

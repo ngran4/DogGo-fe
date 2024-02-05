@@ -12,11 +12,12 @@ import UserSignUp from './src/screens/UserSignUp'
 import WalkCounter from './src/screens/WalkCounter'
 import WalkTime from "./src/screens/WalkTime"
 import AddPet from './src/screens/AddPet'
-import HomeScreen from './src/screens/HomeScreen';
-import CurrentWeather from './src/components/CurrentWeather';
+// import HomeScreen from './src/screens/HomeScreen';
+// import CurrentWeather from './src/components/CurrentWeather';
 import PetProfile from './src/screens/PetProfile'
 import NavBar from './src/components/NavBar'
 import EditPet from './src/screens/EditPet'
+import Settings from './src/screens/Settings'
 
 
 const Stack = createStackNavigator()
@@ -65,6 +66,7 @@ export default function App() {
           <Stack.Screen name="Pet Profile" component={PetProfile} options={navOptions}/>
           <Stack.Screen name="Edit Pet" component={EditPet} options={navOptions}/>
           <Stack.Screen name='Home' component={NavBar} options={noHeaderNavOptions} />
+          <Stack.Screen name='Settings' component={Settings} options={navOptions}/>
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

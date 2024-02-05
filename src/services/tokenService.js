@@ -19,15 +19,18 @@ const getToken = async () => {
     if (!value) return null
     // const payload = jwt_decode(value)
     const payload = JSON.parse(decode(value.split('.')[1]))
-
-    console.log(payload, '<----- payload in getToken')
     if (payload.exp < Date.now() / 1000) {
       await AsyncStorage.removeItem('token')
       console.log("token exp");
       return null
     }
     console.log(value, '<----- value in getToken')
+    console.log(typeof value, '<----- value type in getToken')
     return value
+    // return await AsyncStorage.getItem('token').then((value) => {
+    //   console.log(value, '<----- value in getToken')
+    //   return value
+    // })
   } catch (error) {
     console.log(error)
   }
