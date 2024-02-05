@@ -18,6 +18,7 @@ import PetProfile from './src/screens/PetProfile'
 import NavBar from './src/components/NavBar'
 import EditPet from './src/screens/EditPet'
 import Settings from './src/screens/Settings'
+import ChangePasswordScreen from './src/screens/ChangePasswordScreen'
 
 
 const Stack = createStackNavigator()
@@ -67,6 +68,7 @@ export default function App() {
           <Stack.Screen name="Edit Pet" component={EditPet} options={navOptions}/>
           <Stack.Screen name='Home' component={NavBar} options={noHeaderNavOptions} />
           <Stack.Screen name='Settings' component={Settings} options={navOptions}/>
+          <Stack.Screen name='Change Password' component={ChangePasswordScreen} options={navOptions}/>
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

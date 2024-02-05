@@ -9,7 +9,12 @@ const screenWidth = Dimensions.get('window').width;
 
 const Settings = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, header, homePgHeader } = stateContext
+  const 
+  { 
+    container, 
+    header, 
+    homePgHeader 
+  } = stateContext
   const [isEnabled, setIsEnabled] = useState(false);
   const toggleSwitch = () => setIsEnabled(previousState => !previousState);
 
@@ -103,7 +108,10 @@ const Settings = ({ navigation }) => {
           {/* Account */}
           <Text style={homePgHeader}>Account</Text>
           <Text style={styles.inputInfo}>Change Home Location</Text>
-          <Text style={styles.inputInfo}>Change Password</Text>
+          <Text style={styles.inputInfo}
+            onPress={() => 
+            navigation.navigate('Change Password')}
+          >Change Password</Text>
           <Text style={styles.inputInfo}
             onPress={() => doLogout()}
           >Logout</Text>
@@ -118,7 +126,6 @@ const styles = StyleSheet.create({
   inputInfo: {
     fontFamily: "ConcertOne-Regular",
     fontSize: 16,
-    width: screenWidth
   },
   subSection: {
     marginVertical: 20
