@@ -1,10 +1,10 @@
-import * as React from 'react';
-import { useContext, useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, TouchableOpacity, View, Text, buttonText, Pressable, Image, Dimensions } from 'react-native';
+import * as React from 'react'
+import { useContext, useState, useEffect } from 'react'
+import { SafeAreaView, StyleSheet, TouchableOpacity, View, Text, buttonText, Pressable, Image, Dimensions } from 'react-native'
 import { StateContext } from '../context/StateContext'
-import NavBar from '../components/NavBar';
+import NavBar from '../components/NavBar'
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const PetProfile = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
@@ -19,7 +19,7 @@ const PetProfile = ({ navigation }) => {
   const useGetAge = (birthdayDate, currentDate) => {
     if (birthdayDate.birthday != null) {
       const parseDates = (str) => {
-        const dateParts = str.replace(/-/g, '');
+        const dateParts = str.replace(/-/g, '')
         return parseInt(dateParts)
       }
       const dateNum = parseDates(currentDate.date)
@@ -27,14 +27,13 @@ const PetProfile = ({ navigation }) => {
       const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
       setAge(ageOfPet)
     } else {
-      setAge("Include Birthday")
+      setAge('Include Birthday')
     }
   }
 
   useEffect(() => {
     useGetAge(birthdayDate, currentDate)
   }, [birthdayDate, currentDate])
-
 
   return (
     <SafeAreaView style={styles.container}>
@@ -43,14 +42,14 @@ const PetProfile = ({ navigation }) => {
         style={styles.editBtn}
         onPress={() =>
           // console.log("Edit Pet Profile")
-          navigation.navigate("Edit Pet")
-        }
+          navigation.navigate('Edit Pet')}
       >
         <Text style={styles.editText}>Edit Pet Profile</Text>
       </TouchableOpacity>
       {/* </Pressable> */}
       <View
-        style={styles.widget}>
+        style={styles.widget}
+      >
         <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
         <View>
           <Text style={buttonText}>{dogName}</Text>
@@ -61,27 +60,25 @@ const PetProfile = ({ navigation }) => {
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Birthday</Text>
           {
-            { age } != null ?
-              <Text style={styles.inputInfo}>{age} years old</Text>
-              :
-              <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
+            { age } != null
+              ? <Text style={styles.inputInfo}>{age} years old</Text>
+              : <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
           }
         </View>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Gender</Text>
           {
-            { gender } != null ?
-              <Text style={styles.inputInfo}>{gender}</Text>
-              :
-              <Text style={styles.inputInfo}>Include {dogName}'s Gender</Text>
+            { gender } != null
+              ? <Text style={styles.inputInfo}>{gender}</Text>
+              : <Text style={styles.inputInfo}>Include {dogName}'s Gender</Text>
           }
         </View>
         <View style={styles.subSection}>
           <Text style={homePgHeader}>Breed</Text>
           {
             { breed } != null
-              ? <Text style={styles.inputInfo}>{breed}</Text> :
-              <Text style={styles.inputInfo}>Include {dogName}'s Breed</Text>
+              ? <Text style={styles.inputInfo}>{breed}</Text>
+              : <Text style={styles.inputInfo}>Include {dogName}'s Breed</Text>
           }
 
         </View>
@@ -112,28 +109,28 @@ const styles = StyleSheet.create({
   editBtn: {
     display: 'flex',
     alignSelf: 'flex-end',
-    marginRight: 10,
+    marginRight: 10
   },
   editText: {
     display: 'flex',
     fontSize: 12,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline'
   },
   infoSection: {
     display: 'flex',
     // justifyContent: 'flex-start',
-    fontFamily: "ConcertOne-Regular",
-    marginLeft: 20,
+    fontFamily: 'ConcertOne-Regular',
+    marginLeft: 20
   },
   inputInfo: {
-    fontFamily: "ConcertOne-Regular",
-    fontSize: 16,
+    fontFamily: 'ConcertOne-Regular',
+    fontSize: 16
   },
   container: {
-    backgroundColor: "#F8F5E6",
+    backgroundColor: '#F8F5E6',
     flex: 1,
     // justifyContent: "flex-start",
-    alignItems: "left",
+    alignItems: 'left'
     // marginLeft: 30,
   },
   subSection: {
@@ -141,7 +138,7 @@ const styles = StyleSheet.create({
   },
   tinyLogo: {
     width: 50,
-    height: 50,
+    height: 50
   }
 })
 

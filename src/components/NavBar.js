@@ -1,25 +1,25 @@
-import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import React from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 
-// Icons 
-import SettingsIcon from "../../assets/images/SettingsIcon";
-import ChatIcon from "../../assets/images/ChatIcon";
-import AlertsIcon from "../../assets/images/AlertsIcon";
-import HomeIcon from "../../assets/images/HomeIcon";
+// Icons
+import SettingsIcon from '../../assets/images/SettingsIcon'
+import ChatIcon from '../../assets/images/ChatIcon'
+import AlertsIcon from '../../assets/images/AlertsIcon'
+import HomeIcon from '../../assets/images/HomeIcon'
 
-// screens 
-import HomeScreen from "../screens/HomeScreen";
-import AlertsScreen from "../screens/AlertsScreen";
-import Chat from "../screens/ChatScreen";
-import Settings from "../screens/Settings";
+// screens
+import HomeScreen from '../screens/HomeScreen'
+import AlertsScreen from '../screens/AlertsScreen'
+import Chat from '../screens/ChatScreen'
+import Settings from '../screens/Settings'
 
 // screen names
-const homeScreenName = "Home";
-const settingsName = "Settings";
-const alertsName = "Alerts";
-const chatName = "Chat";
+const homeScreenName = 'Home'
+const settingsName = 'Settings'
+const alertsName = 'Alerts'
+const chatName = 'Chat'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 const notSelected = '#F8F5E6'
 const selected = '#C4E8F2'
@@ -36,15 +36,15 @@ const NavBar = ({ navigation }) => {
         tabBarLabelStyle: {
           color: 'black',
           fontWeight: '600',
-          fontSize: 13,
+          fontSize: 13
         },
         headerShown: false,
         tabBarStyle: {
           backgroundColor: '#F8F5E6',
-          height: 82,
+          height: 82
         },
         headerStyle: {
-          backgroundColor: 'white',
+          backgroundColor: 'white'
         },
         headerTitleStyle: {
           fontWeight: 'bold',
@@ -54,44 +54,52 @@ const NavBar = ({ navigation }) => {
       }}
     >
 
-      <Tab.Screen name={homeScreenName}
+      <Tab.Screen
+        name={homeScreenName}
         options={{
           tabBarIcon: ({ focused }) => (
             <HomeIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
-        }} >
+        }}
+      >
         {() => <HomeScreen navigation={navigation} />}
       </Tab.Screen>
 
-      <Tab.Screen name={alertsName}
+      <Tab.Screen
+        name={alertsName}
         options={{
           tabBarIcon: ({ focused }) => (
             <AlertsIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
-        }} >
+        }}
+      >
         {() => <AlertsScreen />}
       </Tab.Screen>
 
-      <Tab.Screen name={chatName}
+      <Tab.Screen
+        name={chatName}
         options={{
           tabBarIcon: ({ focused }) => (
             <ChatIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
-        }}>
+        }}
+      >
         {() => <Chat />}
       </Tab.Screen>
 
-      <Tab.Screen name={settingsName}
+      <Tab.Screen
+        name={settingsName}
         options={{
           tabBarIcon: ({ focused }) => (
             <SettingsIcon style={{ minHeight: 40, minWidth: 40, backgroundColor: focused ? selected : notSelected }} />
           )
-        }}>
-        {() => <Settings navigation={navigation}/>}
+        }}
+      >
+        {() => <Settings navigation={navigation} />}
       </Tab.Screen>
 
     </Tab.Navigator>
-  );
+  )
 }
 
-export default NavBar;
+export default NavBar

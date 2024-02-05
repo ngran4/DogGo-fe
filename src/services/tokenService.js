@@ -1,7 +1,7 @@
 // import * as jwt_decode from 'jwt-decode'
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import {decode} from 'base-64';
-global.atob = decode;
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { decode } from 'base-64'
+global.atob = decode
 
 const setToken = async (token) => {
   try {
@@ -14,14 +14,14 @@ const setToken = async (token) => {
 
 const getToken = async () => {
   try {
-    let value = await AsyncStorage.getItem('token')
+    const value = await AsyncStorage.getItem('token')
     console.log(value, '<----- token in getToken')
     if (!value) return null
     // const payload = jwt_decode(value)
     const payload = JSON.parse(decode(value.split('.')[1]))
     if (payload.exp < Date.now() / 1000) {
       await AsyncStorage.removeItem('token')
-      console.log("token exp");
+      console.log('token exp')
       return null
     }
     console.log(value, '<----- value in getToken')

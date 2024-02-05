@@ -1,91 +1,87 @@
-import React, { useState } from 'react'
-import { useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from "react-native";
-import DropDownPicker from 'react-native-dropdown-picker';
-import { Calendar } from 'react-native-calendars';
-import * as ImagePicker from "expo-image-picker";
-import * as photoService from "../services/photoService";
+import { SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from 'react-native'
+import DropDownPicker from 'react-native-dropdown-picker'
+import { Calendar } from 'react-native-calendars'
+import * as ImagePicker from 'expo-image-picker'
+import * as photoService from '../services/photoService'
 
 // not supported on web
 // import RNPickerSelect from "react-native-picker-select";
 // import DateTimePicker from '@react-native-community/datetimepicker';
 
-import NavBar from "../components/NavBar";
+import NavBar from '../components/NavBar'
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const EditPet = ({ navigation }) => {
   // Date Picker
-  const [selected, setSelected] = useState("");
-  const [currDate, setCurrDate] = useState(new Date());
+  const [selected, setSelected] = useState('')
+  const [currDate, setCurrDate] = useState(new Date())
 
   // Gender Picker
-  const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(null);
+  const [open, setOpen] = useState(false)
+  const [value, setValue] = useState(null)
   const [items, setItems] = useState([
-    {label: 'Select Gender', value: ''},
-    {label: 'Male', value: 'M'},
-    {label: 'Female', value: 'F'},
-  ]);
+    { label: 'Select Gender', value: '' },
+    { label: 'Male', value: 'M' },
+    { label: 'Female', value: 'F' }
+  ])
 
   // image Picker
-  const [image, setImage] = useState(null);
-
+  const [image, setImage] = useState(null)
 
   // State Context
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, birthday, setBirthday, setGender, gender, breed, setBreed, dogName, setDogName } = stateContext
 
-
-
   // ------------ POST ------------ //
   const doUpdatePet = async function () {
     const formData = {
-      dogName: dogName,
+      dogName,
       birthday: setBirthday(selected),
-      gender: setGender(value),
+      gender: setGender(value)
       // breed: breed
     }
     // Upload the image
-    await uploadImage();
-    navigation.navigate("Pet Profile")
+    await uploadImage()
+    navigation.navigate('Pet Profile')
   }
   // ------------ POST ------------ //
 
   // ------------ image ------------ //
 
   const pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
+    const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
       aspect: [4, 3],
-      quality: 1,
-    });
+      quality: 1
+    })
 
-    console.log(result);
+    console.log(result)
 
     if (!result.canceled) {
-      setImage(result.assets[0].uri);
+      setImage(result.assets[0].uri)
     }
-  };
+  }
 
   const uploadImage = async () => {
-    let photoData = new FormData();
-    photoData.append("photo", {
+    const photoData = new FormData()
+    photoData.append('photo', {
       uri: image,
-      type: "image/jpeg",
-      name: "textPhoto.jpg",
-    });
+      type: 'image/jpeg',
+      name: 'textPhoto.jpg'
+    })
 
-    const response = await photoService.create(photoData);
-    console.log(response, "<----- response");
+    const response = await photoService.create(photoData)
+    console.log(response, '<----- response')
 
     // let responseJSON = await response.json();
     // console.log(responseJSON, "<------ responseJSON");
 
     // return responseJSON.url
-  };
+  }
 
   // ------------ image ------------ //
 
@@ -93,13 +89,16 @@ const EditPet = ({ navigation }) => {
     <SafeAreaView style={styles.container}>
       <ScrollView style={styles.scroll}>
         <View
-          style={styles.widget}>
+          style={styles.widget}
+        >
           <TouchableOpacity onPress={() => pickImage()}>
-            {image ? (
-              <Image source={{ uri: image }} style={styles.roundedImage} />
-            ) : (
-              <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
-            )}
+            {image
+              ? (
+                <Image source={{ uri: image }} style={styles.roundedImage} />
+                )
+              : (
+                <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
+                )}
           </TouchableOpacity>
           <View>
             <Text style={buttonText}>Edit Name</Text>
@@ -114,7 +113,7 @@ const EditPet = ({ navigation }) => {
         <View style={styles.infoSection}>
           <View style={styles.subSection}>
             <Text style={homePgHeader}>Birthday</Text>
-            <TouchableOpacity >
+            <TouchableOpacity>
               <Text>What's {dogName}'s Birthday</Text>
             </TouchableOpacity>
             {/* <Text>{currDate}</Text> */}
@@ -123,12 +122,10 @@ const EditPet = ({ navigation }) => {
               style={styles.calendar}
               onDayPress={(day) =>
                 // console.log(selected.dateString)
-                setSelected(day.dateString)
-              }
+                setSelected(day.dateString)}
               markedDates={{
                 [selected]: { selected: true, disableTouchEvent: true, marked: true, selectedColor: 'blue' }
-              }
-              }
+              }}
             />
           </View>
         </View>
@@ -154,7 +151,7 @@ const EditPet = ({ navigation }) => {
             <TextInput
               style={styles.input}
               value={breed}
-              placeholder={"Enter Breed"}
+              placeholder='Enter Breed'
               onChangeText={(text) => setBreed(text)}
             />
           </View>
@@ -170,9 +167,9 @@ const EditPet = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#F8F5E6",
+    backgroundColor: '#F8F5E6',
     flex: 1,
-    alignItems: "left",
+    alignItems: 'left',
     // marginLeft: 30,
     screenHeight: 0.9
   },
@@ -205,34 +202,34 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.65,
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: 600
   },
   editText: {
     display: 'flex',
     justifyContent: 'flex-end',
     fontSize: 12,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline'
 
   },
   infoSection: {
     display: 'flex',
     justifyContent: 'flex-start',
-    fontFamily: "ConcertOne-Regular",
-    marginLeft: 20,
+    fontFamily: 'ConcertOne-Regular',
+    marginLeft: 20
   },
   inputInfo: {
-    fontFamily: "ConcertOne-Regular",
-    fontSize: 16,
+    fontFamily: 'ConcertOne-Regular',
+    fontSize: 16
   },
   subSection: {
-    marginVertical: 20,
+    marginVertical: 20
   },
   picker: {
     zIndex: null,
-    width: screenWidth * 0.9,
+    width: screenWidth * 0.9
   },
   calendar: {
-    width: screenWidth * 0.9,
+    width: screenWidth * 0.9
     // height: 350,
     // backgroundColor: 'white',
     // borderRadius: 20,
@@ -246,7 +243,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10,
     width: 70,
-    height: 70,
+    height: 70
   },
   roundedImage: {
     height: 70,
@@ -254,8 +251,8 @@ const styles = StyleSheet.create({
     marginTop: 10,
     marginRight: 10,
     borderRadius: 90,
-    overflow: "hidden",
-  },
+    overflow: 'hidden'
+  }
 })
 
-export default EditPet;
+export default EditPet

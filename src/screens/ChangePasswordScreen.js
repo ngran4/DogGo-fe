@@ -1,17 +1,16 @@
-import React, { useContext, useState } from 'react';
-import { TouchableOpacity, View, Text, TextInput, SafeAreaView, StyleSheet, Dimensions } from 'react-native';
+import React, { useContext, useState } from 'react'
+import { TouchableOpacity, View, Text, TextInput, SafeAreaView, StyleSheet, Dimensions } from 'react-native'
 import { StateContext } from '../context/StateContext'
 
-const screenWidth = Dimensions.get('window').width;
-
+const screenWidth = Dimensions.get('window').width
 
 const ChangePasswordScreen = () => {
   // State Context
   const [stateContext] = useContext(StateContext)
   const { container, greenButton, homePgHeader, buttonText } = stateContext
-  const [oldPassword, setOldPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [newPasswordConf, setNewPasswordConf] = useState("");
+  const [oldPassword, setOldPassword] = useState('')
+  const [newPassword, setNewPassword] = useState('')
+  const [newPasswordConf, setNewPasswordConf] = useState('')
 
   return (
     <SafeAreaView style={container}>
@@ -19,24 +18,24 @@ const ChangePasswordScreen = () => {
         <Text style={homePgHeader}>Change Password</Text>
       </View>
       <View>
-      <TextInput
+        <TextInput
           style={styles.input}
           value={oldPassword}
-          placeholder={"Old Password"}
+          placeholder='Old Password'
           secureTextEntry
           onChangeText={(text) => setOldPassword(text)}
         />
-      <TextInput
+        <TextInput
           style={styles.input}
           value={newPassword}
-          placeholder={"New Password"}
+          placeholder='New Password'
           secureTextEntry
           onChangeText={(text) => setNewPassword(text)}
         />
         <TextInput
           style={styles.input}
           value={newPasswordConf}
-          placeholder={"Confirm New Password"}
+          placeholder='Confirm New Password'
           secureTextEntry
           onChangeText={(text) => setNewPasswordConf(text)}
         />
@@ -57,8 +56,8 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: 600
   }
 })
 
-export default ChangePasswordScreen;
+export default ChangePasswordScreen

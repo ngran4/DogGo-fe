@@ -11,34 +11,33 @@ import {
   Parse,
   TouchableOpacity,
   Dimensions
-} from 'react-native';
+} from 'react-native'
 import * as authService from '../services/authService'
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const UserSignUp = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, body, buttonText } = stateContext
 
   const [username, setUsername] = useState('')
-  const [email, setEmail] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
-  const [passwordConf, setPasswordConf] = useState("");
+  const [email, setEmail] = useState('')
+  const [name, setName] = useState('')
+  const [password, setPassword] = useState('')
+  const [passwordConf, setPasswordConf] = useState('')
 
   const doSignUp = async function () {
-
     const formData = {
-      name: name,
-      email: email,
-      password: password,
-      passwordConf: passwordConf
+      name,
+      email,
+      password,
+      passwordConf
     }
 
     try {
       await authService.signup(formData)
-      navigation.navigate("Location Services")
-    } catch (error) {      
+      navigation.navigate('Location Services')
+    } catch (error) {
       if (error.message === 'Account already exists') {
         alert('Account already exists')
         navigation.navigate('Login')
@@ -50,7 +49,6 @@ const UserSignUp = ({ navigation }) => {
     }
   }
 
-
   return (
     <SafeAreaView style={container}>
       <View style={{ height: 64, width: 64 }}>
@@ -59,50 +57,47 @@ const UserSignUp = ({ navigation }) => {
       <Text style={[header, { marginBottom: 15 }]}>Sign Up</Text>
       <View style={{ flex: 0.8, alignItems: 'center' }}>
 
-
         <TextInput
           style={styles.input}
           value={email}
-          placeholder={"Email"}
+          placeholder='Email'
           onChangeText={(text) => setEmail(text)}
-          autoCapitalize={"none"}
+          autoCapitalize='none'
         />
         <TextInput
           style={styles.input}
           value={name}
-          placeholder={"Username"}
+          placeholder='Username'
           onChangeText={(text) => setName(text)}
-          autoCapitalize={"none"}
+          autoCapitalize='none'
         />
         <TextInput
           style={styles.input}
           value={password}
-          placeholder={"Password"}
+          placeholder='Password'
           secureTextEntry
           onChangeText={(text) => setPassword(text)}
         />
         <TextInput
           style={styles.input}
           value={passwordConf}
-          placeholder={"Confirm Password"}
+          placeholder='Confirm Password'
           secureTextEntry
           onChangeText={(text) => setPasswordConf(text)}
         />
       </View>
-      {(name && email && password && password === passwordConf) ?
-        (<>
+      {(name && email && password && password === passwordConf)
+        ? (<>
           <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
             <Text style={buttonText}>Create Account</Text>
           </TouchableOpacity>
-        </>)
-        :
-        (<>
+           </>)
+        : (<>
           {/* <Text style={header}>Not Valid</Text> */}
         </>)}
     </SafeAreaView>
-  );
-};
-
+  )
+}
 
 const styles = StyleSheet.create({
   input: {
@@ -113,7 +108,7 @@ const styles = StyleSheet.create({
     width: screenWidth * 0.7,
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: 600
   }
 })
 

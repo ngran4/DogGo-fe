@@ -9,7 +9,6 @@ import WalkingSchedule from '../components/WalkingSchedule'
 
 import * as authService from '../services/authService'
 
-
 const HomeScreen = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText } = stateContext
@@ -17,7 +16,7 @@ const HomeScreen = ({ navigation }) => {
   const doLogout = async function () {
     try {
       await authService.logout()
-      navigation.navigate("Welcome")
+      navigation.navigate('Welcome')
     } catch (error) {
       console.log(error)
     }
@@ -29,22 +28,14 @@ const HomeScreen = ({ navigation }) => {
       <WalkingSchedule />
       <DogProfileWidget navigation={navigation} />
       <RemindersWidget />
-      {/* delete before deployment */}
-      <View>
-        <Text style={styles.inputInfo}
-          onPress={() => doLogout()}
-        >Logout
-        </Text>
-      </View>
-      {/* delete before deployment */}
     </SafeAreaView>
   )
 }
 
 const styles = StyleSheet.create({
   inputInfo: {
-    fontFamily: "ConcertOne-Regular",
-    fontSize: 16,
+    fontFamily: 'ConcertOne-Regular',
+    fontSize: 16
   },
   subSection: {
     marginVertical: 20
@@ -53,9 +44,9 @@ const styles = StyleSheet.create({
     display: 'flex',
     justifyContent: 'flex-end',
     fontSize: 12,
-    textDecorationLine: 'underline',
+    textDecorationLine: 'underline'
 
-  },
+  }
 })
 
 export default HomeScreen

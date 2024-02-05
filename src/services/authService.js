@@ -2,12 +2,12 @@ import * as tokenService from './tokenService'
 import { addPhoto as addProfilePhoto } from './profileService'
 const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/auth`
 
-async function signup(user, photo) {
+async function signup (user, photo) {
   try {
     const res = await fetch(`${BASE_URL}/signup`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(user),
+      body: JSON.stringify(user)
     })
     const json = await res.json()
     if (json.err) {
@@ -29,20 +29,20 @@ async function signup(user, photo) {
   }
 }
 
-function getUser() {
+function getUser () {
   return tokenService.getUserFromToken()
 }
 
-function logout() {
+function logout () {
   tokenService.removeToken()
 }
 
-async function login(credentials) {
+async function login (credentials) {
   try {
     const res = await fetch(`${BASE_URL}/login`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(credentials),
+      body: JSON.stringify(credentials)
     })
     const json = await res.json()
     if (json.err) {
@@ -55,15 +55,15 @@ async function login(credentials) {
   }
 }
 
-async function changePassword(credentials) {
+async function changePassword (credentials) {
   try {
     const res = await fetch(`${BASE_URL}/change-password`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${tokenService.getToken()}`,
+        Authorization: `Bearer ${tokenService.getToken()}`
       },
-      body: JSON.stringify(credentials),
+      body: JSON.stringify(credentials)
     })
     const json = await res.json()
     if (json.token) {

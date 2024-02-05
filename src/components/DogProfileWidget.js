@@ -1,9 +1,9 @@
-import * as React from "react";
+import * as React from 'react'
 import { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, Dimensions } from "react-native";
+import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, Dimensions } from 'react-native'
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const DogProfileWidget = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
@@ -11,34 +11,36 @@ const DogProfileWidget = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      { dogName ? 
-        (
+      {dogName
+        ? (
           <TouchableOpacity
             style={styles.widget}
-            onPress={() => navigation.navigate("Pet Profile")}>
+            onPress={() => navigation.navigate('Pet Profile')}
+          >
             {/* <View style={{ height: 8, width: 8 }}></View> */}
-            <TouchableOpacity onPress={() => navigation.navigate("Edit Pet")}>
-              {dogPhoto ? (
-                <Image source={{ uri: image }} style={styles.roundedImage} />
-              ) : (
-                <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
-              )}
+            <TouchableOpacity onPress={() => navigation.navigate('Edit Pet')}>
+              {dogPhoto
+                ? (
+                  <Image source={{ uri: image }} style={styles.roundedImage} />
+                  )
+                : (
+                  <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
+                  )}
             </TouchableOpacity>
             <Text style={buttonText}>{dogName}</Text>
 
             {/* <Text>Age</Text> */}
           </TouchableOpacity>
-        ) 
-        : 
-        (
+          )
+        : (
           <TouchableOpacity
             style={styles.widget}
-            onPress={() => navigation.navigate('Add a Furry Friend')}>
+            onPress={() => navigation.navigate('Add a Furry Friend')}
+          >
             <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
             <Text style={buttonText}>Add Pet</Text>
           </TouchableOpacity>
-        )
-      }
+          )}
     </SafeAreaView>
   )
 }
@@ -61,8 +63,8 @@ const styles = StyleSheet.create({
   },
   tinyLogo: {
     width: 50,
-    height: 50,
+    height: 50
   }
 })
 
-export default DogProfileWidget;
+export default DogProfileWidget
