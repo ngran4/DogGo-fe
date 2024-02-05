@@ -1,23 +1,23 @@
-import React, { useEffect, useRef } from 'react';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import * as Notifications from 'expo-notifications';
+import React, { useEffect, useRef } from 'react'
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
+import * as Notifications from 'expo-notifications'
 
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator()
 
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true
-  }),
-});
+  })
+})
 
 const AppNavigator = () => {
-  const notificationListener = useRef();
-  const responseListener = useRef();
+  const notificationListener = useRef()
+  const responseListener = useRef()
 
   useEffect(() => {
     // Get a token
     registerForPushNotificationsAsync()
-        // .then(token => expoPushTokensApi.register(token));
+    // .then(token => expoPushTokensApi.register(token));
 
     // This listener is fired whenever a notification is received while the app is foregrounded
     // notificationListener.current = Notifications.addNotificationReceivedListener(notification => {
@@ -39,29 +39,27 @@ const AppNavigator = () => {
     //     Notifications.removeNotificationSubscription(notificationListener.current);
     //     Notifications.removeNotificationSubscription(responseListener.current);
     // };
-}, []);
+  }, [])
 
+  async function registerForPushNotificationsAsync () {
+    let token
 
-
-  async function registerForPushNotificationsAsync() {
-    let token;
-
-    const { status: existingStatus } = await Notifications.getPermissionsAsync();
-    let finalStatus = existingStatus;
+    const { status: existingStatus } = await Notifications.getPermissionsAsync()
+    let finalStatus = existingStatus
 
     if (existingStatus !== 'granted') {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
+      const { status } = await Notifications.requestPermissionsAsync()
+      finalStatus = status
     }
     if (finalStatus !== 'granted') {
-        alert('Failed to get push token for push notification!');
-        return;
+      alert('Failed to get push token for push notification!')
+      return
     }
-    token = (await Notifications.getExpoPushTokenAsync()).data;
-    console.log(token);
+    token = (await Notifications.getExpoPushTokenAsync()).data
+    console.log(token)
 
-    return token;
-}
+    return token
+  }
 
   return (
     <>

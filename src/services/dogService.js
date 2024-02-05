@@ -2,22 +2,58 @@ import * as tokenService from './tokenService'
 
 const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`
 
-const create = async (dogData) => {
+const createDog = async (dogData) => {
+  // console.log(dogData, "<----- dogData")
+  // const token = tokenService.getToken().then((value) => {return value});
+
   try {
-    const res = await fetch(BASE_URL, {
-      method: "POST",
+    const res = await fetch(`${BASE_URL}`, {
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${tokenService.getToken()}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json'
       },
-      body: JSON.stringify(dogData),
-    });
-    return res.json();
+      body: JSON.stringify(dogData)
+    })
+    // console.log(tokenService.getToken(), "<----- token")
+
+    //  ------------- test ------------- //
+    // ${tokenService.getToken()}
+    // console.log(token, "<----- token")
+    // console.log(tokenService.getToken(), "<----- token")
+    // console.log(typeof tokenService.getToken(), "<----- type")
+    //  ------------- test ------------- //
+
+    const json = await res.json()
+    console.log(res, '<----- res')
+    console.log(json, '<----- json')
+    if (json.err) {
+      throw new Error(json.err)
+    } else {
+      return json
+    }
   } catch (error) {
-    console.log(error);
+    throw error
   }
-};
+}
+
+const editDog = async (dogData) => {
+  try {
+    const res = await fetch(`${BASE_URL}/${dogId}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${tokenService.getToken()}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(dogData)
+    })
+    return res.json()
+  } catch (error) {
+    throw new Error(json.error)
+  }
+}
 
 export {
-  create
+  createDog,
+  editDog
 }

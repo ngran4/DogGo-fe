@@ -4,7 +4,6 @@ import * as Location from 'expo-location'
 import { WEATHER_API_KEY } from '@env'
 
 export const useGetWeather = (lat, setLat, lon, setLon, weather, setWeather, error, setError, loading, setLoading) => {
-
   const fetchWeatherData = async () => {
     try {
       const response = await fetch(
@@ -22,12 +21,12 @@ export const useGetWeather = (lat, setLat, lon, setLon, weather, setWeather, err
 
   useEffect(() => {
     ;(async () => {
-      let { status } = await Location.requestForegroundPermissionsAsync()
+      const { status } = await Location.requestForegroundPermissionsAsync()
       if (status !== 'granted') {
         setError('Permission to access location was denied')
         return
       }
-      let location = await Location.getCurrentPositionAsync({})
+      const location = await Location.getCurrentPositionAsync({})
       setLat(location.coords.latitude)
       setLon(location.coords.longitude)
       await fetchWeatherData()

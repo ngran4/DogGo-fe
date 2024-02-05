@@ -1,19 +1,19 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState } from 'react'
 import { StateContext } from '../context/StateContext'
-import {Picker} from '@react-native-picker/picker';
-import { Button, Text, StyleSheet, View, Dimensions } from "react-native"
+import { Picker } from '@react-native-picker/picker'
+import { Button, Text, StyleSheet, View, Dimensions } from 'react-native'
 
-const screenWidth = Dimensions.get('window').width;
+const screenWidth = Dimensions.get('window').width
 
 const TimeSelector = () => {
   // const [selectedValue, setSelectedValue] = useState(null);
-  const [selectedValues, setSelectedValues] = useState(Array(numWalks).fill(null));
-  const [stateContext] = useContext(StateContext);
-  const { numWalks, setNumWalks } = stateContext;
+  const [selectedValues, setSelectedValues] = useState(Array(numWalks).fill(null))
+  const [stateContext] = useContext(StateContext)
+  const { numWalks, setNumWalks } = stateContext
 
   const handleValueChange = (index, value) => {
-    const newValues = [...selectedValues];
-    newValues[index] = value;
+    const newValues = [...selectedValues]
+    newValues[index] = value
     setSelectedValues(newValues)
   }
 
@@ -21,36 +21,35 @@ const TimeSelector = () => {
     label: 'Select time',
     value: null,
     color: 'black'
-  };
+  }
 
-  function generateOptionsWith15MinIncrements() {
-    const options = [];
-    const hours = ["12", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"];
-    const amPm = ["am", "pm"];
-  
+  function generateOptionsWith15MinIncrements () {
+    const options = []
+    const hours = ['12', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11']
+    const amPm = ['am', 'pm']
+
     for (let j = 0; j < amPm.length; j++) {
-      const period = amPm[j];
-  
+      const period = amPm[j]
+
       for (let i = 0; i < hours.length; i++) {
-        const hour = hours[i];
-  
+        const hour = hours[i]
+
         for (let k = 0; k < 4; k++) {
-          const minute = k * 15;
-          const label = `${hour}:${minute.toString().padStart(2, '0')} ${period}`;
-          const value = `${hour}${minute.toString().padStart(2, '0')}${period}`;
-          options.push({ label, value });
+          const minute = k * 15
+          const label = `${hour}:${minute.toString().padStart(2, '0')} ${period}`
+          const value = `${hour}${minute.toString().padStart(2, '0')}${period}`
+          options.push({ label, value })
         }
       }
     }
-  
-    return options;
-  }
-  
-  const options = generateOptionsWith15MinIncrements();
-  
 
-  const dropdownCount = numWalks;
-  const dropdowns = [];
+    return options
+  }
+
+  const options = generateOptionsWith15MinIncrements()
+
+  const dropdownCount = numWalks
+  const dropdowns = []
   for (let i = 0; i < dropdownCount; i++) {
     dropdowns.push(
       <RNPickerSelect
@@ -60,18 +59,18 @@ const TimeSelector = () => {
         value={selectedValues[i]}
         style={pickerSelectStyles}
       />
-    );
+    )
   }
 
   return (
-  <>
-  <View style={styles.container}>
-    {dropdowns}
-  </View>
+    <>
+      <View style={styles.container}>
+        {dropdowns}
+      </View>
 
-  </>
+    </>
   )
-};
+}
 
 const pickerSelectStyles = StyleSheet.create({
   inputIOS: {
@@ -82,22 +81,22 @@ const pickerSelectStyles = StyleSheet.create({
     width: screenWidth * 0.5,
     fontFamily: 'OpenSans-Regular',
     fontSize: 20,
-    fontWeight: 600,
+    fontWeight: 600
   },
   inputAndroid: {
     paddingRight: 15,
     borderBottomWidth: 1,
     borderBottomColor: 'black',
-    width: screenWidth * 0.45,
-  },
-});
+    width: screenWidth * 0.45
+  }
+})
 
 const styles = StyleSheet.create({
   container: {
-    flex: .8,
+    flex: 0.8,
     // justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
+    alignItems: 'center'
+  }
+})
 
-export default TimeSelector;
+export default TimeSelector
