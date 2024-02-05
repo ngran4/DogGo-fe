@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react'
-import * as ImagePicker from 'expo-image-picker'
+import { StateContext } from "../context/StateContext";
+// import * as ImagePicker from 'expo-image-picker'
 import {
   SafeAreaView,
   Text,
@@ -8,15 +9,14 @@ import {
   TouchableOpacity,
   TextInput,
   Dimensions,
-  Image
-} from 'react-native'
-// import {Picker} from '@react-native-picker/picker';
-import DropDownPicker from 'react-native-dropdown-picker'
-import { StateContext } from '../context/StateContext'
-import AddPetIcon from '../../assets/images/AddPetIcon'
-import PetPhotoIcon from '../../assets/images/PetPhotoIcon'
-import * as photoService from '../services/photoService'
-import * as dogService from '../services/dogService'
+  Image,
+} from "react-native";
+import DropDownPicker from "react-native-dropdown-picker";
+import AddPetIcon from "../../assets/images/AddPetIcon";
+import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
+import GenderPicker from "../components/GenderPicker";
+import * as photoService from "../services/photoService";
+import * as dogService from "../services/dogService";
 
 const screenWidth = Dimensions.get('window').width
 
@@ -135,42 +135,7 @@ const AddPet = ({ navigation }) => {
             autoCapitalize='none'
           />
         </View>
-        <View style={{ borderBottomWidth: 2, borderBottomColor: 'black', alignItems: 'flex-start', width: screenWidth * 0.28, marginTop: 5 }}>
-          <DropDownPicker
-            open={open}
-            value={gender}
-            placeholder='Sex'
-            items={[
-              { label: 'Male', value: 'M' },
-              { label: 'Female', value: 'F' }
-            ]}
-            setOpen={setOpen}
-            setValue={setGender}
-            setItems={setItems}
-            style={{ backgroundColor: colors.background, borderColor: colors.background, width: screenWidth * 0.3, paddingLeft: 0, color: 'grey' }}
-            placeholderStyle={{
-              color: 'grey',
-              fontSize: 20,
-              fontWeight: 600,
-              fontFamily: 'OpenSans-Regular',
-              paddingLeft: 0
-            }}
-            dropDownContainerStyle={{
-              backgroundColor: colors.background,
-              borderColor: colors.background
-            }}
-            listItemLabelStyle={{
-              color: 'grey',
-              fontSize: 15,
-              fontWeight: 600,
-              fontFamily: 'OpenSans-Regular'
-            }}
-            selectedItemLabelStyle={{
-              color: 'grey',
-              fontSize: 15
-            }}
-          />
-        </View>
+      <GenderPicker />
       </View>
       <TouchableOpacity style={greenButton} onPress={() => doAddPet()}>
         <Text style={buttonText}>Next</Text>
