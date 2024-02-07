@@ -18,22 +18,22 @@ const getToken = async () => {
     console.log(value, "<----- token in getToken");
     if (!value) return null;
     // const payload = jwt_decode(value)
-    const payload = JSON.parse(decode(value.split(".")[1]));
+    // Check if the token is expired
+    const payload = JSON.parse(decode(value.split('.')[1]))
     if (payload.exp < Date.now() / 1000) {
       await AsyncStorage.removeItem("token");
       console.log("token exp");
       return null;
     }
+    console.log(value, '<----- value in getToken')
+    console.log(value.split(".")[1], '<----- value type in getToken')
     console.log(typeof value, "<----- value type in getToken");
+    return value
 
     // Return only the token part of the JWT 
     // **this solves the [object Object] issue, but (i think?) causes the truncated backend token
-    return value.split(".")[1];
+    // return value.split(".")[1];
 
-    // return await AsyncStorage.getItem('token').then((value) => {
-    //   console.log(value, '<----- value in getToken')
-    //   return value
-    // })
   } catch (error) {
     console.log(error);
   }
