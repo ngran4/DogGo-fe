@@ -5,11 +5,43 @@
   "version": "0.2.0",
   "configurations": [
     {
+<<<<<<< HEAD
       "name": "Debug iOS",
       "cwd": "${workspaceFolder}",
       "type": "reactnativedirect",
       "request": "launch",
       "platform": "ios"
+=======
+      "name": "Debug Exponent Hermes - Experimental",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "platform": "exponent",
+      "expoHostType": "local"
+    },
+    {
+      "name": "Run iOS Hermes",
+      "request": "launch",
+      "type": "reactnativedirect",
+      "cwd": "${workspaceFolder}",
+      "enableDebug": false,
+      "platform": "ios"
+    },
+    {
+      "name": "Run iOS",
+      "request": "launch",
+      "type": "reactnative",
+      "cwd": "${workspaceFolder}",
+      "enableDebug": false,
+      "platform": "ios"
+    },
+    {
+      "name": "Debug Android",
+      "cwd": "${workspaceFolder}",
+      "type": "reactnative",
+      "request": "launch",
+      "platform": "android"
+>>>>>>> acd81ba4037d1bc25a4ed311d51ba5e413b7f34d
     }
   ]
 }

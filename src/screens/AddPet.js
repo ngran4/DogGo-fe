@@ -86,7 +86,7 @@ const AddPet = ({ navigation }) => {
 
   const doAddPet = async function () {
     const formData = {
-      name: dogName
+      name: dogName,
       // photo: null,
       // age: 0,
       // breed: null,
