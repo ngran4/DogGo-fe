@@ -26,14 +26,14 @@ const getToken = async () => {
       return null;
     }
     console.log(value, '<----- value in getToken')
-    console.log(typeof value, '<----- value type in getToken')
-    // return value
+    console.log(value.split(".")[1], '<----- value type in getToken')
     console.log(typeof value, "<----- value type in getToken");
+    return value
 
     // Return only the token part of the JWT 
     // **this solves the [object Object] issue, but (i think?) causes the truncated backend token
-    return value.split(".")[1];
-    
+    // return value.split(".")[1];
+
   } catch (error) {
     console.log(error);
   }

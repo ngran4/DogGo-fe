@@ -6,7 +6,6 @@ const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
 const createDog = async (dogData) => {
   // console.log(dogData, "<----- dogData")
   const token = tokenService.getToken()
-  // .then((value) => {return value});
   console.log(token, "<----- token in dogService")
   console.log(token._j, "<----- token")
 
