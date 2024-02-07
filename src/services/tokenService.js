@@ -26,6 +26,7 @@ const getToken = async () => {
     }
     console.log(value, '<----- value in getToken')
     console.log(typeof value, '<----- value type in getToken')
+    // return value
     return value
     // return await AsyncStorage.getItem('token').then((value) => {
     //   console.log(value, '<----- value in getToken')

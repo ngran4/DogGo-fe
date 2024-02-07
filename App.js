@@ -19,6 +19,7 @@ import NavBar from './src/components/NavBar'
 import EditPet from './src/screens/EditPet'
 import Settings from './src/screens/Settings'
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen'
+import ComingSoonScreen from './src/screens/ComingSoonScreen'
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
@@ -68,6 +69,7 @@ export default function App () {
           <Stack.Screen name='Home' component={NavBar} options={noHeaderNavOptions} />
           <Stack.Screen name='Settings' component={Settings} options={navOptions} />
           <Stack.Screen name='Change Password' component={ChangePasswordScreen} options={navOptions} />
+          <Stack.Screen name='Coming Soon' component={ComingSoonScreen} options={navOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

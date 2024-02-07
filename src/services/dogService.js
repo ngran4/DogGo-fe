@@ -4,13 +4,16 @@ const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`
 
 const createDog = async (dogData) => {
   // console.log(dogData, "<----- dogData")
-  // const token = tokenService.getToken().then((value) => {return value});
+  const token = tokenService.getToken()
+  // .then((value) => {return value});
+  console.log(token, "<----- token in dogService")
+  console.log(token._j, "<----- token")
 
   try {
-    const res = await fetch(`${BASE_URL}`, {
+    const res = await fetch(BASE_URL, {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${tokenService.getToken()}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(dogData)
@@ -24,13 +27,13 @@ const createDog = async (dogData) => {
     // console.log(typeof tokenService.getToken(), "<----- type")
     //  ------------- test ------------- //
 
-    const json = await res.json()
+    const response = await res.json()
     console.log(res, '<----- res')
-    console.log(json, '<----- json')
-    if (json.err) {
-      throw new Error(json.err)
+    console.log(response, '<----- response')
+    if (response.err) {
+      throw new Error(response.err)
     } else {
-      return json
+      return response
     }
   } catch (error) {
     throw error
