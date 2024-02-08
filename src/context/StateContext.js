@@ -17,7 +17,7 @@ export const StateProvider = (props) => {
   const [dogName, setDogName] = useState('')
   const [breed, setBreed] = useState(null)
   const [gender, setGender] = useState(null)
-  const [birthday, setBirthday] = useState(null)
+  const [birthday, setBirthday] = useState(new Date())
   const [dogPhoto, setDogPhoto] = useState(null)
 
   const colors = {
