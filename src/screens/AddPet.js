@@ -11,11 +11,11 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-import DropDownPicker from "react-native-dropdown-picker";
+// import DropDownPicker from "react-native-dropdown-picker";
 import AddPetIcon from "../../assets/images/AddPetIcon";
-import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
+// import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
 import GenderPicker from "../components/GenderPicker";
-import * as photoService from "../services/photoService";
+// import * as photoService from "../services/photoService";
 import * as dogService from "../services/dogService";
 
 const screenWidth = Dimensions.get('window').width
@@ -42,60 +42,52 @@ const AddPet = ({ navigation }) => {
   const [image, setImage] = useState(null)
   const [open, setOpen] = useState(false)
 
-  const [items, setItems] = useState([
-    { label: 'Select Gender', value: '' },
-    { label: 'Male', value: 'M' },
-    { label: 'Female', value: 'F' }
-  ])
 
   // ------------ image ------------ //
 
-  const pickImage = async () => {
-    const result = await ImagePicker.launchImageLibraryAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
-      allowsEditing: true,
-      aspect: [4, 3],
-      quality: 1
-    })
+  // const pickImage = async () => {
+  //   const result = await ImagePicker.launchImageLibraryAsync({
+  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
+  //     allowsEditing: true,
+  //     aspect: [4, 3],
+  //     quality: 1
+  //   })
 
-    console.log(result)
+  //   console.log(result)
 
-    if (!result.canceled) {
-      setImage(result.assets[0].uri)
-    }
-  }
+  //   if (!result.canceled) {
+  //     setImage(result.assets[0].uri)
+  //   }
+  // }
 
-  const uploadImage = async () => {
-    const photoData = new FormData()
-    photoData.append('photo', {
-      uri: image,
-      type: 'image/jpeg',
-      name: 'textPhoto.jpg'
-    })
+  // const uploadImage = async () => {
+  //   const photoData = new FormData()
+  //   photoData.append('photo', {
+  //     uri: image,
+  //     type: 'image/jpeg',
+  //     name: 'textPhoto.jpg'
+  //   })
 
-    const response = await photoService.create(photoData)
-    console.log(response, '<----- response')
+  //   const response = await photoService.create(photoData)
+  //   console.log(response, '<----- response')
 
     // let responseJSON = await response.json();
     // console.log(responseJSON, "<------ responseJSON");
 
     // return responseJSON.url
-  }
+  // }
 
   // ------------ image ------------ //
 
   const doAddPet = async function () {
     const formData = {
       name: dogName,
-      // photo: null,
-      // age: 0,
-      // breed: null,
-      // birthday: null,
-      // gender: setGender(items.value)
+      photo: null,
+      age: 0,
+      breed: null,
+      birthday: null,
+      gender: gender
     }
-
-    // Upload the image
-    // await uploadImage();
     try {
       console.log(formData, '<----- formData')
       await dogService.createDog(formData)
@@ -111,19 +103,6 @@ const AddPet = ({ navigation }) => {
         <AddPetIcon />
       </View>
       <Text style={[subHeader, { marginBottom: 15 }]}>Add a Furry Friend</Text>
-      {/* <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}>
-
-      <TouchableOpacity style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }} onPress={() => pickImage()}>
-
-        {image ? (
-          <Image source={{ uri: image }} style={styles.roundedImage} />
-        ) : (
-          <PetPhotoIcon />
-        )}
-
-      </TouchableOpacity>
-
-      </View> */}
       <View style={{ flex: 0.8 }}>
         <View style={{ alignItems: 'center' }}>
           <TextInput
@@ -164,31 +143,3 @@ const styles = StyleSheet.create({
 })
 
 export default AddPet
-
-// const doAddPet = async function () {
-//   // Create FormData for the image
-//   let photoData = new FormData();
-//   photoData.append('photo', {
-//     uri: image,
-//     type: 'image/jpeg',
-//     name: 'textPhoto.jpg'
-//   });
-
-//   // Create FormData for the dog name
-//   const formData = new FormData();
-//   formData.append('dogName', dogName);
-
-//   // Combine photoData and formData
-//   for (let [key, value] of formData.entries()) {
-//     photoData.append(key, value);
-//   }
-
-//   // Use dogService.create() to upload the combined data
-//   const response = await dogService.create(photoData);
-//   console.log(response, '<----- response')
-
-//   let responseJSON = await response.json();
-//   console.log(responseJSON, '<------ responseJSON')
-
-//   navigation.navigate("Walk Counter")
-// }

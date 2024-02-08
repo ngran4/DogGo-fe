@@ -11,8 +11,8 @@ const GenderPicker = () => {
   const [open, setOpen] = useState(false);
   const [items, setItems] = useState([
     { label: "Sex", value: "" },
-    { label: "Male", value: "M" },
-    { label: "Female", value: "F" },
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
   ]);
 
   return (
@@ -30,8 +30,8 @@ const GenderPicker = () => {
         value={gender}
         placeholder="Sex"
         items={[
-          { label: "Male", value: "M" },
-          { label: "Female", value: "F" },
+          { label: "Male", value: "Male" },
+          { label: "Female", value: "Female" },
         ]}
         setOpen={setOpen}
         setValue={setGender}

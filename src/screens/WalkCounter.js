@@ -10,10 +10,24 @@ import {
   SafeAreaView,
   TouchableOpacity
 } from 'react-native'
+import * as dogService from "../services/dogService";
 
 const WalkCounter = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, subHeader, body, buttonText, dogName } = stateContext
+  const { container, blueButton, greenButton, subHeader, body, buttonText, dogName, numWalks } = stateContext
+
+  const addWalkCounts = async function () {
+    const formData = {
+      frequency: numWalks,
+      walkTimes: []
+    }
+    try {
+      await dogService.addWalkCounts(formData)
+      navigation.navigate('Walk Times')
+    } catch (error) {
+      alert(error.message)
+    }
+  }
 
   return (
     <SafeAreaView style={[container]}>
@@ -24,7 +38,7 @@ const WalkCounter = ({ navigation }) => {
       <Text style={[subHeader]}> How many times a day would you ideally walk {dogName}? </Text>
 
       <Counter style={[{ marginBottom: 90 }, { marginTop: 90 }]} />
-      <TouchableOpacity style={[greenButton]} onPress={() => navigation.navigate('Walk Times')}>
+      <TouchableOpacity style={[greenButton]} onPress={() => addWalkCounts()}>
         <Text style={buttonText}>Next</Text>
       </TouchableOpacity>
 

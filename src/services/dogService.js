@@ -4,11 +4,6 @@ const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
 
 
 const createDog = async (dogData) => {
-  // console.log(dogData, "<----- dogData")
-  const token = tokenService.getToken()
-  console.log(token, "<----- token in dogService")
-  console.log(token._j, "<----- token")
-
   try {
     const token = await tokenService.getToken();
     const headers = new Headers();
@@ -21,16 +16,8 @@ const createDog = async (dogData) => {
       body: JSON.stringify(dogData),
     });
 
-    //     //  ------------- test ------------- //
-    //     // ${tokenService.getToken()}
-    //     // console.log(token, "<----- token")
-    //     // console.log(tokenService.getToken(), "<----- token")
-    //     // console.log(typeof tokenService.getToken(), "<----- type")
-    //     //  ------------- test ------------- //
-
     const json = await res.json();
-    //     console.log(res, '<----- res')
-    //     console.log(json, '<----- json')
+
     if (json.err) {
       throw new Error(json.err);
     } else {
@@ -57,4 +44,27 @@ const editDog = async (dogData) => {
   }
 };
 
-export { createDog, editDog };
+const addWalkCounts = async (walkData) => {
+  try {
+    const token = await tokenService.getToken();
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
+    headers.append("Content-Type", "application/json");
+
+    const res = await fetch(`${BASE_URL}/${dog._id}/walk`, {
+      method: "POST",
+      headers: headers,  
+      body: JSON.stringify(walkData),
+    });
+    const json = await res.json();    
+    if (json.err) {
+      throw new Error(json.err);
+    } else {
+      return json;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+export { createDog, editDog, addWalkCounts };
