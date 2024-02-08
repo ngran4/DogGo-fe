@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState } from "react";
 import { StateContext } from "../context/StateContext";
 // import * as ImagePicker from 'expo-image-picker'
 import {
+  Button,
   SafeAreaView,
   Text,
   View,
@@ -11,20 +12,20 @@ import {
   Dimensions,
   Image,
 } from "react-native";
-// import DropDownPicker from "react-native-dropdown-picker";
+import DateTimePicker from "@react-native-community/datetimepicker";
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 import AddPetIcon from "../../assets/images/AddPetIcon";
 // import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
 import GenderPicker from "../components/GenderPicker";
 // import * as photoService from "../services/photoService";
 import * as dogService from "../services/dogService";
 
-const screenWidth = Dimensions.get('window').width
+const screenWidth = Dimensions.get("window").width;
 
 const AddPet = ({ navigation }) => {
-  const [stateContext] = useContext(StateContext)
+  // const [stateContext] = useContext(StateContext);
   const {
     container,
-    blueButton,
     greenButton,
     subHeader,
     body,
@@ -37,47 +38,28 @@ const AddPet = ({ navigation }) => {
     setBreed,
     gender,
     setGender,
-    colors
-  } = stateContext
-  const [image, setImage] = useState(null)
-  const [open, setOpen] = useState(false)
+    colors,
+  } = useContext(StateContext)[0];
+  const [image, setImage] = useState(null);
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
 
+  const handleAddDate = (_, selectedDate) => {
+    const currentDate = selectedDate || birthday;
+    setBirthday(currentDate);
+  };
 
-  // ------------ image ------------ //
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
 
-  // const pickImage = async () => {
-  //   const result = await ImagePicker.launchImageLibraryAsync({
-  //     mediaTypes: ImagePicker.MediaTypeOptions.All,
-  //     allowsEditing: true,
-  //     aspect: [4, 3],
-  //     quality: 1
-  //   })
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
 
-  //   console.log(result)
-
-  //   if (!result.canceled) {
-  //     setImage(result.assets[0].uri)
-  //   }
-  // }
-
-  // const uploadImage = async () => {
-  //   const photoData = new FormData()
-  //   photoData.append('photo', {
-  //     uri: image,
-  //     type: 'image/jpeg',
-  //     name: 'textPhoto.jpg'
-  //   })
-
-  //   const response = await photoService.create(photoData)
-  //   console.log(response, '<----- response')
-
-    // let responseJSON = await response.json();
-    // console.log(responseJSON, "<------ responseJSON");
-
-    // return responseJSON.url
-  // }
-
-  // ------------ image ------------ //
+  const handleConfirm = (date) => {
+    console.warn("A date has been picked: ", date);
+    hideDatePicker();
+  };
 
   const doAddPet = async function () {
     const formData = {
@@ -88,14 +70,17 @@ const AddPet = ({ navigation }) => {
       birthday: null,
       gender: gender
     }
+
+    // Upload the image
+    // await uploadImage();
     try {
-      console.log(formData, '<----- formData')
-      await dogService.createDog(formData)
-      navigation.navigate('Walk Counter')
+      console.log(formData, "<----- formData");
+      await dogService.createDog(formData);
+      navigation.navigate("Walk Counter");
     } catch (error) {
-      alert(error.message)
-    };
-  }
+      alert(error.message);
+    }
+  };
 
   return (
     <SafeAreaView style={container}>
@@ -104,42 +89,73 @@ const AddPet = ({ navigation }) => {
       </View>
       <Text style={[subHeader, { marginBottom: 15 }]}>Add a Furry Friend</Text>
       <View style={{ flex: 0.8 }}>
-        <View style={{ alignItems: 'center' }}>
+        <View style={{ alignItems: "center" }}>
           <TextInput
             style={styles.input}
             value={dogName}
-            placeholder='Name'
-            placeholderTextColor='grey'
+            placeholder="Name"
+            placeholderTextColor="grey"
             onChangeText={(text) => setDogName(text)}
-            autoCapitalize='none'
+            autoCapitalize="none"
           />
         </View>
-      <GenderPicker />
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
+        <GenderPicker />
+        <View
+          style={{
+            borderBottomWidth: 2,
+            borderBottomColor: "black",
+            alignItems: "center",
+            width: screenWidth * 0.4,
+            marginTop: 12,
+          }}
+        >
+          {/* <DateTimePicker
+            value={birthday}
+            mode="date"
+            display="default"
+            onChange={handleAddDate}
+            accentColor={colors.background}
+            style={{ justifyContent: 'center'}}
+          /> */}
+      <Button title="Birthday" onPress={showDatePicker} />
+      <DateTimePickerModal
+        isVisible={isDatePickerVisible}
+        mode="date"
+        value={birthday}
+        onConfirm={handleConfirm}
+        onCancel={hideDatePicker}
+        onChange={handleAddDate}
+      />
+        </View>
+        </View>
+
       </View>
       <TouchableOpacity style={greenButton} onPress={() => doAddPet()}>
         <Text style={buttonText}>Next</Text>
       </TouchableOpacity>
     </SafeAreaView>
-  )
-}
+  );
+};
 
 const styles = StyleSheet.create({
   input: {
     paddingRight: 15,
     paddingTop: 15,
     borderBottomWidth: 2,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     width: screenWidth * 0.7,
-    fontFamily: 'OpenSans-Regular',
+    fontFamily: "OpenSans-Regular",
     fontSize: 20,
-    fontWeight: 600
+    fontWeight: 600,
   },
   roundedImage: {
     height: 180,
     width: 180,
     borderRadius: 90,
-    overflow: 'hidden'
-  }
-})
+    overflow: "hidden",
+  },
+
+});
 
 export default AddPet
