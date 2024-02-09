@@ -34,11 +34,7 @@ const AddPet = ({ navigation }) => {
     setDogName,
     birthday,
     setBirthday,
-    breed,
-    setBreed,
     gender,
-    setGender,
-    colors,
   } = useContext(StateContext)[0];
   const [image, setImage] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -58,6 +54,7 @@ const AddPet = ({ navigation }) => {
 
   const handleConfirm = (date) => {
     console.warn("A date has been picked: ", date);
+    setBirthday(date);
     hideDatePicker();
   };
 
@@ -67,7 +64,7 @@ const AddPet = ({ navigation }) => {
       photo: null,
       age: 0,
       breed: null,
-      birthday: null,
+      birthday: birthday,
       gender: gender
     }
 
