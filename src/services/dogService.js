@@ -2,6 +2,43 @@ import * as tokenService from "./tokenService";
 
 const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
 
+const getDog = async () => {
+  try {
+    const token = await tokenService.getToken();
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
+    headers.append("Content-Type", "application/json");
+
+    const response = await fetch(BASE_URL, {
+      method: "GET",
+      headers: headers,
+    })
+    const json = await response.json();
+    console.log(json, "<----- json in getDog");
+    return json;
+  } catch (error) {
+    throw error;
+  }
+}
+
+const getCurrentDog = async () => {
+  try {
+    const token = await tokenService.getToken();
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
+    headers.append("Content-Type", "application/json");
+
+    const response = await fetch(`${BASE_URL}/${dog._id}`, {
+      method: "GET",
+      headers: headers,
+    })
+    const json = await response.json();
+    console.log(json, "<----- json");
+
+  } catch (error) {
+    throw error;
+  }
+}
 
 const createDog = async (dogData) => {
   try {
@@ -44,14 +81,14 @@ const editDog = async (dogData) => {
   }
 };
 
-const addWalkCounts = async (walkData) => {
+const addWalkCounts = async (walkData, dogId) => {
   try {
     const token = await tokenService.getToken();
     const headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
     headers.append("Content-Type", "application/json");
 
-    const res = await fetch(`${BASE_URL}/${dog._id}/walk`, {
+    const res = await fetch(`${BASE_URL}/${dogId}/walk`, {
       method: "POST",
       headers: headers,  
       body: JSON.stringify(walkData),
@@ -67,4 +104,10 @@ const addWalkCounts = async (walkData) => {
   }
 }
 
-export { createDog, editDog, addWalkCounts };
+export { 
+  getDog, 
+  getCurrentDog,
+  createDog, 
+  editDog, 
+  addWalkCounts 
+};

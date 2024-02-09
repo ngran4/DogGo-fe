@@ -13,12 +13,21 @@ export const StateProvider = (props) => {
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
+  // ------- Dog Informaton ------- //
+  const [dogData, setDogData] = useState(null)
   const [dogId, setDogId] = useState('')
   const [dogName, setDogName] = useState('')
   const [breed, setBreed] = useState(null)
   const [gender, setGender] = useState(null)
-  const [birthday, setBirthday] = useState(new Date())
+  const [birthday, setBirthday] = useState(null)
+  const [dogAge, setDogAge] = useState(null)
   const [dogPhoto, setDogPhoto] = useState(null)
+  // ------- Dog Informaton ------- //
+
+  // ------- Owner / User Information ------- //
+  const [ownerId, setOwnerId] = useState('')
+  // ------- Owner / User Information ------- //
+  
 
   const colors = {
     darkBlue: '#77C8E0',
@@ -58,6 +67,9 @@ export const StateProvider = (props) => {
     loadinf: loading,
     setLoading,
 
+    // ------- Dog Informaton ------- //
+    dogData,
+    setDogData,
     dogId,
     setDogId,
     dogName,
@@ -70,6 +82,9 @@ export const StateProvider = (props) => {
     setGender,
     birthday,
     setBirthday,
+    dogAge,
+    setDogAge,
+    // ------- Dog Informaton ------- //
     colors,
 
     container: {

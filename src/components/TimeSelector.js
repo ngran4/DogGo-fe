@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import { StateContext } from '../context/StateContext'
 import { Picker } from '@react-native-picker/picker'
 import { Button, Text, StyleSheet, View, Dimensions } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select'
 
 const screenWidth = Dimensions.get('window').width
 

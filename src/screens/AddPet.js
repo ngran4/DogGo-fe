@@ -18,6 +18,7 @@ import AddPetIcon from "../../assets/images/AddPetIcon";
 // import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
 import GenderPicker from "../components/GenderPicker";
 // import * as photoService from "../services/photoService";
+import * as getAge from "../hooks/useGetAge";
 import * as dogService from "../services/dogService";
 
 const screenWidth = Dimensions.get("window").width;
@@ -35,6 +36,8 @@ const AddPet = ({ navigation }) => {
     birthday,
     setBirthday,
     gender,
+    // dogAge,
+    // setDogAge,
   } = useContext(StateContext)[0];
   const [image, setImage] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
