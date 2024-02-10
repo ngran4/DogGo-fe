@@ -6,7 +6,10 @@ export const StateContext = createContext()
 const screenHeight = Dimensions.get('window').height
 
 export const StateProvider = (props) => {
+  // ------- Walking Informaton ------- //
   const [numWalks, setNumWalks] = useState(0)
+  const [walkTimes, setWalkTimes] = useState([])
+  // ------- Walking Informaton ------- //
   const [lat, setLat] = useState([])
   const [lon, setLon] = useState([])
   const [weather, setWeather] = useState([])
@@ -58,8 +61,6 @@ export const StateProvider = (props) => {
     setLat,
     setLon,
     lon,
-    numWalks,
-    setNumWalks,
     weather,
     setWeather,
     error,
@@ -84,7 +85,15 @@ export const StateProvider = (props) => {
     setBirthday,
     dogAge,
     setDogAge,
+
     // ------- Dog Informaton ------- //
+    // ------- Walking Informaton ------- //
+    numWalks,
+    setNumWalks,
+    walkTimes, 
+    setWalkTimes,
+    // ------- Walking Informaton ------- //
+
     colors,
 
     container: {

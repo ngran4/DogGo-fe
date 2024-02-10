@@ -16,7 +16,20 @@ import * as tokenService from "../services/tokenService";
 
 const WalkCounter = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, subHeader, body, buttonText, dogData, setDogData, dogName, numWalks } = stateContext
+  const { 
+    container, 
+    blueButton, 
+    greenButton, 
+    subHeader, 
+    body, 
+    buttonText, 
+    dogData, 
+    setDogData, 
+    dogName, 
+    numWalks,
+    dogId,
+    setDogId, 
+  } = stateContext
   const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
 
   const addWalkCounts = async function () {
@@ -24,10 +37,11 @@ const WalkCounter = ({ navigation }) => {
       frequency: numWalks,
       walkTimes: []
     }
-    let getDogId = dogData[0]._id
-    console.log(getDogId, "<----- getDogId in WalkCounter");
+    // putting dogId in stateContext
+    setDogId(dogData[0]._id)
+    console.log(dogId, "<----- dogId in WalkCounter");
     try {
-      await dogService.addWalkCounts(formData, getDogId)
+      await dogService.addWalkCounts(formData, dogId)
       navigation.navigate('Walk Times')
     } catch (error) {
       alert(error.message)

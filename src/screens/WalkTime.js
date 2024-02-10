@@ -4,18 +4,43 @@ import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import TimeSelector from '../components/TimeSelector'
 import WalkTimeProgress from '../../assets/images/signup_progress/WalkTimeProgress'
+import * as dogService from '../services/dogService'
 
 const WalkTime = ({ navigation }) => {
   const [selectedValue, setSelectedValue] = useState(null)
   const [stateContext] = useContext(StateContext)
-  const { numWalks, setNumWalks } = stateContext
-  const { container, greenButton, buttonText, blueButton, subHeader, doLater, dogName } = stateContext
+  const { 
+    container, 
+    greenButton, 
+    buttonText, 
+    blueButton, 
+    subHeader, 
+    doLater, 
+    numWalks, 
+    setNumWalks, 
+    walkTimes,
+    setWalkTimes,
+    dogName,
+    dogId,
+  } = stateContext
 
-  async function submitData () {
+  async function addWalkTimes () {
     // The data will be collated and submitted here before submitting
-    // Then the user will be sent to the home page
-    navigation.navigate('Home')
+    
+    console.log(walkTimes, "<----- walkTimes in WalkTime");
+    const formData = {
+      frequency: numWalks,
+      walkTimes: [walkTimes]
+    }
+    try{
+      await dogService.addWalkCounts(formData, dogId)
+      navigation.navigate('Home')
+    } catch (error) {
+      alert(error.message)
+    }
   }
+
+  console.log(dogId, "<----- dogId in WalkTime");
 
   return (
     <SafeAreaView style={container}>
@@ -27,7 +52,7 @@ const WalkTime = ({ navigation }) => {
       {/* other content of PageB */}
       {selectedValue && <Text> Selected: {selectedValue}</Text>}
       <TimeSelector />
-      <TouchableOpacity style={greenButton} onPress={submitData}>
+      <TouchableOpacity style={greenButton} onPress={addWalkTimes}>
         <Text style={buttonText}>Start Walking!</Text>
       </TouchableOpacity>
       <TouchableOpacity>
