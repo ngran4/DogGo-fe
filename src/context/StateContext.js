@@ -6,19 +6,31 @@ export const StateContext = createContext()
 const screenHeight = Dimensions.get('window').height
 
 export const StateProvider = (props) => {
+  // ------- Walking Informaton ------- //
   const [numWalks, setNumWalks] = useState(0)
+  const [walkTimes, setWalkTimes] = useState([])
+  // ------- Walking Informaton ------- //
   const [lat, setLat] = useState([])
   const [lon, setLon] = useState([])
   const [weather, setWeather] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
+  // ------- Dog Informaton ------- //
+  const [dogData, setDogData] = useState(null)
   const [dogId, setDogId] = useState('')
   const [dogName, setDogName] = useState('')
   const [breed, setBreed] = useState(null)
   const [gender, setGender] = useState(null)
-  const [birthday, setBirthday] = useState(new Date())
+  const [birthday, setBirthday] = useState(null)
+  const [dogAge, setDogAge] = useState(null)
   const [dogPhoto, setDogPhoto] = useState(null)
+  // ------- Dog Informaton ------- //
+
+  // ------- Owner / User Information ------- //
+  const [ownerId, setOwnerId] = useState('')
+  // ------- Owner / User Information ------- //
+  
 
   const colors = {
     darkBlue: '#77C8E0',
@@ -49,8 +61,6 @@ export const StateProvider = (props) => {
     setLat,
     setLon,
     lon,
-    numWalks,
-    setNumWalks,
     weather,
     setWeather,
     error,
@@ -58,6 +68,9 @@ export const StateProvider = (props) => {
     loadinf: loading,
     setLoading,
 
+    // ------- Dog Informaton ------- //
+    dogData,
+    setDogData,
     dogId,
     setDogId,
     dogName,
@@ -70,6 +83,17 @@ export const StateProvider = (props) => {
     setGender,
     birthday,
     setBirthday,
+    dogAge,
+    setDogAge,
+
+    // ------- Dog Informaton ------- //
+    // ------- Walking Informaton ------- //
+    numWalks,
+    setNumWalks,
+    walkTimes, 
+    setWalkTimes,
+    // ------- Walking Informaton ------- //
+
     colors,
 
     container: {

@@ -1,13 +1,18 @@
 import * as React from 'react'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, Dimensions } from 'react-native'
+import { useGetAge } from '../hooks/useGetAge'
 
 const screenWidth = Dimensions.get('window').width
 
 const DogProfileWidget = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName, dogPhoto } = stateContext
+  const { buttonText, dogName, dogPhoto, dogAge } = stateContext
+
+  // useEffect(() => {
+  //   useGetAge()
+  // }, [])
 
   return (
     <SafeAreaView>
@@ -28,7 +33,7 @@ const DogProfileWidget = ({ navigation }) => {
                   )}
             </TouchableOpacity>
             <Text style={buttonText}>{dogName}</Text>
-
+            <Text style={buttonText}>{dogAge}</Text>
             {/* <Text>Age</Text> */}
           </TouchableOpacity>
           )

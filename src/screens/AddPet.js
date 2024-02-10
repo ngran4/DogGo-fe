@@ -15,9 +15,10 @@ import {
 import DateTimePicker from "@react-native-community/datetimepicker";
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 import AddPetIcon from "../../assets/images/AddPetIcon";
-import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
+// import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
 import GenderPicker from "../components/GenderPicker";
-import * as photoService from "../services/photoService";
+// import * as photoService from "../services/photoService";
+import * as getAge from "../hooks/useGetAge";
 import * as dogService from "../services/dogService";
 
 const screenWidth = Dimensions.get("window").width;
@@ -34,11 +35,9 @@ const AddPet = ({ navigation }) => {
     setDogName,
     birthday,
     setBirthday,
-    breed,
-    setBreed,
     gender,
-    setGender,
-    colors,
+    // dogAge,
+    // setDogAge,
   } = useContext(StateContext)[0];
   const [image, setImage] = useState(null);
   const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
@@ -58,18 +57,22 @@ const AddPet = ({ navigation }) => {
 
   const handleConfirm = (date) => {
     console.warn("A date has been picked: ", date);
+    setBirthday(date);
     hideDatePicker();
   };
 
   const doAddPet = async function () {
     const formData = {
       name: dogName,
-      // photo: null,
-      // age: 0,
-      // breed: null,
-      // birthday: null,
-      // gender: setGender(items.value)
-    };
+      photo: null,
+      age: 0,
+      breed: null,
+      birthday: birthday,
+      gender: gender
+    }
+
+    // Upload the image
+    // await uploadImage();
     try {
       console.log(formData, "<----- formData");
       await dogService.createDog(formData);
@@ -85,7 +88,6 @@ const AddPet = ({ navigation }) => {
         <AddPetIcon />
       </View>
       <Text style={[subHeader, { marginBottom: 15 }]}>Add a Furry Friend</Text>
-
       <View style={{ flex: 0.8 }}>
         <View style={{ alignItems: "center" }}>
           <TextInput
@@ -156,55 +158,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default AddPet;
-
-// // ------------ image ------------ //
-
-// const pickImage = async () => {
-//   const result = await ImagePicker.launchImageLibraryAsync({
-//     mediaTypes: ImagePicker.MediaTypeOptions.All,
-//     allowsEditing: true,
-//     aspect: [4, 3],
-//     quality: 1
-//   })
-
-//   console.log(result)
-
-//   if (!result.canceled) {
-//     setImage(result.assets[0].uri)
-//   }
-// }
-
-// const uploadImage = async () => {
-//   const photoData = new FormData()
-//   photoData.append('photo', {
-//     uri: image,
-//     type: 'image/jpeg',
-//     name: 'textPhoto.jpg'
-//   })
-
-//   const response = await photoService.create(photoData)
-//   console.log(response, '<----- response')
-
-//   // let responseJSON = await response.json();
-//   // console.log(responseJSON, "<------ responseJSON");
-
-//   // return responseJSON.url
-// }
-
-{
-  /* <View style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }}>
-
-      <TouchableOpacity style={{ height: 180, width: 180, marginBottom: 20, marginTop: 20 }} onPress={() => pickImage()}>
-
-        {image ? (
-          <Image source={{ uri: image }} style={styles.roundedImage} />
-        ) : (
-          <PetPhotoIcon />
-        )}
-
-      </TouchableOpacity>
-
-      </View> */
-}
-// // ------------ image ------------ //
+export default AddPet

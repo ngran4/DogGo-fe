@@ -1,7 +1,8 @@
 import React, { useContext, useState } from 'react'
 import { StateContext } from '../context/StateContext'
-import { Picker } from '@react-native-picker/picker'
+// import { Picker } from '@react-native-picker/picker'
 import { Button, Text, StyleSheet, View, Dimensions } from 'react-native'
+import RNPickerSelect from 'react-native-picker-select'
 
 const screenWidth = Dimensions.get('window').width
 
@@ -9,12 +10,14 @@ const TimeSelector = () => {
   // const [selectedValue, setSelectedValue] = useState(null);
   const [selectedValues, setSelectedValues] = useState(Array(numWalks).fill(null))
   const [stateContext] = useContext(StateContext)
-  const { numWalks, setNumWalks } = stateContext
+  const { numWalks, setNumWalks, walkTimes, setWalkTimes } = stateContext
 
   const handleValueChange = (index, value) => {
     const newValues = [...selectedValues]
     newValues[index] = value
     setSelectedValues(newValues)
+    console.log(selectedValues, '<----- selectedValues')
+    setWalkTimes(selectedValues)
   }
 
   const timeslot = {
@@ -58,6 +61,7 @@ const TimeSelector = () => {
         onValueChange={(value) => handleValueChange(i, value)}
         value={selectedValues[i]}
         style={pickerSelectStyles}
+        key={i}
       />
     )
   }
@@ -67,7 +71,6 @@ const TimeSelector = () => {
       <View style={styles.container}>
         {dropdowns}
       </View>
-
     </>
   )
 }

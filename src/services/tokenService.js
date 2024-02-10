@@ -6,7 +6,7 @@ global.atob = decode;
 const setToken = async (token) => {
   try {
     await AsyncStorage.setItem("token", token);
-    console.log(token, "<----- token in setToken");
+    // console.log(token, "<----- token in setToken");
   } catch (error) {
     console.log(error);
   }
@@ -15,7 +15,7 @@ const setToken = async (token) => {
 const getToken = async () => {
   try {
     const value = await AsyncStorage.getItem("token");
-    console.log(value, "<----- token in getToken");
+    // console.log(value, "<----- token in getToken");
     if (!value) return null;
     // const payload = jwt_decode(value)
     // Check if the token is expired
@@ -25,9 +25,9 @@ const getToken = async () => {
       console.log("token exp");
       return null;
     }
-    console.log(value, '<----- value in getToken')
-    console.log(value.split(".")[1], '<----- value type in getToken')
-    console.log(typeof value, "<----- value type in getToken");
+    // console.log(value, '<----- value in getToken')
+    // console.log(value.split(".")[1], '<----- value type in getToken')
+    // console.log(typeof value, "<----- value type in getToken");
     return value
 
     // Return only the token part of the JWT 

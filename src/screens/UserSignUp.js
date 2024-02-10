@@ -91,7 +91,7 @@ const UserSignUp = ({ navigation }) => {
           <TouchableOpacity style={greenButton} onPress={() => doSignUp()}>
             <Text style={buttonText}>Create Account</Text>
           </TouchableOpacity>
-           </>)
+        </>)
         : (<>
           {/* <Text style={header}>Not Valid</Text> */}
         </>)}
