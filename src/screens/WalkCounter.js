@@ -38,10 +38,12 @@ const WalkCounter = ({ navigation }) => {
       walkTimes: []
     }
     // putting dogId in stateContext
-    setDogId(dogData[0]._id)
-    console.log(dogId, "<----- dogId in WalkCounter");
+    const dogId = dogData[0]._id
+    setDogId(dogId)
+    // console.log(dogId, "<----- dogId in WalkCounter");
+    // console.log(dogData[0]._id, "<----- dog._id in WalkCounter");
     try {
-      await dogService.addWalkCounts(formData, dogId)
+      await dogService.addWalk(formData, dogId)
       navigation.navigate('Walk Times')
     } catch (error) {
       alert(error.message)
@@ -66,11 +68,13 @@ const WalkCounter = ({ navigation }) => {
       throw error;
     }
   }
-  console.log(dogData, "<----- dogData in WalkCounter");
+  // console.log(dogData, "<----- dogData in WalkCounter");
 
   useEffect(() => {
+  //   // const dogData = dogService.getDog()
+  //   // setDogData(dogData)
     getDog()
-  }, [])
+  }, [numWalks])
 
   return (
     <SafeAreaView style={[container]}>

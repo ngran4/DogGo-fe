@@ -16,20 +16,20 @@ const PetProfile = ({ navigation }) => {
   const birthdayDate = { birthday }
   const currentDate = { date }
 
-  const useGetAge = (birthdayDate, currentDate) => {
-    if (birthdayDate.birthday != null) {
-      const parseDates = (str) => {
-        const dateParts = str.replace(/-/g, '')
-        return parseInt(dateParts)
-      }
-      const dateNum = parseDates(currentDate.date)
-      const birthdayNum = parseDates(birthdayDate.birthday)
-      const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
-      setAge(ageOfPet)
-    } else {
-      setAge('Include Birthday')
-    }
-  }
+  // const useGetAge = (birthdayDate, currentDate) => {
+  //   if (birthdayDate.birthday != null) {
+  //     const parseDates = (str) => {
+  //       const dateParts = str.replace(/-/g, '')
+  //       return parseInt(dateParts)
+  //     }
+  //     const dateNum = parseDates(currentDate.date)
+  //     const birthdayNum = parseDates(birthdayDate.birthday)
+  //     const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
+  //     setAge(ageOfPet)
+  //   } else {
+  //     setAge('Include Birthday')
+  //   }
+  // }
 
   useEffect(() => {
     useGetAge(birthdayDate, currentDate)

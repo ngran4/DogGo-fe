@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useContext, useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, Dimensions } from 'react-native'
-import { useGetAge } from '../hooks/useGetAge'
 
 const screenWidth = Dimensions.get('window').width
 

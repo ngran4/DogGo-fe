@@ -12,7 +12,9 @@ const Settings = ({ navigation }) => {
     {
       container,
       header,
-      homePgHeader
+      homePgHeader,
+      colors,
+      clearStateContext
     } = stateContext
   const [walkEnabled, setWalkEnabled] = useState(false)
   const [airEnabled, setAirEnabled] = useState(false)
@@ -30,6 +32,7 @@ const Settings = ({ navigation }) => {
 
   const doLogout = async function () {
     try {
+      clearStateContext()
       await authService.logout()
       navigation.navigate('Welcome')
     } catch (error) {

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import DogProfileWidget from '../components/DogProfileWidget'
@@ -7,20 +7,14 @@ import RemindersWidget from '../components/RemindersWidget'
 import CurrentWeather from '../components/CurrentWeather'
 import WalkingSchedule from '../components/WalkingSchedule'
 
-import * as authService from '../services/authService'
 
 const HomeScreen = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, blueButton, greenButton, header, homePgHeader, body, buttonText } = stateContext
+  const { container, getDogDataFromDB } = stateContext
 
-  const doLogout = async function () {
-    try {
-      await authService.logout()
-      navigation.navigate('Welcome')
-    } catch (error) {
-      console.log(error)
-    }
-  }
+  useEffect(() => {
+    getDogDataFromDB()
+  }, [])
 
   return (
     <SafeAreaView style={container}>

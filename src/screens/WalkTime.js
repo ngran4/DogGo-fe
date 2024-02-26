@@ -29,18 +29,17 @@ const WalkTime = ({ navigation }) => {
     
     console.log(walkTimes, "<----- walkTimes in WalkTime");
     const formData = {
-      frequency: numWalks,
       walkTimes: [walkTimes]
     }
     try{
-      await dogService.addWalkCounts(formData, dogId)
+      await dogService.editWalk(formData, dogId)
       navigation.navigate('Home')
     } catch (error) {
       alert(error.message)
     }
   }
 
-  console.log(dogId, "<----- dogId in WalkTime");
+  // console.log(dogId, "<----- dogId in WalkTime");
 
   return (
     <SafeAreaView style={container}>
