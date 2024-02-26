@@ -10,7 +10,7 @@ import WalkingSchedule from '../components/WalkingSchedule'
 
 const HomeScreen = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, getDogDataFromDB } = stateContext
+  const { container, getDogDataFromDB, dogName } = stateContext
 
   useEffect(() => {
     getDogDataFromDB()

@@ -31,9 +31,9 @@ const PetProfile = ({ navigation }) => {
   //   }
   // }
 
-  useEffect(() => {
-    useGetAge(birthdayDate, currentDate)
-  }, [birthdayDate, currentDate])
+  // useEffect(() => {
+  //   useGetAge(birthdayDate, currentDate)
+  // }, [birthdayDate, currentDate])
 
   return (
     <SafeAreaView style={styles.container}>

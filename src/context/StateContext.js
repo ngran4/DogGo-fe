@@ -69,7 +69,7 @@ export const StateProvider = (props) => {
       setBirthday(dog.birthday)
       setGender(dog.gender)
       setDogAge(dog.age)
-      setNumWalks(dog.walking.frequency)
+      // setNumWalks(dog.walking.frequency)
       // setWalkTimes(dog.walking.walkTimes)
     })
   }

@@ -1,10 +1,14 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import WalkTimeIcon from '../../assets/images/WalkTimeIcon'
 import { SafeAreaView, Text, TouchableOpacity, View } from 'react-native'
 import TimeSelector from '../components/TimeSelector'
 import WalkTimeProgress from '../../assets/images/signup_progress/WalkTimeProgress'
 import * as dogService from '../services/dogService'
+import * as tokenService from '../services/tokenService'
+
+const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
+
 
 const WalkTime = ({ navigation }) => {
   const [selectedValue, setSelectedValue] = useState(null)
@@ -21,25 +25,52 @@ const WalkTime = ({ navigation }) => {
     walkTimes,
     setWalkTimes,
     dogName,
-    dogId,
+    setDogId,
+    setDogData,
+    dogData, 
   } = stateContext
 
   async function addWalkTimes () {
     // The data will be collated and submitted here before submitting
-    
-    console.log(walkTimes, "<----- walkTimes in WalkTime");
     const formData = {
-      walkTimes: [walkTimes]
+      walking: walkTimes
     }
-    try{
-      await dogService.editWalk(formData, dogId)
+    // putting dogId in stateContext
+    const dogId = dogData[0]._id
+    setDogId(dogId)
+    try {
+      await dogService.addWalk(formData, dogId)
       navigation.navigate('Home')
     } catch (error) {
       alert(error.message)
     }
   }
 
-  // console.log(dogId, "<----- dogId in WalkTime");
+
+  const getDog = async () => {
+    try {
+      const token = await tokenService.getToken();
+      const headers = new Headers();
+      headers.append("Authorization", `Bearer ${token}`);
+      headers.append("Content-Type", "application/json");
+  
+      const response = await fetch(BASE_URL, {
+        method: "GET",
+        headers: headers,
+      })
+      const json = await response.json();
+      console.log(json, "<----- json in getDog");
+      setDogData(json);
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  useEffect(() => {
+  //   // const dogData = dogService.getDog()
+  //   // setDogData(dogData)
+    getDog()
+  }, [])
 
   return (
     <SafeAreaView style={container}>

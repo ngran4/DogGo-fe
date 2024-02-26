@@ -81,6 +81,7 @@ const editDog = async (dogData) => {
   }
 };
 
+
 const addWalk = async (walkData, dogId) => {
   try {
     const token = await tokenService.getToken();
@@ -104,14 +105,14 @@ const addWalk = async (walkData, dogId) => {
   }
 }
 
-const editWalk = async (walkData, dogId) => {
+const editWalk = async (walkData, dogId, walkId) => {
   try {
     const token = await tokenService.getToken();
     const headers = new Headers();
     headers.append("Authorization", `Bearer ${token}`);
     headers.append("Content-Type", "application/json");
 
-    const res = await fetch(`${BASE_URL}/${dogId}/walk`, {
+    const res = await fetch(`${BASE_URL}/${dogId}/walk/${walkId}`, {
       method: "PUT",
       headers: headers,
       body: JSON.stringify(walkData),

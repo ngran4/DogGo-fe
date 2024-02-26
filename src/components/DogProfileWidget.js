@@ -13,6 +13,8 @@ const DogProfileWidget = ({ navigation }) => {
   //   useGetAge()
   // }, [])
 
+
+
   return (
     <SafeAreaView>
       {dogName
@@ -32,7 +34,7 @@ const DogProfileWidget = ({ navigation }) => {
                   )}
             </TouchableOpacity>
             <Text style={buttonText}>{dogName}</Text>
-            <Text style={buttonText}>{dogAge}</Text>
+            <Text style={buttonText}>age: {dogAge}</Text>
             {/* <Text>Age</Text> */}
           </TouchableOpacity>
           )

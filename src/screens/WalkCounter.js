@@ -30,51 +30,26 @@ const WalkCounter = ({ navigation }) => {
     dogId,
     setDogId, 
   } = stateContext
-  const BASE_URL = `${process.env.REACT_APP_BACK_END_SERVER_URL}/api/dogs`;
+  
 
   const addWalkCounts = async function () {
-    const formData = {
-      frequency: numWalks,
-      walkTimes: []
-    }
-    // putting dogId in stateContext
-    const dogId = dogData[0]._id
-    setDogId(dogId)
-    // console.log(dogId, "<----- dogId in WalkCounter");
-    // console.log(dogData[0]._id, "<----- dog._id in WalkCounter");
+    // const formData = {
+    //   frequency: numWalks,
+    //   walkTimes: []
+    // }
+    // // putting dogId in stateContext
+    // const dogId = dogData[0]._id
+    // setDogId(dogId)
     try {
-      await dogService.addWalk(formData, dogId)
+      // await dogService.addWalk(formData, dogId)
+
       navigation.navigate('Walk Times')
     } catch (error) {
       alert(error.message)
     }
   }
 
-  const getDog = async () => {
-    try {
-      const token = await tokenService.getToken();
-      const headers = new Headers();
-      headers.append("Authorization", `Bearer ${token}`);
-      headers.append("Content-Type", "application/json");
-  
-      const response = await fetch(BASE_URL, {
-        method: "GET",
-        headers: headers,
-      })
-      const json = await response.json();
-      console.log(json, "<----- json in getDog");
-      setDogData(json);
-    } catch (error) {
-      throw error;
-    }
-  }
-  // console.log(dogData, "<----- dogData in WalkCounter");
 
-  useEffect(() => {
-  //   // const dogData = dogService.getDog()
-  //   // setDogData(dogData)
-    getDog()
-  }, [numWalks])
 
   return (
     <SafeAreaView style={[container]}>
@@ -88,7 +63,6 @@ const WalkCounter = ({ navigation }) => {
       <TouchableOpacity style={[greenButton]} onPress={() => addWalkCounts()}>
         <Text style={buttonText}>Next</Text>
       </TouchableOpacity>
-
       <View style={[{ height: 64, width: 358 }, { marginTop: 15 }]}>
         <WalkCounterProgress />
       </View>
