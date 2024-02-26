@@ -35,11 +35,13 @@ const WalkTime = ({ navigation }) => {
     const formData = {
       walking: walkTimes
     }
+    console.log(formData, "<----- formData in WalkTimes");
+    console.log(typeof formData, "<----- typeof formData in WalkTimes")
     // putting dogId in stateContext
     const dogId = dogData[0]._id
     setDogId(dogId)
     try {
-      await dogService.addWalk(formData, dogId)
+      await dogService.addWalk(walkTimes, dogId)
       navigation.navigate('Home')
     } catch (error) {
       alert(error.message)

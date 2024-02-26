@@ -16,7 +16,7 @@ const TimeSelector = () => {
     const newValues = [...selectedValues]
     newValues[index] = value
     setSelectedValues(newValues)
-    console.log(selectedValues, '<----- selectedValues')
+    console.log(selectedValues, '<----- selectedValues in TimeSelector')
     setWalkTimes(selectedValues)
   }
 
