@@ -1,21 +1,21 @@
 import React, { createContext, useState, useEffect } from 'react'
 import { useGetWeather } from '../hooks/useGetWeather'
 import { Dimensions } from 'react-native'
+import * as dogService from '../services/dogService'
+
 export const StateContext = createContext()
 
 const screenHeight = Dimensions.get('window').height
 
 export const StateProvider = (props) => {
-  // ------- Walking Informaton ------- //
-  const [numWalks, setNumWalks] = useState(0)
-  const [walkTimes, setWalkTimes] = useState([])
-  // ------- Walking Informaton ------- //
+
   const [lat, setLat] = useState([])
   const [lon, setLon] = useState([])
   const [weather, setWeather] = useState([])
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(true)
   const [name, setName] = useState('')
+
   // ------- Dog Informaton ------- //
   const [dogData, setDogData] = useState(null)
   const [dogId, setDogId] = useState('')
@@ -25,13 +25,17 @@ export const StateProvider = (props) => {
   const [birthday, setBirthday] = useState(null)
   const [dogAge, setDogAge] = useState(null)
   const [dogPhoto, setDogPhoto] = useState(null)
+  // ------- Walking Informaton ------- //
+  const [numWalks, setNumWalks] = useState(0)
+  const [walkTimes, setWalkTimes] = useState([])
+  // ------- Walking Informaton ------- //
   // ------- Dog Informaton ------- //
 
   // ------- Owner / User Information ------- //
   const [ownerId, setOwnerId] = useState('')
   // ------- Owner / User Information ------- //
-  
 
+  // ------- App Colors ------- //
   const colors = {
     darkBlue: '#77C8E0',
     lightBlue: '#C4E8F2',
@@ -39,6 +43,38 @@ export const StateProvider = (props) => {
     red: 'FF6477',
     background: '#F8F5E6'
   }
+
+  // ------- Functions ------- //
+  const clearStateContext = () => {
+    setDogData(null)
+    setDogId('')
+    setDogName('')
+    setBreed(null)
+    setGender(null)
+    setBirthday(null)
+    setDogAge(null)
+    setDogPhoto(null)
+    setNumWalks(0)
+    setWalkTimes([])
+    console.log('State Context Cleared')
+  }
+
+  const getDogDataFromDB = async () => {
+    const dogData = await dogService.getDog()
+    setDogData(dogData)
+    dogData.map((dog) => {
+      setDogId(dog._id)
+      setDogName(dog.name)
+      setBreed(dog.breed)
+      setBirthday(dog.birthday)
+      setGender(dog.gender)
+      setDogAge(dog.age)
+      // setNumWalks(dog.walking.frequency)
+      // setWalkTimes(dog.walking.walkTimes)
+    })
+  }
+  // ------- Functions ------- //
+
 
   if (lat && lon) {
     useGetWeather(
@@ -90,11 +126,14 @@ export const StateProvider = (props) => {
     // ------- Walking Informaton ------- //
     numWalks,
     setNumWalks,
-    walkTimes, 
+    walkTimes,
     setWalkTimes,
     // ------- Walking Informaton ------- //
 
     colors,
+    // ------- Functions ------- //
+    clearStateContext,
+    getDogDataFromDB,
 
     container: {
       backgroundColor: '#F8F5E6',

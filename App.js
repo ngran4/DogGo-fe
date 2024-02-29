@@ -20,6 +20,7 @@ import EditPet from './src/screens/EditPet'
 import Settings from './src/screens/Settings'
 import ChangePasswordScreen from './src/screens/ChangePasswordScreen'
 import ComingSoonScreen from './src/screens/ComingSoonScreen'
+import RemaindersScreen from './src/screens/RemaindersScreen'
 
 const Stack = createStackNavigator()
 SplashScreen.preventAutoHideAsync()
@@ -70,6 +71,7 @@ export default function App () {
           <Stack.Screen name='Settings' component={Settings} options={navOptions} />
           <Stack.Screen name='Change Password' component={ChangePasswordScreen} options={navOptions} />
           <Stack.Screen name='Coming Soon' component={ComingSoonScreen} options={navOptions} />
+          <Stack.Screen name='Remainders Screen' component={RemaindersScreen} options={navOptions} />
         </Stack.Navigator>
       </NavigationContainer>
     </StateProvider>

@@ -65,23 +65,30 @@ const createDog = async (dogData) => {
   }
 };
 
-const editDog = async (dogData) => {
+const editDog = async (dogData, dogId) => {
   try {
+    const token = await tokenService.getToken();
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
+    headers.append("Content-Type", "application/json");
     const res = await fetch(`${BASE_URL}/${dogId}`, {
       method: "PUT",
-      headers: {
-        Authorization: `Bearer ${tokenService.getToken()}`,
-        "Content-Type": "application/json",
-      },
+      headers: headers,
       body: JSON.stringify(dogData),
     });
-    return res.json();
+    const json = await res.json();
+    if (json.err) {
+      throw new Error(json.err);
+    } else {
+      return json;
+    }
   } catch (error) {
     throw new Error(json.error);
   }
 };
 
-const addWalkCounts = async (walkData, dogId) => {
+
+const addWalk = async (walkData, dogId) => {
   try {
     const token = await tokenService.getToken();
     const headers = new Headers();
@@ -89,11 +96,11 @@ const addWalkCounts = async (walkData, dogId) => {
     headers.append("Content-Type", "application/json");
 
     const res = await fetch(`${BASE_URL}/${dogId}/walk`, {
-      method: "POST",
-      headers: headers,  
+      method: "PUT",
+      headers: headers,
       body: JSON.stringify(walkData),
     });
-    const json = await res.json();    
+    const json = await res.json();
     if (json.err) {
       throw new Error(json.err);
     } else {
@@ -104,10 +111,34 @@ const addWalkCounts = async (walkData, dogId) => {
   }
 }
 
-export { 
-  getDog, 
+const editWalk = async (walkData, dogId, walkId) => {
+  try {
+    const token = await tokenService.getToken();
+    const headers = new Headers();
+    headers.append("Authorization", `Bearer ${token}`);
+    headers.append("Content-Type", "application/json");
+
+    const res = await fetch(`${BASE_URL}/${dogId}/walk/${walkId}`, {
+      method: "PUT",
+      headers: headers,
+      body: JSON.stringify(walkData),
+    });
+    const json = await res.json();
+    if (json.err) {
+      throw new Error(json.err);
+    } else {
+      return json;
+    }
+  } catch (error) {
+    throw error;
+  }
+}
+
+export {
+  getDog,
   getCurrentDog,
-  createDog, 
-  editDog, 
-  addWalkCounts 
+  createDog,
+  editDog,
+  addWalk,
+  editWalk,
 };

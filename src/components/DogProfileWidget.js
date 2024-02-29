@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useContext, useEffect } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, StyleSheet, Image, Text, TouchableOpacity, View, Dimensions } from 'react-native'
-import { useGetAge } from '../hooks/useGetAge'
+
 
 const screenWidth = Dimensions.get('window').width
 
@@ -10,33 +10,30 @@ const DogProfileWidget = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { buttonText, dogName, dogPhoto, dogAge } = stateContext
 
-  // useEffect(() => {
-  //   useGetAge()
-  // }, [])
 
   return (
     <SafeAreaView>
       {dogName
         ? (
-          <TouchableOpacity
+          < TouchableOpacity
             style={styles.widget}
             onPress={() => navigation.navigate('Pet Profile')}
           >
-            {/* <View style={{ height: 8, width: 8 }}></View> */}
+            <View style={{ height: 8, width: 8 }}></View>
             <TouchableOpacity onPress={() => navigation.navigate('Edit Pet')}>
               {dogPhoto
                 ? (
                   <Image source={{ uri: image }} style={styles.roundedImage} />
-                  )
+                )
                 : (
                   <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
-                  )}
+                )}
             </TouchableOpacity>
             <Text style={buttonText}>{dogName}</Text>
-            <Text style={buttonText}>{dogAge}</Text>
+            <Text style={buttonText}>age: {dogAge}</Text>
             {/* <Text>Age</Text> */}
           </TouchableOpacity>
-          )
+        )
         : (
           <TouchableOpacity
             style={styles.widget}
@@ -45,8 +42,8 @@ const DogProfileWidget = ({ navigation }) => {
             <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
             <Text style={buttonText}>Add Pet</Text>
           </TouchableOpacity>
-          )}
-    </SafeAreaView>
+        )}
+    </SafeAreaView >
   )
 }
 

@@ -20,7 +20,7 @@ export const useGetWeather = (lat, setLat, lon, setLon, weather, setWeather, err
   }
 
   useEffect(() => {
-    ;(async () => {
+    ; (async () => {
       const { status } = await Location.requestForegroundPermissionsAsync()
       if (status !== 'granted') {
         setError('Permission to access location was denied')

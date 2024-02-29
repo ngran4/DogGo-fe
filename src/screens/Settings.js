@@ -12,7 +12,9 @@ const Settings = ({ navigation }) => {
     {
       container,
       header,
-      homePgHeader
+      homePgHeader,
+      colors,
+      clearStateContext
     } = stateContext
   const [walkEnabled, setWalkEnabled] = useState(false)
   const [airEnabled, setAirEnabled] = useState(false)
@@ -30,6 +32,7 @@ const Settings = ({ navigation }) => {
 
   const doLogout = async function () {
     try {
+      clearStateContext()
       await authService.logout()
       navigation.navigate('Welcome')
     } catch (error) {
@@ -51,94 +54,9 @@ const Settings = ({ navigation }) => {
           >
             <Text style={styles.editText}>Edit Pet Profile</Text>
           </TouchableOpacity>
-          <View>
-            {/* Notifications */}
-            <Text style={homePgHeader}>Notifications</Text>
-            <View style={styles.toggle}>
-              <Text style={styles.inputInfo}>Walk Reminders</Text>
-              <Switch
-                trackColor={{ false: '#767577', true: '#77C8E0' }}
-                thumbColor={walkEnabled ? '#FFFFFF' : '#f4f3f4'}
-                ios_backgroundColor='#3e3e3e'
-                onValueChange={toggleWalkSwitch}
-                value={walkEnabled}
-                name='walkReminders'
-              />
-            </View>
-          </View>
-
-          <View 
+          <View
           // style={styles.weatherSection}
           >
-            {/* Weather conditions */}
-            <Text style={homePgHeader}>Weather Conditions</Text>
-            <View style={styles.toggle}>
-              <Text style={styles.inputInfo}>Air Quality</Text>
-              <Switch
-                trackColor={{ false: '#767577', true: '#77C8E0' }}
-                thumbColor={airEnabled ? '#FFFFFF' : '#f4f3f4'}
-                ios_backgroundColor='#3e3e3e'
-                onValueChange={toggleAirSwitch}
-                value={airEnabled}
-                name='airQuality'
-              />
-            </View>
-            <View style={styles.toggle}>
-              <Text style={styles.inputInfo}>Rain</Text>
-              <Switch
-                trackColor={{ false: '#767577', true: '#77C8E0' }}
-                thumbColor={rainEnabled ? '#FFFFFF' : '#f4f3f4'}
-                ios_backgroundColor='#3e3e3e'
-                onValueChange={toggleRainSwitch}
-                value={rainEnabled}
-                name='rain'
-              />
-              <View style={styles.toggle}>
-                <Text style={styles.inputInfo}>Snow</Text>
-                <Switch
-                  trackColor={{ false: '#767577', true: '#77C8E0' }}
-                  thumbColor={snowEnabled ? '#FFFFFF' : '#f4f3f4'}
-                  ios_backgroundColor='#3e3e3e'
-                  onValueChange={toggleSnowSwitch}
-                  value={snowEnabled}
-                  name='snow'
-                />
-              </View>
-                <Text style={styles.inputInfo}>Thunderstorms</Text>
-              <View style={styles.toggle}>
-                <Switch
-                  trackColor={{ false: '#767577', true: '#77C8E0' }}
-                  thumbColor={thunderstormsEnabled ? '#FFFFFF' : '#f4f3f4'}
-                  ios_backgroundColor='#3e3e3e'
-                  onValueChange={toggleThunderstormSwitch}
-                  value={thunderstormsEnabled}
-                  name='thunderstorms'
-                />
-              </View>
-              <View style={styles.toggle}>
-                <Text style={styles.inputInfo}>Extreme Heat</Text>
-                <Switch
-                  trackColor={{ false: '#767577', true: '#77C8E0' }}
-                  thumbColor={heatEnabled ? '#FFFFFF' : '#f4f3f4'}
-                  ios_backgroundColor='#3e3e3e'
-                  onValueChange={toggleHeatSwitch}
-                  value={heatEnabled}
-                  name='extremeHeat'
-                />
-              </View>
-            </View>
-            <View>
-              {/* Add upcoming reminders */}
-              <Text style={homePgHeader}>Add Upcoming Reminders</Text>
-              <Text style={styles.inputInfo}
-                onPress={() =>
-                navigation.navigate('Coming Soon')}
-              >Medications</Text>
-              <Text style={styles.inputInfo}
-                onPress={() =>
-                navigation.navigate('Coming Soon')}              
-              >Habits</Text>
-            </View>
             <View>
               {/* Account */}
               <Text style={homePgHeader}>Account</Text>
@@ -187,7 +105,7 @@ const styles = StyleSheet.create({
     // flexDirection: 'column',
     // flexWrap: 'nowrap',
     justifyContent: 'flex-end',
-    
+
     width: screenWidth * 0.9,
   }
 })

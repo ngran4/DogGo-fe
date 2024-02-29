@@ -16,24 +16,24 @@ const PetProfile = ({ navigation }) => {
   const birthdayDate = { birthday }
   const currentDate = { date }
 
-  const useGetAge = (birthdayDate, currentDate) => {
-    if (birthdayDate.birthday != null) {
-      const parseDates = (str) => {
-        const dateParts = str.replace(/-/g, '')
-        return parseInt(dateParts)
-      }
-      const dateNum = parseDates(currentDate.date)
-      const birthdayNum = parseDates(birthdayDate.birthday)
-      const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
-      setAge(ageOfPet)
-    } else {
-      setAge('Include Birthday')
-    }
-  }
+  // const useGetAge = (birthdayDate, currentDate) => {
+  //   if (birthdayDate.birthday != null) {
+  //     const parseDates = (str) => {
+  //       const dateParts = str.replace(/-/g, '')
+  //       return parseInt(dateParts)
+  //     }
+  //     const dateNum = parseDates(currentDate.date)
+  //     const birthdayNum = parseDates(birthdayDate.birthday)
+  //     const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
+  //     setAge(ageOfPet)
+  //   } else {
+  //     setAge('Include Birthday')
+  //   }
+  // }
 
-  useEffect(() => {
-    useGetAge(birthdayDate, currentDate)
-  }, [birthdayDate, currentDate])
+  // useEffect(() => {
+  //   useGetAge(birthdayDate, currentDate)
+  // }, [birthdayDate, currentDate])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,7 +61,11 @@ const PetProfile = ({ navigation }) => {
           <Text style={homePgHeader}>Birthday</Text>
           {
             { age } != null
-              ? <Text style={styles.inputInfo}>{age} years old</Text>
+              ? 
+              <View>
+              <Text style={styles.inputInfo}>{birthday}</Text>
+              <Text style={styles.inputInfo}>{age} years old</Text>
+              </View>
               : <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
           }
         </View>

@@ -1,16 +1,18 @@
 import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
-import { SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from 'react-native'
+import { Button, SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from 'react-native'
 import DropDownPicker from 'react-native-dropdown-picker'
 import { Calendar } from 'react-native-calendars'
 import * as ImagePicker from 'expo-image-picker'
 import * as photoService from '../services/photoService'
+import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 // not supported on web
 // import RNPickerSelect from "react-native-picker-select";
 // import DateTimePicker from '@react-native-community/datetimepicker';
 
 import NavBar from '../components/NavBar'
+import GenderPicker from '../components/GenderPicker'
 
 const screenWidth = Dimensions.get('window').width
 
@@ -18,6 +20,26 @@ const EditPet = ({ navigation }) => {
   // Date Picker
   const [selected, setSelected] = useState('')
   const [currDate, setCurrDate] = useState(new Date())
+  const [isDatePickerVisible, setDatePickerVisibility] = useState(false);
+
+  const handleAddDate = (_, selectedDate) => {
+    const currentDate = selectedDate || birthday;
+    setBirthday(currentDate);
+  };
+
+  const showDatePicker = () => {
+    setDatePickerVisibility(true);
+  };
+
+  const hideDatePicker = () => {
+    setDatePickerVisibility(false);
+  };
+
+  const handleConfirm = (date) => {
+    console.warn("A date has been picked: ", date);
+    setBirthday(date);
+    hideDatePicker();
+  };
 
   // Gender Picker
   const [open, setOpen] = useState(false)
@@ -117,32 +139,23 @@ const EditPet = ({ navigation }) => {
               <Text>What's {dogName}'s Birthday</Text>
             </TouchableOpacity>
             {/* <Text>{currDate}</Text> */}
-            <Calendar
-              // onPressArrowLeft={subtractMonth => subtractMonth()}
-              style={styles.calendar}
-              onDayPress={(day) =>
-                // console.log(selected.dateString)
-                setSelected(day.dateString)}
-              markedDates={{
-                [selected]: { selected: true, disableTouchEvent: true, marked: true, selectedColor: 'blue' }
-              }}
+            <View>
+            <Button title="Birthday" onPress={showDatePicker} />
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              value={birthday}
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+              onChange={handleAddDate}
             />
+          </View>
           </View>
         </View>
         <View style={styles.infoSection}>
           <View style={styles.subSection}>
             <Text style={homePgHeader}>Gender</Text>
-            <DropDownPicker
-              style={styles.picker}
-              placeholder={`Whats ${dogName}'s gender?`}
-              onßChange={(value) => setGender(value)}
-              open={open}
-              value={value}
-              items={items}
-              setOpen={setOpen}
-              setValue={setValue}
-              setItems={setItems}
-            />
+              <GenderPicker />
           </View>
         </View>
         <View style={styles.infoSection}>

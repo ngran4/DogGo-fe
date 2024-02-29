@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { StateContext } from "../context/StateContext";
 // import * as ImagePicker from 'expo-image-picker'
 import {
@@ -82,6 +82,7 @@ const AddPet = ({ navigation }) => {
     }
   };
 
+
   return (
     <SafeAreaView style={container}>
       <View style={{ height: 64, width: 64 }}>
@@ -99,18 +100,18 @@ const AddPet = ({ navigation }) => {
             autoCapitalize="none"
           />
         </View>
-        <View style={{flexDirection: 'row', justifyContent: 'space-between', }}>
-        <GenderPicker />
-        <View
-          style={{
-            borderBottomWidth: 2,
-            borderBottomColor: "black",
-            alignItems: "center",
-            width: screenWidth * 0.4,
-            marginTop: 12,
-          }}
-        >
-          {/* <DateTimePicker
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', }}>
+          <GenderPicker />
+          <View
+            style={{
+              borderBottomWidth: 2,
+              borderBottomColor: "black",
+              alignItems: "center",
+              width: screenWidth * 0.4,
+              marginTop: 12,
+            }}
+          >
+            {/* <DateTimePicker
             value={birthday}
             mode="date"
             display="default"
@@ -118,16 +119,16 @@ const AddPet = ({ navigation }) => {
             accentColor={colors.background}
             style={{ justifyContent: 'center'}}
           /> */}
-      <Button title="Birthday" onPress={showDatePicker} />
-      <DateTimePickerModal
-        isVisible={isDatePickerVisible}
-        mode="date"
-        value={birthday}
-        onConfirm={handleConfirm}
-        onCancel={hideDatePicker}
-        onChange={handleAddDate}
-      />
-        </View>
+            <Button title="Birthday" onPress={showDatePicker} />
+            <DateTimePickerModal
+              isVisible={isDatePickerVisible}
+              mode="date"
+              value={birthday}
+              onConfirm={handleConfirm}
+              onCancel={hideDatePicker}
+              onChange={handleAddDate}
+            />
+          </View>
         </View>
 
       </View>
