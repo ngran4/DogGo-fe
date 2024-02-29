@@ -48,7 +48,6 @@ const WalkTime = ({ navigation }) => {
     }
   }
 
-
   const getDog = async () => {
     try {
       const token = await tokenService.getToken();
@@ -63,14 +62,24 @@ const WalkTime = ({ navigation }) => {
       const json = await response.json();
       console.log(json, "<----- json in getDog");
       setDogData(json);
+      dogData.map((dog) => {
+        if (dog.name === dogName && dog.birthday === birthday) {
+        const dogId = dogData[0]._id
+        setDogId(dogId) 
+        console.log(dogId, "<----- dogId in getDog")
+        setDogData(getCurrentDog(dogId))
+      } else {
+        throw new Error("Dog not found")
+      }
+      })
     } catch (error) {
       throw error;
     }
   }
 
   useEffect(() => {
-  //   // const dogData = dogService.getDog()
-  //   // setDogData(dogData)
+    // const dogData = dogService.getDog()
+    // setDogData(dogData)
     getDog()
   }, [])
 

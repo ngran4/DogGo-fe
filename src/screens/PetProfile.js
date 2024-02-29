@@ -61,7 +61,11 @@ const PetProfile = ({ navigation }) => {
           <Text style={homePgHeader}>Birthday</Text>
           {
             { age } != null
-              ? <Text style={styles.inputInfo}>{age} years old</Text>
+              ? 
+              <View>
+              <Text style={styles.inputInfo}>{birthday}</Text>
+              <Text style={styles.inputInfo}>{age} years old</Text>
+              </View>
               : <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
           }
         </View>

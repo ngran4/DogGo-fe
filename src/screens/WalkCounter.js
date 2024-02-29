@@ -49,7 +49,15 @@ const WalkCounter = ({ navigation }) => {
     }
   }
 
+  const lookUpDog = async () => {
+    const lookUp = await dogService.getDog()
+    console.log(lookUp, "<---- lookUp in WalkCounter");
+    // if (lookUp.name && lookup)
+  }
 
+  useEffect(() => {
+    lookUpDog()
+  }, [])
 
   return (
     <SafeAreaView style={[container]}>
