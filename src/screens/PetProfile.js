@@ -13,8 +13,8 @@ const PetProfile = ({ navigation }) => {
   const [age, setAge] = useState(0)
 
   // putting context into objects
-  const birthdayDate = { birthday }
-  const currentDate = { date }
+  // const birthdayDate = { birthday }
+  // const currentDate = { date }
 
   // const useGetAge = (birthdayDate, currentDate) => {
   //   if (birthdayDate.birthday != null) {
@@ -31,9 +31,20 @@ const PetProfile = ({ navigation }) => {
   //   }
   // }
 
+  // const getDateFormat = (date) => {
+  //   const month = new Date(date.getUTCMonth()) + 1; // months from 1-12
+  //   const day = new Date(date.getUTCDate());
+  //   const year = new Date(date.getUTCFullYear());
+  
+  //   return newDate = `${year}/${month}/${day}`;
+  
+  // }
+
   // useEffect(() => {
-  //   useGetAge(birthdayDate, currentDate)
-  // }, [birthdayDate, currentDate])
+  //   let birthdayFormat = getDateFormat({birthday})
+  //   setBirthday(birthdayFormat) 
+  //   return birthdayFormat
+  // }, [])
 
   return (
     <SafeAreaView style={styles.container}>
