@@ -1,10 +1,11 @@
 import React, { useState, useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 import { Button, SafeAreaView, ScrollView, StyleSheet, Image, Text, TouchableOpacity, View, TextInput, Dimensions } from 'react-native'
-import DropDownPicker from 'react-native-dropdown-picker'
-import { Calendar } from 'react-native-calendars'
+// import DropDownPicker from 'react-native-dropdown-picker'
+// import { Calendar } from 'react-native-calendars'
 import * as ImagePicker from 'expo-image-picker'
 import * as photoService from '../services/photoService'
+import * as dogService from '../services/dogService'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
 // not supported on web
@@ -67,6 +68,7 @@ const EditPet = ({ navigation }) => {
     }
     // Upload the image
     await uploadImage()
+    await dogService.editDog(formData)
     navigation.navigate('Pet Profile')
   }
   // ------------ POST ------------ //
