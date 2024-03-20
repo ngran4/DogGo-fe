@@ -6,6 +6,7 @@ import WalkScheduleWidget from '../components/WalkScheduleWidget'
 import RemindersWidget from '../components/RemindersWidget'
 import CurrentWeather from '../components/CurrentWeather'
 import WalkingSchedule from '../components/WalkingSchedule'
+import useGetAge from '../hooks/useGetAge'
 
 
 const HomeScreen = ({ navigation }) => {
@@ -14,6 +15,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getDogDataFromDB()
+    // useGetAge()
   }, [])
 
   return (

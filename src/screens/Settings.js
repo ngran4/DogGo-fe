@@ -16,18 +16,6 @@ const Settings = ({ navigation }) => {
       colors,
       clearStateContext
     } = stateContext
-  const [walkEnabled, setWalkEnabled] = useState(false)
-  const [airEnabled, setAirEnabled] = useState(false)
-  const [rainEnabled, setRainEnabled] = useState(false)
-  const [snowEnabled, setSnowEnabled] = useState(false)
-  const [thunderstormsEnabled, setThunderstormsEnabled] = useState(false)
-  const [heatEnabled, setHeatEnabled] = useState(false)
-  const toggleWalkSwitch = () => setWalkEnabled(previousState => !previousState)
-  const toggleAirSwitch = () => setAirEnabled(previousState => !previousState)
-  const toggleRainSwitch = () => setRainEnabled(previousState => !previousState)
-  const toggleSnowSwitch = () => setSnowEnabled(previousState => !previousState)
-  const toggleThunderstormSwitch = () => setThunderstormsEnabled(previousState => !previousState)
-  const toggleHeatSwitch = () => setHeatEnabled(previousState => !previousState)
 
 
   const doLogout = async function () {
@@ -61,6 +49,12 @@ const Settings = ({ navigation }) => {
               {/* Account */}
               <Text style={homePgHeader}>Account</Text>
               <Text style={styles.inputInfo}>Change Home Location</Text>
+              <Text
+                style={styles.inputInfo}
+                onPress={() =>
+                  navigation.navigate('Coming Soon')}
+              >Change E-mail
+              </Text>
               <Text
                 style={styles.inputInfo}
                 onPress={() =>

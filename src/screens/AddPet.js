@@ -18,8 +18,9 @@ import AddPetIcon from "../../assets/images/AddPetIcon";
 // import PetPhotoIcon from "../../assets/images/PetPhotoIcon";
 import GenderPicker from "../components/GenderPicker";
 // import * as photoService from "../services/photoService";
-import * as getAge from "../hooks/useGetAge";
+// import * as getAge from "../hooks/useGetAge";
 import * as dogService from "../services/dogService";
+import * as authService from "../services/authService";
 
 const screenWidth = Dimensions.get("window").width;
 
@@ -75,12 +76,18 @@ const AddPet = ({ navigation }) => {
     // await uploadImage();
     try {
       console.log(formData, "<----- formData");
+      console.log(value, 'value')
       await dogService.createDog(formData);
       navigation.navigate("Walk Counter");
     } catch (error) {
       alert(error.message);
     }
   };
+
+  useEffect(() => {
+    const value = authService.getToken();
+    return value;
+  }, []);
 
 
   return (

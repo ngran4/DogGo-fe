@@ -1,18 +1,27 @@
-// import React, { useEffect } from 'react'
+import React, { useContext } from 'react'
 import { StateContext } from '../context/StateContext'
 
-const useGetAge = (date) => {
+export const useGetAge = (date) => {
   const [stateContext] = useContext(StateContext)
-  const { dogAge, setDogAge } = stateContext
+  const { dogAge, setDogAge} = stateContext
   // const [date, setDate] = useState(new Date())
 
-  let currentDate = new Date().getFullYear();
-  let birthyear = new Date(date).getFullYear();
-  currentAge = currentDate - birthyear;
+
+
+
+
+const getDateFormat = (date) => {
+  const month   = dateObj.getUTCMonth() + 1; // months from 1-12
+  const day     = dateObj.getUTCDate();
+  const year    = dateObj.getUTCFullYear();
+
+  return newDate = `${year}/${month}/${day}`;
+
+}
+
+  let currentDate = getDateFormat(new Date().getFullYear());
+  let birthyear = getDateFormat(new Date(date).getFullYear());
+  let currentAge = currentDate - birthyear;
   setDogAge(currentAge)
-  // return currentAge
+  return currentAge
   }
-
-
-
-export default useGetAge

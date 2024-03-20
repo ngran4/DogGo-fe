@@ -68,10 +68,18 @@ export const StateProvider = (props) => {
       setBreed(dog.breed)
       setBirthday(dog.birthday)
       setGender(dog.gender)
-      setDogAge(dog.age)
-      // setNumWalks(dog.walking.frequency)
-      // setWalkTimes(dog.walking.walkTimes)
+      // setDogAge(dog.age)
+      setWalkTimes(dog.walking)
     })
+  }
+
+  const getDateFormat = (date) => {
+    const month   = dateObj.getUTCMonth() + 1; // months from 1-12
+    const day     = dateObj.getUTCDate();
+    const year    = dateObj.getUTCFullYear();
+  
+    return newDate = `${year}/${month}/${day}`;
+  
   }
   // ------- Functions ------- //
 
@@ -134,6 +142,7 @@ export const StateProvider = (props) => {
     // ------- Functions ------- //
     clearStateContext,
     getDogDataFromDB,
+    getDateFormat,
 
     container: {
       backgroundColor: '#F8F5E6',

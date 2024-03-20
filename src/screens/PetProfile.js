@@ -9,31 +9,29 @@ const screenWidth = Dimensions.get('window').width
 const PetProfile = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
   const { container, blueButton, greenButton, header, homePgHeader, body, buttonText, dogName, breed, gender, birthday } = stateContext
-  const [date, setDate] = useState(new Date().toISOString().slice(0, 10))
   const [age, setAge] = useState(0)
 
   // putting context into objects
-  const birthdayDate = { birthday }
-  const currentDate = { date }
+  const birthdayDate = new Date(birthday).toISOString().slice(0, 10)
 
-  // const useGetAge = (birthdayDate, currentDate) => {
-  //   if (birthdayDate.birthday != null) {
-  //     const parseDates = (str) => {
-  //       const dateParts = str.replace(/-/g, '')
-  //       return parseInt(dateParts)
-  //     }
-  //     const dateNum = parseDates(currentDate.date)
-  //     const birthdayNum = parseDates(birthdayDate.birthday)
-  //     const ageOfPet = Math.floor((dateNum - birthdayNum) / 10000)
-  //     setAge(ageOfPet)
-  //   } else {
-  //     setAge('Include Birthday')
-  //   }
-  // }
+  const useGetAge = (birthdayDate) => {
+    {
+      let today = new Date();
+      let birthDate = new Date(birthdayDate);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      setAge(age)
+    }
+  }
 
-  // useEffect(() => {
-  //   useGetAge(birthdayDate, currentDate)
-  // }, [birthdayDate, currentDate])
+  useEffect(() => {
+    useGetAge(birthdayDate)
+  }, [])
+
+  console.log(age)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -61,10 +59,10 @@ const PetProfile = ({ navigation }) => {
           <Text style={homePgHeader}>Birthday</Text>
           {
             { age } != null
-              ? 
+              ?
               <View>
-              <Text style={styles.inputInfo}>{birthday}</Text>
-              <Text style={styles.inputInfo}>{age} years old</Text>
+                <Text style={styles.inputInfo}>{new Date(birthday).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}</Text>
+                <Text style={styles.inputInfo}>{age} years old</Text>
               </View>
               : <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
           }

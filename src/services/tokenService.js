@@ -1,4 +1,4 @@
-// import * as jwt_decode from 'jwt-decode'
+import jwt_decode from 'jwt-decode'
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { decode } from "base-64";
 global.atob = decode;
@@ -58,29 +58,3 @@ const removeToken = async () => {
 
 export { setToken, getToken, getUserFromToken, removeToken };
 
-// function setToken(token) {
-//   localStorage.setItem('token', token)
-// }
-
-// function getToken() {
-//   let token = localStorage.getItem('token')
-//   if (token) {
-//     const payload = jwt_decode(token)
-//     if (payload.exp < Date.now() / 1000) {
-//       localStorage.removeItem('token')
-//       token = null
-//     }
-//   } else {
-//     localStorage.removeItem('token')
-//   }
-//   return token
-// }
-
-// function getUserFromToken() {
-//   const token = getToken()
-//   return token ? jwt_decode(token).user : null
-// }
-
-// function removeToken() {
-//   localStorage.removeItem('token')
-// }
