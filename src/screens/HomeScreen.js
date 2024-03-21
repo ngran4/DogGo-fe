@@ -15,7 +15,6 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getDogDataFromDB()
-    // useGetAge()
   }, [])
 
   return (

@@ -51,7 +51,7 @@ const PetProfile = ({ navigation }) => {
         <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
         <View>
           <Text style={buttonText}>{dogName}</Text>
-          <Text style={styles.inputInfo}>{age}</Text>
+          <Text style={styles.inputInfo}>{age} years old</Text>
         </View>
       </View>
       <View style={styles.infoSection}>
@@ -62,7 +62,6 @@ const PetProfile = ({ navigation }) => {
               ?
               <View>
                 <Text style={styles.inputInfo}>{new Date(birthday).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}</Text>
-                <Text style={styles.inputInfo}>{age} years old</Text>
               </View>
               : <Text style={styles.inputInfo}>Include {dogName}'s Birthday</Text>
           }

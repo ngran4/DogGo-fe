@@ -119,10 +119,10 @@ const EditPet = ({ navigation }) => {
             {image
               ? (
                 <Image source={{ uri: image }} style={styles.roundedImage} />
-                )
+              )
               : (
                 <Image style={styles.tinyLogo} source={require('../../assets/images/addphoto.png')} />
-                )}
+              )}
           </TouchableOpacity>
           <View>
             <Text style={buttonText}>Edit Name</Text>
@@ -138,26 +138,29 @@ const EditPet = ({ navigation }) => {
           <View style={styles.subSection}>
             <Text style={homePgHeader}>Birthday</Text>
             <TouchableOpacity>
-              <Text>What's {dogName}'s Birthday</Text>
+              {birthday != null ?
+                <Text style={styles.inputInfo}>{new Date(birthday).toLocaleDateString('en-us', { year: "numeric", month: "long", day: "numeric" })}</Text> :
+                <Text>What's {dogName}'s Birthday</Text>
+              }
             </TouchableOpacity>
             {/* <Text>{currDate}</Text> */}
             <View>
-            <Button title="Birthday" onPress={showDatePicker} />
-            <DateTimePickerModal
-              isVisible={isDatePickerVisible}
-              mode="date"
-              value={birthday}
-              onConfirm={handleConfirm}
-              onCancel={hideDatePicker}
-              onChange={handleAddDate}
-            />
-          </View>
+              <Button title="Birthday" onPress={showDatePicker} />
+              <DateTimePickerModal
+                isVisible={isDatePickerVisible}
+                mode="date"
+                value={birthday}
+                onConfirm={handleConfirm}
+                onCancel={hideDatePicker}
+                onChange={handleAddDate}
+              />
+            </View>
           </View>
         </View>
         <View style={styles.infoSection}>
           <View style={styles.subSection}>
             <Text style={homePgHeader}>Gender</Text>
-              <GenderPicker />
+            <GenderPicker />
           </View>
         </View>
         <View style={styles.infoSection}>
