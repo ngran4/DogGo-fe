@@ -3,25 +3,21 @@ import { StateContext } from '../context/StateContext'
 
 export const useGetAge = (date) => {
   const [stateContext] = useContext(StateContext)
-  const { dogAge, setDogAge} = stateContext
+  const [age, setAge] = useState(0)
   // const [date, setDate] = useState(new Date())
 
+  const birthdayDate = new Date(birthday).toISOString().slice(0, 10)
 
-
-
-
-const getDateFormat = (date) => {
-  const month   = dateObj.getUTCMonth() + 1; // months from 1-12
-  const day     = dateObj.getUTCDate();
-  const year    = dateObj.getUTCFullYear();
-
-  return newDate = `${year}/${month}/${day}`;
-
-}
-
-  let currentDate = getDateFormat(new Date().getFullYear());
-  let birthyear = getDateFormat(new Date(date).getFullYear());
-  let currentAge = currentDate - birthyear;
-  setDogAge(currentAge)
-  return currentAge
+  const useGetAge = (birthdayDate) => {
+    {
+      let today = new Date();
+      let birthDate = new Date(birthdayDate);
+      let age = today.getFullYear() - birthDate.getFullYear();
+      let m = today.getMonth() - birthDate.getMonth();
+      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+        age--;
+      }
+      setAge(age)
+    }
   }
+}

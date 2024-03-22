@@ -6,7 +6,7 @@ import WalkScheduleWidget from '../components/WalkScheduleWidget'
 import RemindersWidget from '../components/RemindersWidget'
 import CurrentWeather from '../components/CurrentWeather'
 import WalkingSchedule from '../components/WalkingSchedule'
-import useGetAge from '../hooks/useGetAge'
+import * as profileService from '../services/profileService'
 
 
 const HomeScreen = ({ navigation }) => {
@@ -15,7 +15,7 @@ const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     getDogDataFromDB()
-    // useGetAge()
+    // profileService.getProfile()
   }, [])
 
   return (
