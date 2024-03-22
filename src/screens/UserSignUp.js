@@ -67,7 +67,7 @@ const UserSignUp = ({ navigation }) => {
         <TextInput
           style={styles.input}
           value={name}
-          placeholder='Username'
+          placeholder='Name'
           onChangeText={(text) => setName(text)}
           autoCapitalize='none'
         />

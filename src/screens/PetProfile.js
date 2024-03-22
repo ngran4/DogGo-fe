@@ -31,7 +31,7 @@ const PetProfile = ({ navigation }) => {
     useGetAge(birthdayDate)
   }, [])
 
-  console.log(age)
+  console.log(birthdayDate)
 
   return (
     <SafeAreaView style={styles.container}>

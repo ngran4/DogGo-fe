@@ -64,6 +64,7 @@ const GenderPicker = () => {
           color: "grey",
           fontSize: 15,
         }}
+        listMode="SCROLLVIEW" 
       />
     </View>
   );

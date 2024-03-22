@@ -1,7 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { StateContext } from '../context/StateContext'
 import { SafeAreaView, ScrollView, View, Text, TouchableOpacity, StyleSheet, Switch, Dimensions } from 'react-native'
 import DogProfileWidget from '../components/DogProfileWidget'
+import * as profileService from '../services/profileService'
 import * as authService from '../services/authService'
 
 const screenWidth = Dimensions.get('window').width
@@ -14,6 +15,7 @@ const Settings = ({ navigation }) => {
       header,
       homePgHeader,
       colors,
+      name,
       clearStateContext
     } = stateContext
 
@@ -27,6 +29,12 @@ const Settings = ({ navigation }) => {
       console.log(error)
     }
   }
+
+  useEffect(() => {
+    profileService.getAllProfiles()
+  }, [])
+
+  console.log(name, 'name')
 
   return (
     <SafeAreaView style={container}>
@@ -47,6 +55,7 @@ const Settings = ({ navigation }) => {
           >
             <View>
               {/* Account */}
+              <Text style={homePgHeader}>{name}</Text>
               <Text style={homePgHeader}>Account</Text>
               <Text style={styles.inputInfo}>Change Home Location</Text>
               <Text

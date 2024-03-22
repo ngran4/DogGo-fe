@@ -73,14 +73,14 @@ export const StateProvider = (props) => {
     })
   }
 
-  const getDateFormat = (date) => {
-    const month   = dateObj.getUTCMonth() + 1; // months from 1-12
-    const day     = dateObj.getUTCDate();
-    const year    = dateObj.getUTCFullYear();
+  // const getDateFormat = (date) => {
+  //   const month   = dateObj.getUTCMonth() + 1; // months from 1-12
+  //   const day     = dateObj.getUTCDate();
+  //   const year    = dateObj.getUTCFullYear();
   
-    return newDate = `${year}/${month}/${day}`;
+  //   return newDate = `${year}/${month}/${day}`;
   
-  }
+  // }
   // ------- Functions ------- //
 
 
@@ -139,10 +139,17 @@ export const StateProvider = (props) => {
     // ------- Walking Informaton ------- //
 
     colors,
+    // ------- User Information ------- //
+    name,
+    setName,
+
+    // ------- User Information ------- //
+
     // ------- Functions ------- //
     clearStateContext,
     getDogDataFromDB,
-    getDateFormat,
+    // getDateFormat,
+    // ------- Functions ------- //
 
     container: {
       backgroundColor: '#F8F5E6',
