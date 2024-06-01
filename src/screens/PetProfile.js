@@ -32,6 +32,7 @@ const PetProfile = ({ navigation }) => {
   }, [])
 
   console.log(birthdayDate)
+  console.log(breed)
 
   return (
     <SafeAreaView style={styles.container}>
@@ -39,7 +40,6 @@ const PetProfile = ({ navigation }) => {
       <TouchableOpacity
         style={styles.editBtn}
         onPress={() =>
-          // console.log("Edit Pet Profile")
           navigation.navigate('Edit Pet')}
       >
         <Text style={styles.editText}>Edit Pet Profile</Text>

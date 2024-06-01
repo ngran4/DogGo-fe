@@ -8,12 +8,11 @@ import * as photoService from '../services/photoService'
 import * as dogService from '../services/dogService'
 import DateTimePickerModal from "react-native-modal-datetime-picker";
 
-// not supported on web
-// import RNPickerSelect from "react-native-picker-select";
-// import DateTimePicker from '@react-native-community/datetimepicker';
-
+  // ------------ COMPONENTS ------------ //
 import NavBar from '../components/NavBar'
 import GenderPicker from '../components/GenderPicker'
+
+  // ------------ COMPONENTS ------------ //
 
 const screenWidth = Dimensions.get('window').width
 
@@ -62,7 +61,7 @@ const EditPet = ({ navigation }) => {
   const doUpdatePet = async function () {
     const formData = {
       dogName,
-      birthday: setBirthday(selected),
+      birthday,
       gender: setGender(value)
       // breed: breed
     }

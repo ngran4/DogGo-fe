@@ -2,6 +2,7 @@ import React, { createContext, useState, useEffect } from 'react'
 import { useGetWeather } from '../hooks/useGetWeather'
 import { Dimensions } from 'react-native'
 import * as dogService from '../services/dogService'
+import * as profileService from '../services/profileService'
 
 export const StateContext = createContext()
 
@@ -32,6 +33,7 @@ export const StateProvider = (props) => {
   // ------- Dog Informaton ------- //
 
   // ------- Owner / User Information ------- //
+  const [profileId, setProfileiD] = useState([])
   const [ownerId, setOwnerId] = useState('')
   // ------- Owner / User Information ------- //
 
@@ -59,17 +61,11 @@ export const StateProvider = (props) => {
     console.log('State Context Cleared')
   }
 
-  const getDogDataFromDB = async () => {
-    const dogData = await dogService.getDog()
-    setDogData(dogData)
-    dogData.map((dog) => {
-      setDogId(dog._id)
-      setDogName(dog.name)
-      setBreed(dog.breed)
-      setBirthday(dog.birthday)
-      setGender(dog.gender)
-      // setDogAge(dog.age)
-      setWalkTimes(dog.walking)
+  const getDataFromDB = async () => {
+    const profileData = await profileService.getProfile()
+    setProfileData(profileData)
+    profileData.map((item) => {
+      profileId = item._id
     })
   }
 
@@ -147,7 +143,7 @@ export const StateProvider = (props) => {
 
     // ------- Functions ------- //
     clearStateContext,
-    getDogDataFromDB,
+    getDataFromDB,
     // getDateFormat,
     // ------- Functions ------- //
 

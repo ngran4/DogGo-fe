@@ -11,10 +11,10 @@ import * as profileService from '../services/profileService'
 
 const HomeScreen = ({ navigation }) => {
   const [stateContext] = useContext(StateContext)
-  const { container, getDogDataFromDB, dogName } = stateContext
+  const { container, getDataFromDB, dogName } = stateContext
 
   useEffect(() => {
-    getDogDataFromDB()
+    getDataFromDB()
     // profileService.getProfile()
   }, [])
 
